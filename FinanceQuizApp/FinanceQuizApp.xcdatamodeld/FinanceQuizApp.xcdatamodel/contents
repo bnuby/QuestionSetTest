@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16E195" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="CustomizedQuiz" representedClassName="CustomizedQuiz" syncable="YES" codeGenerationType="class">
+        <attribute name="groupOfQuiz" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="quizNo" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+    </entity>
+    <entity name="CustomizedQuizSet" representedClassName="CustomizedQuizSet" syncable="YES" codeGenerationType="class">
+        <attribute name="no" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="numberOfQuiz" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="setName" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="MarkedQuiz" representedClassName="MarkedQuiz" syncable="YES" codeGenerationType="class">
+        <attribute name="groupOfQuiz" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="noOfQuiz" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="quizTitle" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="TheEazierWrongQuiz" representedClassName="TheEazierWrongQuiz" syncable="YES" codeGenerationType="class">
+        <attribute name="count" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="groupsOfQuiz" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="quizName" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="MarkedQuiz" positionX="-63" positionY="-18" width="128" height="90"/>
+        <element name="TheEazierWrongQuiz" positionX="-54" positionY="18" width="128" height="90"/>
+        <element name="CustomizedQuizSet" positionX="-36" positionY="45" width="128" height="90"/>
+        <element name="CustomizedQuiz" positionX="-18" positionY="54" width="128" height="75"/>
+    </elements>
+</model>

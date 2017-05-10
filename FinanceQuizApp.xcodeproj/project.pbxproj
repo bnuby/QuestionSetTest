@@ -14,6 +14,13 @@
 		ACE5EDDC1EB9A97500195A8B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACE5EDDA1EB9A97500195A8B /* LaunchScreen.storyboard */; };
 		ACE5EDE71EB9A97500195A8B /* testTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE5EDE61EB9A97500195A8B /* testTests.swift */; };
 		ACE5EDF21EB9A97500195A8B /* testUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE5EDF11EB9A97500195A8B /* testUITests.swift */; };
+		CF2FD82A1EBB63EB00B1A594 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF2FD8291EBB63EB00B1A594 /* AccountViewController.swift */; };
+		CF2FD82C1EBB64E000B1A594 /* QuizCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF2FD82B1EBB64E000B1A594 /* QuizCollectionViewController.swift */; };
+		CF2FD82E1EBB759200B1A594 /* OwnQuizProcessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF2FD82D1EBB759200B1A594 /* OwnQuizProcessViewController.swift */; };
+		CF2FD8301EBB7A0700B1A594 /* loginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF2FD82F1EBB7A0700B1A594 /* loginViewController.swift */; };
+		CFC262591EBA1E53002B241A /* QuestionSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC262581EBA1E53002B241A /* QuestionSet.swift */; };
+		CFD17A051EBA1A2D00235CD1 /* testing.json in Resources */ = {isa = PBXBuildFile; fileRef = CFD17A041EBA1A2D00235CD1 /* testing.json */; };
+		CFDD16721EBC5881001B536E /* test.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CFDD16701EBC5881001B536E /* test.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +54,13 @@
 		ACE5EDED1EB9A97500195A8B /* testUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = testUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACE5EDF11EB9A97500195A8B /* testUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testUITests.swift; sourceTree = "<group>"; };
 		ACE5EDF31EB9A97500195A8B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CF2FD8291EBB63EB00B1A594 /* AccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
+		CF2FD82B1EBB64E000B1A594 /* QuizCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizCollectionViewController.swift; sourceTree = "<group>"; };
+		CF2FD82D1EBB759200B1A594 /* OwnQuizProcessViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OwnQuizProcessViewController.swift; sourceTree = "<group>"; };
+		CF2FD82F1EBB7A0700B1A594 /* loginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = loginViewController.swift; sourceTree = "<group>"; };
+		CFC262581EBA1E53002B241A /* QuestionSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionSet.swift; sourceTree = "<group>"; };
+		CFD17A041EBA1A2D00235CD1 /* testing.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = testing.json; sourceTree = "<group>"; };
+		CFDD16711EBC5881001B536E /* test.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = test.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,10 +113,17 @@
 			children = (
 				ACE5EDD11EB9A97500195A8B /* AppDelegate.swift */,
 				ACE5EDD31EB9A97500195A8B /* ViewController.swift */,
+				CFC262581EBA1E53002B241A /* QuestionSet.swift */,
 				ACE5EDD51EB9A97500195A8B /* Main.storyboard */,
+				CF2FD82F1EBB7A0700B1A594 /* loginViewController.swift */,
 				ACE5EDD81EB9A97500195A8B /* Assets.xcassets */,
 				ACE5EDDA1EB9A97500195A8B /* LaunchScreen.storyboard */,
+				CFD17A041EBA1A2D00235CD1 /* testing.json */,
 				ACE5EDDD1EB9A97500195A8B /* Info.plist */,
+				CF2FD8291EBB63EB00B1A594 /* AccountViewController.swift */,
+				CF2FD82B1EBB64E000B1A594 /* QuizCollectionViewController.swift */,
+				CF2FD82D1EBB759200B1A594 /* OwnQuizProcessViewController.swift */,
+				CFDD16701EBC5881001B536E /* test.xcdatamodeld */,
 			);
 			path = test;
 			sourceTree = "<group>";
@@ -193,6 +214,7 @@
 				TargetAttributes = {
 					ACE5EDCD1EB9A97500195A8B = {
 						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = LSPJSUNBUC;
 						ProvisioningStyle = Automatic;
 					};
 					ACE5EDE11EB9A97500195A8B = {
@@ -234,6 +256,7 @@
 			files = (
 				ACE5EDDC1EB9A97500195A8B /* LaunchScreen.storyboard in Resources */,
 				ACE5EDD91EB9A97500195A8B /* Assets.xcassets in Resources */,
+				CFD17A051EBA1A2D00235CD1 /* testing.json in Resources */,
 				ACE5EDD71EB9A97500195A8B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -259,8 +282,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CF2FD8301EBB7A0700B1A594 /* loginViewController.swift in Sources */,
+				CFDD16721EBC5881001B536E /* test.xcdatamodeld in Sources */,
+				CF2FD82E1EBB759200B1A594 /* OwnQuizProcessViewController.swift in Sources */,
 				ACE5EDD41EB9A97500195A8B /* ViewController.swift in Sources */,
 				ACE5EDD21EB9A97500195A8B /* AppDelegate.swift in Sources */,
+				CF2FD82C1EBB64E000B1A594 /* QuizCollectionViewController.swift in Sources */,
+				CF2FD82A1EBB63EB00B1A594 /* AccountViewController.swift in Sources */,
+				CFC262591EBA1E53002B241A /* QuestionSet.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -414,9 +443,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = LSPJSUNBUC;
 				INFOPLIST_FILE = test/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = test.test;
+				PRODUCT_BUNDLE_IDENTIFIER = test.testGibsob;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -426,9 +457,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = LSPJSUNBUC;
 				INFOPLIST_FILE = test/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = test.test;
+				PRODUCT_BUNDLE_IDENTIFIER = test.testGibsob;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -507,6 +540,7 @@
 				ACE5EDF81EB9A97500195A8B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		ACE5EDF91EB9A97500195A8B /* Build configuration list for PBXNativeTarget "testTests" */ = {
 			isa = XCConfigurationList;
@@ -515,6 +549,7 @@
 				ACE5EDFB1EB9A97500195A8B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		ACE5EDFC1EB9A97500195A8B /* Build configuration list for PBXNativeTarget "testUITests" */ = {
 			isa = XCConfigurationList;
@@ -523,8 +558,22 @@
 				ACE5EDFE1EB9A97500195A8B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		CFDD16701EBC5881001B536E /* test.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				CFDD16711EBC5881001B536E /* test.xcdatamodel */,
+			);
+			currentVersion = CFDD16711EBC5881001B536E /* test.xcdatamodel */;
+			path = test.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = ACE5EDC61EB9A97500195A8B /* Project object */;
 }
