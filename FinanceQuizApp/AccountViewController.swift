@@ -1,5 +1,5 @@
 //
-//  OwnQuizProcessViewController.swift
+//  AccountViewController.swift
 //  test
 //
 //  Created by Gibson Kong on 04/05/2017.
@@ -8,12 +8,18 @@
 
 import UIKit
 
-class OwnQuizProcessViewController: UIViewController {
+class AccountViewController: UIViewController {
 
+    @IBOutlet var Namelbl: UILabel!
+    @IBOutlet var Jobslbl: UILabel!
+    @IBAction func logOut(){
+        print("hello")
+        self.performSegue(withIdentifier: "unwindToLoginPage", sender: self)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
+        print((loginViewController() ).loginUser)
     }
 
     override func didReceiveMemoryWarning() {
@@ -21,7 +27,9 @@ class OwnQuizProcessViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
+    
+    
+    @IBAction func unWindToProfile (for unwindSegue: UIStoryboardSegue) { }
     /*
     // MARK: - Navigation
 

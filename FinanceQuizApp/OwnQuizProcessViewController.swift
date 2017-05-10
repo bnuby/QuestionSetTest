@@ -1,30 +1,27 @@
 //
-//  QuizHistoryViewController.swift
-//  FinanceQuizApp
+//  OwnQuizProcessViewController.swift
+//  test
 //
-//  Created by Gibson Kong on 05/05/2017.
+//  Created by Gibson Kong on 04/05/2017.
 //  Copyright © 2017 訪客使用者. All rights reserved.
 //
 
 import UIKit
 
-class QuizHistoryViewController: UIViewController ,UITableViewDelegate ,UITableViewDataSource {
-    @IBOutlet var navigation: UINavigationBar!
-
-    @IBAction func BackButton(){
-        self.performSegue(withIdentifier: "unWindToProfile", sender: self)
-    }
+class OwnQuizProcessViewController: UIViewController , UITableViewDelegate, UITableViewDataSource {
+    
+    var sourceProcessType:String!
+    
+    var sourceDict = ["myFeaturedQuiz":1,"myMarkedQuiz":2,"theEazierWrongQuiz":3]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigation.frame.origin.y = 20
-        navigation.frame.size.width = view.frame.width
-        view.addSubview(navigation)
+        
         // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
-//        self.tabBarController?.tabBar.isHidden = true
+        self.tabBarController?.tabBar.isHidden = true
     }
 
     override func didReceiveMemoryWarning() {
@@ -37,12 +34,13 @@ class QuizHistoryViewController: UIViewController ,UITableViewDelegate ,UITableV
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return sourceDict[sourceProcessType]!
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        cell.textLabel?.text = "No Record"
+        
+        cell.textLabel?.text = "testing"
         
         return cell
     }

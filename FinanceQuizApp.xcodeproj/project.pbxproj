@@ -12,15 +12,18 @@
 		ACE5EDD71EB9A97500195A8B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACE5EDD51EB9A97500195A8B /* Main.storyboard */; };
 		ACE5EDD91EB9A97500195A8B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ACE5EDD81EB9A97500195A8B /* Assets.xcassets */; };
 		ACE5EDDC1EB9A97500195A8B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACE5EDDA1EB9A97500195A8B /* LaunchScreen.storyboard */; };
-		ACE5EDE71EB9A97500195A8B /* testTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE5EDE61EB9A97500195A8B /* testTests.swift */; };
-		ACE5EDF21EB9A97500195A8B /* testUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE5EDF11EB9A97500195A8B /* testUITests.swift */; };
+		ACE5EDE71EB9A97500195A8B /* FinanceQuizAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE5EDE61EB9A97500195A8B /* FinanceQuizAppTests.swift */; };
+		ACE5EDF21EB9A97500195A8B /* FinanceQuizAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE5EDF11EB9A97500195A8B /* FinanceQuizAppUITests.swift */; };
+		CF16D07A1EBF9F2E00DF641C /* ReadyDoingQuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF16D0791EBF9F2E00DF641C /* ReadyDoingQuizViewController.swift */; };
 		CF2FD82A1EBB63EB00B1A594 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF2FD8291EBB63EB00B1A594 /* AccountViewController.swift */; };
 		CF2FD82C1EBB64E000B1A594 /* QuizCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF2FD82B1EBB64E000B1A594 /* QuizCollectionViewController.swift */; };
 		CF2FD82E1EBB759200B1A594 /* OwnQuizProcessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF2FD82D1EBB759200B1A594 /* OwnQuizProcessViewController.swift */; };
 		CF2FD8301EBB7A0700B1A594 /* loginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF2FD82F1EBB7A0700B1A594 /* loginViewController.swift */; };
 		CFC262591EBA1E53002B241A /* QuestionSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC262581EBA1E53002B241A /* QuestionSet.swift */; };
-		CFD17A051EBA1A2D00235CD1 /* testing.json in Resources */ = {isa = PBXBuildFile; fileRef = CFD17A041EBA1A2D00235CD1 /* testing.json */; };
-		CFDD16721EBC5881001B536E /* test.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CFDD16701EBC5881001B536E /* test.xcdatamodeld */; };
+		CFD17A051EBA1A2D00235CD1 /* FinanceQuizApp.json in Resources */ = {isa = PBXBuildFile; fileRef = CFD17A041EBA1A2D00235CD1 /* FinanceQuizApp.json */; };
+		CFDD16741EBC5FB1001B536E /* QuizHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFDD16731EBC5FB1001B536E /* QuizHistoryViewController.swift */; };
+		CFDD16761EBD84B1001B536E /* DoingQuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFDD16751EBD84B1001B536E /* DoingQuizViewController.swift */; };
+		CFEF180F1EBF749F00CA5A0E /* FinanceQuizApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CFEF180D1EBF749F00CA5A0E /* FinanceQuizApp.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,38 +32,41 @@
 			containerPortal = ACE5EDC61EB9A97500195A8B /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = ACE5EDCD1EB9A97500195A8B;
-			remoteInfo = test;
+			remoteInfo = FinanceQuizApp;
 		};
 		ACE5EDEE1EB9A97500195A8B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = ACE5EDC61EB9A97500195A8B /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = ACE5EDCD1EB9A97500195A8B;
-			remoteInfo = test;
+			remoteInfo = FinanceQuizApp;
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		ACE5EDCE1EB9A97500195A8B /* test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = test.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		ACE5EDCE1EB9A97500195A8B /* FinanceQuizApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FinanceQuizApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACE5EDD11EB9A97500195A8B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ACE5EDD31EB9A97500195A8B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		ACE5EDD61EB9A97500195A8B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		ACE5EDD81EB9A97500195A8B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ACE5EDDB1EB9A97500195A8B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ACE5EDDD1EB9A97500195A8B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		ACE5EDE21EB9A97500195A8B /* testTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = testTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		ACE5EDE61EB9A97500195A8B /* testTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testTests.swift; sourceTree = "<group>"; };
+		ACE5EDE21EB9A97500195A8B /* FinanceQuizAppFinanceQuizApps.xcFinanceQuizApp */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FinanceQuizAppFinanceQuizApps.xcFinanceQuizApp; sourceTree = BUILT_PRODUCTS_DIR; };
+		ACE5EDE61EB9A97500195A8B /* FinanceQuizAppTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinanceQuizAppTests.swift; sourceTree = "<group>"; };
 		ACE5EDE81EB9A97500195A8B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		ACE5EDED1EB9A97500195A8B /* testUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = testUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		ACE5EDF11EB9A97500195A8B /* testUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = testUITests.swift; sourceTree = "<group>"; };
+		ACE5EDED1EB9A97500195A8B /* FinanceQuizAppUIFinanceQuizApps.xcFinanceQuizApp */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FinanceQuizAppUIFinanceQuizApps.xcFinanceQuizApp; sourceTree = BUILT_PRODUCTS_DIR; };
+		ACE5EDF11EB9A97500195A8B /* FinanceQuizAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinanceQuizAppUITests.swift; sourceTree = "<group>"; };
 		ACE5EDF31EB9A97500195A8B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CF16D0791EBF9F2E00DF641C /* ReadyDoingQuizViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReadyDoingQuizViewController.swift; sourceTree = "<group>"; };
 		CF2FD8291EBB63EB00B1A594 /* AccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		CF2FD82B1EBB64E000B1A594 /* QuizCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizCollectionViewController.swift; sourceTree = "<group>"; };
 		CF2FD82D1EBB759200B1A594 /* OwnQuizProcessViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OwnQuizProcessViewController.swift; sourceTree = "<group>"; };
 		CF2FD82F1EBB7A0700B1A594 /* loginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = loginViewController.swift; sourceTree = "<group>"; };
 		CFC262581EBA1E53002B241A /* QuestionSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionSet.swift; sourceTree = "<group>"; };
-		CFD17A041EBA1A2D00235CD1 /* testing.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = testing.json; sourceTree = "<group>"; };
-		CFDD16711EBC5881001B536E /* test.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = test.xcdatamodel; sourceTree = "<group>"; };
+		CFD17A041EBA1A2D00235CD1 /* FinanceQuizApp.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = FinanceQuizApp.json; sourceTree = "<group>"; };
+		CFDD16731EBC5FB1001B536E /* QuizHistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizHistoryViewController.swift; sourceTree = "<group>"; };
+		CFDD16751EBD84B1001B536E /* DoingQuizViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoingQuizViewController.swift; sourceTree = "<group>"; };
+		CFEF180E1EBF749F00CA5A0E /* FinanceQuizApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FinanceQuizApp.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,9 +97,9 @@
 		ACE5EDC51EB9A97500195A8B = {
 			isa = PBXGroup;
 			children = (
-				ACE5EDD01EB9A97500195A8B /* test */,
-				ACE5EDE51EB9A97500195A8B /* testTests */,
-				ACE5EDF01EB9A97500195A8B /* testUITests */,
+				ACE5EDD01EB9A97500195A8B /* FinanceQuizApp */,
+				ACE5EDE51EB9A97500195A8B /* FinanceQuizAppTests */,
+				ACE5EDF01EB9A97500195A8B /* FinanceQuizAppUITests */,
 				ACE5EDCF1EB9A97500195A8B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -101,14 +107,14 @@
 		ACE5EDCF1EB9A97500195A8B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				ACE5EDCE1EB9A97500195A8B /* test.app */,
-				ACE5EDE21EB9A97500195A8B /* testTests.xctest */,
-				ACE5EDED1EB9A97500195A8B /* testUITests.xctest */,
+				ACE5EDCE1EB9A97500195A8B /* FinanceQuizApp.app */,
+				ACE5EDE21EB9A97500195A8B /* FinanceQuizAppFinanceQuizApps.xcFinanceQuizApp */,
+				ACE5EDED1EB9A97500195A8B /* FinanceQuizAppUIFinanceQuizApps.xcFinanceQuizApp */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		ACE5EDD01EB9A97500195A8B /* test */ = {
+		ACE5EDD01EB9A97500195A8B /* FinanceQuizApp */ = {
 			isa = PBXGroup;
 			children = (
 				ACE5EDD11EB9A97500195A8B /* AppDelegate.swift */,
@@ -118,40 +124,43 @@
 				CF2FD82F1EBB7A0700B1A594 /* loginViewController.swift */,
 				ACE5EDD81EB9A97500195A8B /* Assets.xcassets */,
 				ACE5EDDA1EB9A97500195A8B /* LaunchScreen.storyboard */,
-				CFD17A041EBA1A2D00235CD1 /* testing.json */,
+				CFD17A041EBA1A2D00235CD1 /* FinanceQuizApp.json */,
 				ACE5EDDD1EB9A97500195A8B /* Info.plist */,
 				CF2FD8291EBB63EB00B1A594 /* AccountViewController.swift */,
+				CF16D0791EBF9F2E00DF641C /* ReadyDoingQuizViewController.swift */,
+				CFDD16751EBD84B1001B536E /* DoingQuizViewController.swift */,
 				CF2FD82B1EBB64E000B1A594 /* QuizCollectionViewController.swift */,
 				CF2FD82D1EBB759200B1A594 /* OwnQuizProcessViewController.swift */,
-				CFDD16701EBC5881001B536E /* test.xcdatamodeld */,
+				CFDD16731EBC5FB1001B536E /* QuizHistoryViewController.swift */,
+				CFEF180D1EBF749F00CA5A0E /* FinanceQuizApp.xcdatamodeld */,
 			);
-			path = test;
+			path = FinanceQuizApp;
 			sourceTree = "<group>";
 		};
-		ACE5EDE51EB9A97500195A8B /* testTests */ = {
+		ACE5EDE51EB9A97500195A8B /* FinanceQuizAppTests */ = {
 			isa = PBXGroup;
 			children = (
-				ACE5EDE61EB9A97500195A8B /* testTests.swift */,
+				ACE5EDE61EB9A97500195A8B /* FinanceQuizAppTests.swift */,
 				ACE5EDE81EB9A97500195A8B /* Info.plist */,
 			);
-			path = testTests;
+			path = FinanceQuizAppTests;
 			sourceTree = "<group>";
 		};
-		ACE5EDF01EB9A97500195A8B /* testUITests */ = {
+		ACE5EDF01EB9A97500195A8B /* FinanceQuizAppUITests */ = {
 			isa = PBXGroup;
 			children = (
-				ACE5EDF11EB9A97500195A8B /* testUITests.swift */,
+				ACE5EDF11EB9A97500195A8B /* FinanceQuizAppUITests.swift */,
 				ACE5EDF31EB9A97500195A8B /* Info.plist */,
 			);
-			path = testUITests;
+			path = FinanceQuizAppUITests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		ACE5EDCD1EB9A97500195A8B /* test */ = {
+		ACE5EDCD1EB9A97500195A8B /* FinanceQuizApp */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = ACE5EDF61EB9A97500195A8B /* Build configuration list for PBXNativeTarget "test" */;
+			buildConfigurationList = ACE5EDF61EB9A97500195A8B /* Build configuration list for PBXNativeTarget "FinanceQuizApp" */;
 			buildPhases = (
 				ACE5EDCA1EB9A97500195A8B /* Sources */,
 				ACE5EDCB1EB9A97500195A8B /* Frameworks */,
@@ -161,14 +170,14 @@
 			);
 			dependencies = (
 			);
-			name = test;
-			productName = test;
-			productReference = ACE5EDCE1EB9A97500195A8B /* test.app */;
+			name = FinanceQuizApp;
+			productName = FinanceQuizApp;
+			productReference = ACE5EDCE1EB9A97500195A8B /* FinanceQuizApp.app */;
 			productType = "com.apple.product-type.application";
 		};
-		ACE5EDE11EB9A97500195A8B /* testTests */ = {
+		ACE5EDE11EB9A97500195A8B /* FinanceQuizAppFinanceQuizApps */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = ACE5EDF91EB9A97500195A8B /* Build configuration list for PBXNativeTarget "testTests" */;
+			buildConfigurationList = ACE5EDF91EB9A97500195A8B /* Build configuration list for PBXNativeTarget "FinanceQuizAppFinanceQuizApps" */;
 			buildPhases = (
 				ACE5EDDE1EB9A97500195A8B /* Sources */,
 				ACE5EDDF1EB9A97500195A8B /* Frameworks */,
@@ -179,14 +188,14 @@
 			dependencies = (
 				ACE5EDE41EB9A97500195A8B /* PBXTargetDependency */,
 			);
-			name = testTests;
-			productName = testTests;
-			productReference = ACE5EDE21EB9A97500195A8B /* testTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
+			name = FinanceQuizAppFinanceQuizApps;
+			productName = FinanceQuizAppFinanceQuizApps;
+			productReference = ACE5EDE21EB9A97500195A8B /* FinanceQuizAppFinanceQuizApps.xcFinanceQuizApp */;
+			productType = "com.apple.product-type.bundle.unit-FinanceQuizApp";
 		};
-		ACE5EDEC1EB9A97500195A8B /* testUITests */ = {
+		ACE5EDEC1EB9A97500195A8B /* FinanceQuizAppUIFinanceQuizApps */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = ACE5EDFC1EB9A97500195A8B /* Build configuration list for PBXNativeTarget "testUITests" */;
+			buildConfigurationList = ACE5EDFC1EB9A97500195A8B /* Build configuration list for PBXNativeTarget "FinanceQuizAppUIFinanceQuizApps" */;
 			buildPhases = (
 				ACE5EDE91EB9A97500195A8B /* Sources */,
 				ACE5EDEA1EB9A97500195A8B /* Frameworks */,
@@ -197,10 +206,10 @@
 			dependencies = (
 				ACE5EDEF1EB9A97500195A8B /* PBXTargetDependency */,
 			);
-			name = testUITests;
-			productName = testUITests;
-			productReference = ACE5EDED1EB9A97500195A8B /* testUITests.xctest */;
-			productType = "com.apple.product-type.bundle.ui-testing";
+			name = FinanceQuizAppUIFinanceQuizApps;
+			productName = FinanceQuizAppUIFinanceQuizApps;
+			productReference = ACE5EDED1EB9A97500195A8B /* FinanceQuizAppUIFinanceQuizApps.xcFinanceQuizApp */;
+			productType = "com.apple.product-type.bundle.ui-FinanceQuizApping";
 		};
 /* End PBXNativeTarget section */
 
@@ -219,17 +228,17 @@
 					};
 					ACE5EDE11EB9A97500195A8B = {
 						CreatedOnToolsVersion = 8.3.2;
+						FinanceQuizAppTargetID = ACE5EDCD1EB9A97500195A8B;
 						ProvisioningStyle = Automatic;
-						TestTargetID = ACE5EDCD1EB9A97500195A8B;
 					};
 					ACE5EDEC1EB9A97500195A8B = {
 						CreatedOnToolsVersion = 8.3.2;
+						FinanceQuizAppTargetID = ACE5EDCD1EB9A97500195A8B;
 						ProvisioningStyle = Automatic;
-						TestTargetID = ACE5EDCD1EB9A97500195A8B;
 					};
 				};
 			};
-			buildConfigurationList = ACE5EDC91EB9A97500195A8B /* Build configuration list for PBXProject "test" */;
+			buildConfigurationList = ACE5EDC91EB9A97500195A8B /* Build configuration list for PBXProject "FinanceQuizApp" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -242,9 +251,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				ACE5EDCD1EB9A97500195A8B /* test */,
-				ACE5EDE11EB9A97500195A8B /* testTests */,
-				ACE5EDEC1EB9A97500195A8B /* testUITests */,
+				ACE5EDCD1EB9A97500195A8B /* FinanceQuizApp */,
+				ACE5EDE11EB9A97500195A8B /* FinanceQuizAppFinanceQuizApps */,
+				ACE5EDEC1EB9A97500195A8B /* FinanceQuizAppUIFinanceQuizApps */,
 			);
 		};
 /* End PBXProject section */
@@ -256,7 +265,7 @@
 			files = (
 				ACE5EDDC1EB9A97500195A8B /* LaunchScreen.storyboard in Resources */,
 				ACE5EDD91EB9A97500195A8B /* Assets.xcassets in Resources */,
-				CFD17A051EBA1A2D00235CD1 /* testing.json in Resources */,
+				CFD17A051EBA1A2D00235CD1 /* FinanceQuizApp.json in Resources */,
 				ACE5EDD71EB9A97500195A8B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -283,13 +292,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				CF2FD8301EBB7A0700B1A594 /* loginViewController.swift in Sources */,
-				CFDD16721EBC5881001B536E /* test.xcdatamodeld in Sources */,
 				CF2FD82E1EBB759200B1A594 /* OwnQuizProcessViewController.swift in Sources */,
 				ACE5EDD41EB9A97500195A8B /* ViewController.swift in Sources */,
 				ACE5EDD21EB9A97500195A8B /* AppDelegate.swift in Sources */,
+				CFDD16741EBC5FB1001B536E /* QuizHistoryViewController.swift in Sources */,
 				CF2FD82C1EBB64E000B1A594 /* QuizCollectionViewController.swift in Sources */,
+				CFDD16761EBD84B1001B536E /* DoingQuizViewController.swift in Sources */,
 				CF2FD82A1EBB63EB00B1A594 /* AccountViewController.swift in Sources */,
 				CFC262591EBA1E53002B241A /* QuestionSet.swift in Sources */,
+				CF16D07A1EBF9F2E00DF641C /* ReadyDoingQuizViewController.swift in Sources */,
+				CFEF180F1EBF749F00CA5A0E /* FinanceQuizApp.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -297,7 +309,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ACE5EDE71EB9A97500195A8B /* testTests.swift in Sources */,
+				ACE5EDE71EB9A97500195A8B /* FinanceQuizAppTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -305,7 +317,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ACE5EDF21EB9A97500195A8B /* testUITests.swift in Sources */,
+				ACE5EDF21EB9A97500195A8B /* FinanceQuizAppUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -314,12 +326,12 @@
 /* Begin PBXTargetDependency section */
 		ACE5EDE41EB9A97500195A8B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = ACE5EDCD1EB9A97500195A8B /* test */;
+			target = ACE5EDCD1EB9A97500195A8B /* FinanceQuizApp */;
 			targetProxy = ACE5EDE31EB9A97500195A8B /* PBXContainerItemProxy */;
 		};
 		ACE5EDEF1EB9A97500195A8B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = ACE5EDCD1EB9A97500195A8B /* test */;
+			target = ACE5EDCD1EB9A97500195A8B /* FinanceQuizApp */;
 			targetProxy = ACE5EDEE1EB9A97500195A8B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -369,8 +381,8 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_FinanceQuizAppABILITY = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -444,10 +456,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = LSPJSUNBUC;
-				INFOPLIST_FILE = test/Info.plist;
+				INFOPLIST_FILE = FinanceQuizApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = test.testGibsob;
+				PRODUCT_BUNDLE_IDENTIFIER = FinanceQuizApp.FinanceQuizAppGibsob;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -458,10 +470,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = LSPJSUNBUC;
-				INFOPLIST_FILE = test/Info.plist;
+				INFOPLIST_FILE = FinanceQuizApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = test.testGibsob;
+				PRODUCT_BUNDLE_IDENTIFIER = FinanceQuizApp.FinanceQuizAppGibsob;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -471,13 +483,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = testTests/Info.plist;
+				BUNDLE_LOADER = "$(FinanceQuizApp_HOST)";
+				FinanceQuizApp_HOST = "$(BUILT_PRODUCTS_DIR)/FinanceQuizApp.app/FinanceQuizApp";
+				INFOPLIST_FILE = FinanceQuizAppFinanceQuizApps/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = test.testTests;
+				PRODUCT_BUNDLE_IDENTIFIER = FinanceQuizApp.FinanceQuizAppFinanceQuizApps;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/test.app/test";
 			};
 			name = Debug;
 		};
@@ -485,13 +497,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				INFOPLIST_FILE = testTests/Info.plist;
+				BUNDLE_LOADER = "$(FinanceQuizApp_HOST)";
+				FinanceQuizApp_HOST = "$(BUILT_PRODUCTS_DIR)/FinanceQuizApp.app/FinanceQuizApp";
+				INFOPLIST_FILE = FinanceQuizAppFinanceQuizApps/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = test.testTests;
+				PRODUCT_BUNDLE_IDENTIFIER = FinanceQuizApp.FinanceQuizAppFinanceQuizApps;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/test.app/test";
 			};
 			name = Release;
 		};
@@ -499,12 +511,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				INFOPLIST_FILE = testUITests/Info.plist;
+				FinanceQuizApp_TARGET_NAME = FinanceQuizApp;
+				INFOPLIST_FILE = FinanceQuizAppUIFinanceQuizApps/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = test.testUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = FinanceQuizApp.FinanceQuizAppUIFinanceQuizApps;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TEST_TARGET_NAME = test;
 			};
 			name = Debug;
 		};
@@ -512,19 +524,19 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				INFOPLIST_FILE = testUITests/Info.plist;
+				FinanceQuizApp_TARGET_NAME = FinanceQuizApp;
+				INFOPLIST_FILE = FinanceQuizAppUIFinanceQuizApps/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = test.testUITests;
+				PRODUCT_BUNDLE_IDENTIFIER = FinanceQuizApp.FinanceQuizAppUIFinanceQuizApps;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TEST_TARGET_NAME = test;
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		ACE5EDC91EB9A97500195A8B /* Build configuration list for PBXProject "test" */ = {
+		ACE5EDC91EB9A97500195A8B /* Build configuration list for PBXProject "FinanceQuizApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				ACE5EDF41EB9A97500195A8B /* Debug */,
@@ -533,7 +545,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		ACE5EDF61EB9A97500195A8B /* Build configuration list for PBXNativeTarget "test" */ = {
+		ACE5EDF61EB9A97500195A8B /* Build configuration list for PBXNativeTarget "FinanceQuizApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				ACE5EDF71EB9A97500195A8B /* Debug */,
@@ -542,7 +554,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		ACE5EDF91EB9A97500195A8B /* Build configuration list for PBXNativeTarget "testTests" */ = {
+		ACE5EDF91EB9A97500195A8B /* Build configuration list for PBXNativeTarget "FinanceQuizAppFinanceQuizApps" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				ACE5EDFA1EB9A97500195A8B /* Debug */,
@@ -551,7 +563,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		ACE5EDFC1EB9A97500195A8B /* Build configuration list for PBXNativeTarget "testUITests" */ = {
+		ACE5EDFC1EB9A97500195A8B /* Build configuration list for PBXNativeTarget "FinanceQuizAppUIFinanceQuizApps" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				ACE5EDFD1EB9A97500195A8B /* Debug */,
@@ -563,13 +575,13 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		CFDD16701EBC5881001B536E /* test.xcdatamodeld */ = {
+		CFEF180D1EBF749F00CA5A0E /* FinanceQuizApp.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				CFDD16711EBC5881001B536E /* test.xcdatamodel */,
+				CFEF180E1EBF749F00CA5A0E /* FinanceQuizApp.xcdatamodel */,
 			);
-			currentVersion = CFDD16711EBC5881001B536E /* test.xcdatamodel */;
-			path = test.xcdatamodeld;
+			currentVersion = CFEF180E1EBF749F00CA5A0E /* FinanceQuizApp.xcdatamodel */;
+			path = FinanceQuizApp.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
 		};

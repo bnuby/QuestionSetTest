@@ -1,0 +1,135 @@
+{
+    "professionSet": [{
+                      "profession_type": "保險業",
+                      "data": [{
+                               "ExamGrade": "入門證照",
+                               "ExamSet": [{
+                                           "ExamName": "信託業務人員測試"
+                                           },
+                                           {
+                                           "ExamName": "理財規劃人員測試"
+                                           },
+                                           {
+                                           "ExamName": "銀行內部控制基本測驗"
+                                           },
+                                           {
+                                           "ExamName": "初階授信人員專業測驗"
+                                           },
+                                           {
+                                           "ExamName": "初階外匯人員專業測驗"
+                                           },
+                                           {
+                                           "ExamName": "債權外催收人員專業能力測驗"
+                                           }
+                                           ]
+                               },{
+                               "ExamGrade": "進階證照",
+                               "ExamSet": [{
+                                           "ExamName": "進階授信人員專業訓練"
+                                           },
+                                           {
+                                           "ExamName": "授信擔保評估價能力測驗"
+                                           },
+                                           {
+                                           "ExamName": "外匯交易專業能力測驗"
+                                           },
+                                           {
+                                           "ExamName": "金融人員風險管理專業能力"
+                                           },
+                                           {
+                                           "ExamName": "投資型保險商品"
+                                           }
+                                           ]
+                               },{
+                               "ExamGrade": "跨業證照",
+                               "ExamSet": [{
+                                           "ExamName": "證劵商／高級營業員"
+                                           },
+                                           {
+                                           "ExamName": "人身／財產保險業務員"
+                                           },
+                                           {
+                                           "ExamName": "期貨商業務員"
+                                           },
+                                           {
+                                           "ExamName": "證劵投資分析師"
+                                           },
+                                           {
+                                           "ExamName": "精算師"
+                                           }
+                                           ]
+                               }]
+                      },{
+                      "profession_type": "銀行業",
+                      "data": [{
+                               "ExamGrade": "入門證照",
+                               "ExamSet": [{
+                                           "ExamName": "人身保險業務員",
+                                           "QuizSet" : [{
+                                                        "id" : 0,
+                                                        "question" : "hello",
+                                                        "answer" : ["hello"],
+                                                        "choice": ["a","b","c"]
+                                                        },{
+                                                        "id" : 1,
+                                                        "question" : "bitch",
+                                                        "answer" : ["hello"],
+                                                        "choice": ["a","b","c"]
+                                                        },{
+                                                        "id" : 0,
+                                                        "question" : "s",
+                                                        "answer" : ["hello"],
+                                                        "choice": ["a","b","c"]
+                                                        },{
+                                                        "id" : 1,
+                                                        "question" : "a",
+                                                        "answer" : ["hello"],
+                                                        "choice": ["a","b","c"]
+                                                        }]
+                                           },
+                                           {
+                                           "ExamName": "財產保險業務員"
+                                           },
+                                           {
+                                           "ExamName": "投資型保險商品"
+                                           },
+                                           {
+                                           "ExamName": "信託業務人員測驗"
+                                           }
+                                           ]
+                               },{
+                               "ExamGrade": "進階證照",
+                               "ExamSet": [{
+                                           "ExamName": "保險業務員中級測驗"
+                                           },
+                                           {
+                                           "ExamName": "個人風險管理師"
+                                           },
+                                           {
+                                           "ExamName": "企業風險管理師"
+                                           },
+                                           {
+                                           "ExamName": "核保，理賠人員資格"
+                                           },
+                                           {
+                                           "ExamName": "保險代理人／經紀人／公證"
+                                           },
+                                           {
+                                           "ExamName": "精算師"
+                                           }
+                                           ]
+                               },{
+                               "ExamGrade": "跨業證照",
+                               "ExamSet": [{
+                                           "ExamName": "證劵商營業員"
+                                           },
+                                           {
+                                           "ExamName": "期貨商營業員"
+                                           },
+                                           {
+                                           "ExamName": "投信投顧業務員"
+                                           }
+                                           ]
+                               }]
+                      }]
+}

@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "ACE5EDCD1EB9A97500195A8B"
-               BuildableName = "test.app"
-               BlueprintName = "test"
-               ReferencedContainer = "container:test.xcodeproj">
+               BuildableName = "FinanceQuizApp.app"
+               BlueprintName = "FinanceQuizApp"
+               ReferencedContainer = "container:FinanceQuizApp.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -33,9 +33,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "ACE5EDE11EB9A97500195A8B"
-               BuildableName = "testTests.xctest"
-               BlueprintName = "testTests"
-               ReferencedContainer = "container:test.xcodeproj">
+               BuildableName = "FinanceQuizAppFinanceQuizApps.xcFinanceQuizApp"
+               BlueprintName = "FinanceQuizAppFinanceQuizApps"
+               ReferencedContainer = "container:FinanceQuizApp.xcodeproj">
             </BuildableReference>
          </TestableReference>
          <TestableReference
@@ -43,9 +43,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "ACE5EDEC1EB9A97500195A8B"
-               BuildableName = "testUITests.xctest"
-               BlueprintName = "testUITests"
-               ReferencedContainer = "container:test.xcodeproj">
+               BuildableName = "FinanceQuizAppUIFinanceQuizApps.xcFinanceQuizApp"
+               BlueprintName = "FinanceQuizAppUIFinanceQuizApps"
+               ReferencedContainer = "container:FinanceQuizApp.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -53,9 +53,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "ACE5EDCD1EB9A97500195A8B"
-            BuildableName = "test.app"
-            BlueprintName = "test"
-            ReferencedContainer = "container:test.xcodeproj">
+            BuildableName = "FinanceQuizApp.app"
+            BlueprintName = "FinanceQuizApp"
+            ReferencedContainer = "container:FinanceQuizApp.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -76,9 +76,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "ACE5EDCD1EB9A97500195A8B"
-            BuildableName = "test.app"
-            BlueprintName = "test"
-            ReferencedContainer = "container:test.xcodeproj">
+            BuildableName = "FinanceQuizApp.app"
+            BlueprintName = "FinanceQuizApp"
+            ReferencedContainer = "container:FinanceQuizApp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -95,9 +95,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "ACE5EDCD1EB9A97500195A8B"
-            BuildableName = "test.app"
-            BlueprintName = "test"
-            ReferencedContainer = "container:test.xcodeproj">
+            BuildableName = "FinanceQuizApp.app"
+            BlueprintName = "FinanceQuizApp"
+            ReferencedContainer = "container:FinanceQuizApp.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
