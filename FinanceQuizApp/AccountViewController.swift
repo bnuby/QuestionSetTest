@@ -12,12 +12,17 @@ class AccountViewController: UIViewController {
 
     @IBOutlet var Namelbl: UILabel!
     @IBOutlet var Jobslbl: UILabel!
+    @IBInspectable var jsonFileName : String!
+
     @IBAction func logOut(){
         print("hello")
         self.performSegue(withIdentifier: "unwindToLoginPage", sender: self)
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        readJson(jsonFileName)
+
         // Do any additional setup after loading the view.
         print((loginViewController() ).loginUser)
     }

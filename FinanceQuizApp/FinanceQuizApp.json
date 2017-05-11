@@ -66,22 +66,18 @@
                                "ExamSet": [{
                                            "ExamName": "人身保險業務員",
                                            "QuizSet" : [{
-                                                        "id" : 0,
                                                         "question" : "hello",
                                                         "answer" : ["hello"],
                                                         "choice": ["a","b","c"]
                                                         },{
-                                                        "id" : 1,
                                                         "question" : "bitch",
                                                         "answer" : ["hello"],
                                                         "choice": ["a","b","c"]
                                                         },{
-                                                        "id" : 0,
                                                         "question" : "s",
                                                         "answer" : ["hello"],
                                                         "choice": ["a","b","c"]
                                                         },{
-                                                        "id" : 1,
                                                         "question" : "a",
                                                         "answer" : ["hello"],
                                                         "choice": ["a","b","c"]

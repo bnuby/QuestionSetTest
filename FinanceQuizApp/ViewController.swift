@@ -8,12 +8,12 @@
 
 import UIKit
 
-class ViewController: UIViewController , UICollectionViewDelegate , UICollectionViewDataSource {
+class ViewController: UIViewController , UICollectionViewDelegate , UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
-    @IBInspectable var jsonFileName : String!
+//    @IBInspectable var jsonFileName : String!
     @IBOutlet weak var CollectionView: UICollectionView!
     @IBOutlet var InnerCollectionView: UICollectionView!
-    var ProfessionSet : [professionType] = []
+//    var ProfessionSet : [professionType] = []
     override func viewDidLoad() {
         super.viewDidLoad()
                
@@ -24,7 +24,7 @@ class ViewController: UIViewController , UICollectionViewDelegate , UICollection
         navigationItem.titleView = searchController.searchBar
         
         // read Json File Which call testing.json
-        readJson()
+//        readJson(jsonFileName)
         view.addSubview(InnerCollectionView)
         InnerCollectionView.alpha = 0
         InnerCollectionView.isHidden = true
@@ -56,12 +56,21 @@ class ViewController: UIViewController , UICollectionViewDelegate , UICollection
             return
         }
         UIView.animate(withDuration: 0.3, animations: {
-            self.InnerCollectionView.frame = self.CollectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexpath).frame
+            let cell = self.CollectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexpath)
+            self.InnerCollectionView.frame = self.getCellFrame(cell, self.CollectionView)
             self.InnerCollectionView.alpha = 0
             
         }, completion: { (true) in
             self.InnerCollectionView.isHidden = true
         })
+    }
+    
+    func getCellFrame(_ collectionViewCell : UICollectionViewCell,_ collectionView : UICollectionView) -> CGRect{
+        var frame = collectionViewCell.frame
+        frame.origin.y += (collectionView.frame.origin.x + collectionView.contentInset.top + collectionView.contentInset.bottom)
+        print(collectionViewCell.frame.origin,collectionViewCell.bounds.origin)
+        
+        return frame
     }
     
 
@@ -112,7 +121,18 @@ class ViewController: UIViewController , UICollectionViewDelegate , UICollection
         }
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CollectionCell
         cell.textlbl.text = ProfessionSet[indexPath.row].ProfessionName
+        cell.frame.size.width = view.frame.width * 0.7 / 3
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if collectionView == InnerCollectionView{
+            if view.frame.width <= 320 {
+                return CGSize(width: view.frame.width * 0.8, height: view.frame.height * 0.2 / 3)
+            }
+            return CGSize(width: view.frame.width * 0.85 / 2 , height: view.frame.height * 0.2 / 3)
+        }
+        return CGSize(width: view.frame.width * 0.8 / 3, height: view.frame.height * 0.5 / 3)
     }
     
     
@@ -122,10 +142,11 @@ class ViewController: UIViewController , UICollectionViewDelegate , UICollection
         if collectionView != InnerCollectionView && InnerCollectionView.isHidden == true{
             InnerCellCount = indexPath.row
             InnerCollectionView.reloadData()
-            InnerCollectionView.frame = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath).frame
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath)
+            InnerCollectionView.frame = self.getCellFrame(cell, self.CollectionView)
             InnerCollectionView.isHidden = false
             UIView.animate(withDuration: 0.3, animations: {
-                self.InnerCollectionView.frame = CGRect(x: self.view.center.x - 200, y: self.view.center.y - 200, width: 390, height: 500)
+                self.InnerCollectionView.frame = CGRect(x: self.view.center.x - self.view.frame.width * 0.9 / 2, y: self.view.center.y - self.view.frame.height * 0.75 / 2, width: self.view.frame.width * 0.9, height: self.view.frame.height * 0.75)
                 self.InnerCollectionView.alpha = 1
             })
         }else if collectionView == InnerCollectionView{
@@ -145,62 +166,7 @@ class ViewController: UIViewController , UICollectionViewDelegate , UICollection
         
     }
     
-    private func readJson() {
-        do {
-            if let file = Bundle.main.url(forResource: jsonFileName, withExtension: "json") {
-                let data = try Data(contentsOf: file)
-                let json = try JSONSerialization.jsonObject(with: data, options: [])
-                if let object = json as? [String: Any] {
-                    // json is a dictionary
-                    dataProcess(object: object)
-                } else if let object = json as? [Any] {
-                    // json is an array
-                    print(object)
-                } else {
-                    print("JSON is invalid")
-                }
-            } else {
-                print("no file")
-            }
-        } catch {
-            print(error.localizedDescription)
-        }
-    }
     
-    func dataProcess(object : [String: Any]){
-        
-        // profession_type is the json head
-        var profession_type = object["professionSet"] as! [[String:Any]]
-        
-        for i in 0..<profession_type.count{
-            // Get Profession_Type Such As 保險業 && temp is fetch and get Profession
-            let temp = professionType(Name: profession_type[i]["profession_type"]! as! String)
-            
-            // Get Profession_Type.data Such As ExamSet
-            let data = profession_type[i]["data"] as! [[String:Any]]
-            
-            for j in 0..<data.count{
-                temp.addExamSet(examSet(data[j]["ExamGrade"] as! String))
-                
-                // Get Profession_Type.data.ExamSet Such As ExamName
-                let ExamSet = data[j]["ExamSet"] as! [[String:Any]]
-                for k in 0..<ExamSet.count{
-                    temp.ExamSet[j].addQuizSet(quizSet(id: k, name: ExamSet[k]["ExamName"]! as! String))
-                    if let QuizSet = ExamSet[k]["QuizSet"] as? [[String:Any]]{
-                        for l in 0..<QuizSet.count{
-                            let answer = QuizSet[l]["answer"] as! [String]
-                            let choice = QuizSet[l]["choice"] as! [String]
-                            temp.ExamSet[j].QuizSet[k].addQuiz(quiz(id: QuizSet[l]["id"] as! Int, question: QuizSet[l]["question"] as! String, choice: choice, answer: answer))
-
-                        }
-                    }
-                    
-                }
-            }
-            
-            ProfessionSet.append(temp)
-        }
-    }
     
     @IBAction func unWindToQuizSetView(forSegue:UIStoryboardSegue){ }
     

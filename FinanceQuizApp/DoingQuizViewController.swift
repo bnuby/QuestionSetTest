@@ -21,30 +21,37 @@ class DoingQuizViewController: UIViewController , UICollectionViewDelegate , UIC
     @IBOutlet var QuestionNextBtn: UIButton!
     @IBOutlet var QuizCollectionView: UICollectionView!
     @IBAction func QuestionBtn(_ sender: Any) {
+        QuestionNextBtn.isEnabled = false
         if QuestionNextBtn.titleLabel?.text == "Check" {
-            var SelectedIndex = QuizCollectionView.indexPathsForSelectedItems?.first
-            if SelectedIndex?.row == 3{
-                QuizCollectionView.cellForItem(at: SelectedIndex!)?.backgroundColor = UIColor.green
+            if var SelectedIndex = QuizCollectionView.indexPathsForSelectedItems?.first {
+                if SelectedIndex.row == 3{
+                    QuizCollectionView.cellForItem(at: SelectedIndex)?.backgroundColor = UIColor.green
+                    
+                    
+                    scoreDetails["Correct"]! += 1
+                    scoreDetails["totalScore"]! += scoreDetails["scorePerQuiz"]!
+                    print(scoreDetails["Correct"]!)
+                } else {
+                    QuizCollectionView.cellForItem(at: SelectedIndex)?.backgroundColor = UIColor.red
+                    QuizCollectionView.cellForItem(at: IndexPath(row: 3, section: 0))?.backgroundColor = UIColor.green
+                    
+                }
+                if numberOfQuiz + 1 == QuizSet?.quizList.count{
+                    QuestionNextBtn.setTitle("Finished", for: .normal)
+                    QuestionNextBtn.titleLabel?.text = "Finished"
+                    
+                }else{
+                    QuestionNextBtn.setTitle("Next", for: .normal)
+                    QuestionNextBtn.titleLabel?.text = "Next"
+
+                    
+                }
+                print("add")
+                numberOfQuiz += 1
+                QuestionNextBtn.isEnabled = true
                 
-                
-                scoreDetails["Correct"]! += 1
-                scoreDetails["totalScore"]! += scoreDetails["scorePerQuiz"]!
-                print(scoreDetails["Correct"]!)
-            } else {
-                QuizCollectionView.cellForItem(at: SelectedIndex!)?.backgroundColor = UIColor.red
-                QuizCollectionView.cellForItem(at: IndexPath(row: 3, section: 0))?.backgroundColor = UIColor.green
-                
+                QuestionNextBtn.sizeToFit()
             }
-            if numberOfQuiz + 1 == QuizSet?.quizList.count{
-                QuestionNextBtn.setTitle("Finished", for: .normal)
-                
-            }else{
-                QuestionNextBtn.setTitle("Next", for: .normal)
-            }
-            numberOfQuiz += 1
-            QuestionNextBtn.sizeToFit()
-            
-            
             
             
         } else if QuestionNextBtn.titleLabel?.text == "Finished" {
@@ -72,50 +79,40 @@ class DoingQuizViewController: UIViewController , UICollectionViewDelegate , UIC
             }
 
         }
+//        QuestionNextBtn.isEnabled = true
+
     }
     
     @IBAction func markedBtn(_ sender: UIButton) {
-        struct a{
-            static var checked = false
-        }
         
         
         
         if let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext{
             if sender.titleLabel?.text == "✓"{
-//                if a.checked{0000
-                
-                    //                markedquiz.filter({ (self) -> Int in
-                    //                    if Int(self.quizID) == QuizSet!.quizList[numberOfQuiz].id && Int(self.examSet) == QuizDetail["ExamSet"] && Int(self.noOfQuizSet) == QuizDetail["noOfQuizSet"] && Int(self.professionSet) == QuizDetail["ProfessionSet"] {
-                    //                        return true
-                    //                    }
-                    //                    return false
-                    //                })
-//                    if Markedchecker() {
-//                        context.delete(findMarkQuiz)
-//                    }
-                    context.delete(markedquiz[numberOfQuiz])
-                    markedquiz.remove(at: numberOfQuiz)
+
+                    print("true")
+                    MarkedUncheck(context: context)
                     markedButton.backgroundColor = UIColor.clear
-                    a.checked = false
-                    markedButton.setTitle("", for: .normal)
+                    sender.titleLabel?.text = ""
+                    sender.setTitle("", for: .normal)
                     return
-//                }
             }
             
-            
+            print("false")
             let markedQuiz = NSEntityDescription.insertNewObject(forEntityName: "MarkedQuiz", into: context) as! MarkedQuiz
             markedQuiz.setValue(QuizSet?.quizList[numberOfQuiz].id, forKey: "quizID")
             markedQuiz.setValue(QuizDetail["ProfessionSet"], forKey: "professionSet")
             markedQuiz.setValue(QuizDetail["noOfQuizSet"], forKey: "noOfQuizSet")
             markedQuiz.setValue(QuizDetail["ExamSet"], forKey: "examSet")
             markedquiz.append(markedQuiz)
+            markedquiz.sort(by: { (a, b) -> Bool in
+                return a.professionSet < a.professionSet
+            })
             do{
                 try context.save()
                 markedButton.backgroundColor = UIColor.blue
-                markedButton.setTitle("✓", for: .normal)
+                sender.setTitle("✓", for: .normal)
                 
-                a.checked = true
             } catch let error as NSError{
                 print("Save Failed Error = \(error)")
             }
@@ -155,6 +152,16 @@ class DoingQuizViewController: UIViewController , UICollectionViewDelegate , UIC
         markedButton.layer.borderWidth = 1
         markedButton.layer.borderColor = UIColor.lightGray.cgColor
                // Do any additional setup after loading the view.
+    }
+    
+    func MarkedUncheck(context : NSManagedObjectContext){
+        for i in 0..<markedquiz.count{
+            if markedquiz[i].quizID == Int16((QuizSet?.quizList[numberOfQuiz].id)!) && markedquiz[i].examSet == Int16(QuizDetail["ExamSet"]!) && markedquiz[i].noOfQuizSet == Int16(QuizDetail["noOfQuizSet"]!) && markedquiz[i].professionSet == Int16(QuizDetail["ProfessionSet"]!) {
+                context.delete(markedquiz[i])
+                markedquiz.remove(at: i)
+                return
+            }
+        }
     }
     
     func Markedchecker() -> Bool{
@@ -290,8 +297,9 @@ class DoingQuizViewController: UIViewController , UICollectionViewDelegate , UIC
     }
     
     func resetall(){
-        QuestionNextBtn.setTitle("Check", for: .normal)
         QuestionNextBtn.isEnabled = false
+
+        QuestionNextBtn.setTitle("Check", for: .normal)
         for i in 0..<QuizCollectionView.numberOfItems(inSection: 0){
             QuizCollectionView.cellForItem(at: IndexPath(row: i, section: 0))?.backgroundColor = .clear
         }
