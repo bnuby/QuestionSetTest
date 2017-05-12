@@ -66,3 +66,24 @@ func dataProcess(object : [String: Any] ){
         ProfessionSet.append(temp)
     }
 }
+
+func shuffle (_ a : quiz) -> [String]{
+    var string : [String] = []
+    for i in a.answer {
+        string.append(i)
+    }
+    for i in a.choice {
+        string.append(i)
+    }
+    for _ in 0..<string.count{
+        var a = 0
+        var b = 0
+        while(a == b){
+            a = Int(arc4random_uniform(UInt32(string.count)))
+            b = Int(arc4random_uniform(UInt32(string.count)))
+        }
+        swap(&string[a], &string[b])
+        
+    }
+    return string
+}

@@ -21,9 +21,11 @@ class QuizCollectionViewController: UIViewController {
         performSegue(withIdentifier: "PageSwitch", sender: self)
     }
     @IBAction func theEazierWrongQuiz(_ sender: Any){
-        processType = "theEazierWrongQuiz"
+        processType = "TheEazierWrongQuiz"
         performSegue(withIdentifier: "PageSwitch", sender: self)
     }
+    
+    @IBOutlet var buttonStackView: UIStackView!
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "PageSwitch"{
@@ -33,7 +35,8 @@ class QuizCollectionViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        let constraint = NSLayoutConstraint(item: buttonStackView, attribute: .width, relatedBy: .equal, toItem: view, attribute: .width, multiplier: 0.8, constant: 0)
+        view.addConstraint(constraint)
         // Do any additional setup after loading the view.
     }
 

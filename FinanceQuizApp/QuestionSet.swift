@@ -67,6 +67,14 @@ class quizSet{
             
         }
     }
+    
+    func clone() -> quizSet{
+        let temp = quizSet(id: self.setID, name: self.name)
+        for i in self.quizList{
+            temp.quizList.append(i)
+        }
+        return temp
+    }
 }
 
 class examSet{

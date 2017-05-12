@@ -71,15 +71,15 @@
                                                         "choice": ["a","b","c"]
                                                         },{
                                                         "question" : "bitch",
-                                                        "answer" : ["hello"],
+                                                        "answer" : ["bitch"],
                                                         "choice": ["a","b","c"]
                                                         },{
                                                         "question" : "s",
-                                                        "answer" : ["hello"],
+                                                        "answer" : ["s"],
                                                         "choice": ["a","b","c"]
                                                         },{
-                                                        "question" : "a",
-                                                        "answer" : ["hello"],
+                                                        "question" : "aloha",
+                                                        "answer" : ["aloha"],
                                                         "choice": ["a","b","c"]
                                                         }]
                                            },

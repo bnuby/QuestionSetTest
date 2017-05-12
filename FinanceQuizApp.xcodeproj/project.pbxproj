@@ -20,6 +20,7 @@
 		CF2FD82E1EBB759200B1A594 /* OwnQuizProcessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF2FD82D1EBB759200B1A594 /* OwnQuizProcessViewController.swift */; };
 		CF2FD8301EBB7A0700B1A594 /* loginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF2FD82F1EBB7A0700B1A594 /* loginViewController.swift */; };
 		CF4C3FC21EC389800071DF06 /* FuncBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4C3FC11EC389800071DF06 /* FuncBase.swift */; };
+		CF4C3FC41EC4BE160071DF06 /* DoingOwnQuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF4C3FC31EC4BE160071DF06 /* DoingOwnQuizViewController.swift */; };
 		CFC262591EBA1E53002B241A /* QuestionSet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFC262581EBA1E53002B241A /* QuestionSet.swift */; };
 		CFD17A051EBA1A2D00235CD1 /* FinanceQuizApp.json in Resources */ = {isa = PBXBuildFile; fileRef = CFD17A041EBA1A2D00235CD1 /* FinanceQuizApp.json */; };
 		CFDD16741EBC5FB1001B536E /* QuizHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFDD16731EBC5FB1001B536E /* QuizHistoryViewController.swift */; };
@@ -64,6 +65,7 @@
 		CF2FD82D1EBB759200B1A594 /* OwnQuizProcessViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OwnQuizProcessViewController.swift; sourceTree = "<group>"; };
 		CF2FD82F1EBB7A0700B1A594 /* loginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = loginViewController.swift; sourceTree = "<group>"; };
 		CF4C3FC11EC389800071DF06 /* FuncBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FuncBase.swift; sourceTree = "<group>"; };
+		CF4C3FC31EC4BE160071DF06 /* DoingOwnQuizViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoingOwnQuizViewController.swift; sourceTree = "<group>"; };
 		CFC262581EBA1E53002B241A /* QuestionSet.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionSet.swift; sourceTree = "<group>"; };
 		CFD17A041EBA1A2D00235CD1 /* FinanceQuizApp.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = FinanceQuizApp.json; sourceTree = "<group>"; };
 		CFDD16731EBC5FB1001B536E /* QuizHistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizHistoryViewController.swift; sourceTree = "<group>"; };
@@ -136,6 +138,7 @@
 				CFDD16731EBC5FB1001B536E /* QuizHistoryViewController.swift */,
 				CFEF180D1EBF749F00CA5A0E /* FinanceQuizApp.xcdatamodeld */,
 				CF4C3FC11EC389800071DF06 /* FuncBase.swift */,
+				CF4C3FC31EC4BE160071DF06 /* DoingOwnQuizViewController.swift */,
 			);
 			path = FinanceQuizApp;
 			sourceTree = "<group>";
@@ -295,6 +298,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CF2FD8301EBB7A0700B1A594 /* loginViewController.swift in Sources */,
+				CF4C3FC41EC4BE160071DF06 /* DoingOwnQuizViewController.swift in Sources */,
 				CF2FD82E1EBB759200B1A594 /* OwnQuizProcessViewController.swift in Sources */,
 				ACE5EDD41EB9A97500195A8B /* ViewController.swift in Sources */,
 				ACE5EDD21EB9A97500195A8B /* AppDelegate.swift in Sources */,

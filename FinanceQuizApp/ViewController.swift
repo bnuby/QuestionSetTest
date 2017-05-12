@@ -128,7 +128,7 @@ class ViewController: UIViewController , UICollectionViewDelegate , UICollection
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == InnerCollectionView{
             if view.frame.width <= 320 {
-                return CGSize(width: view.frame.width * 0.8, height: view.frame.height * 0.2 / 3)
+                return CGSize(width: view.frame.width * 0.85, height: view.frame.height * 0.2 / 3)
             }
             return CGSize(width: view.frame.width * 0.85 / 2 , height: view.frame.height * 0.2 / 3)
         }
@@ -158,7 +158,7 @@ class ViewController: UIViewController , UICollectionViewDelegate , UICollection
         if segue.identifier == "ReadytoStartPage"{
             let indexPath = InnerCollectionView.indexPathsForSelectedItems?.last
                 let destination = segue.destination as! ReadyDoingQuizViewController
-            destination.QuizSet = ProfessionSet[InnerCellCount].ExamSet[indexPath!.section].QuizSet[indexPath!.row]
+            destination.QuizSet = ProfessionSet[InnerCellCount].ExamSet[indexPath!.section].QuizSet[indexPath!.row].clone()
             destination.QuizDetail["ProfessionSet"] = InnerCellCount
             destination.QuizDetail["ExamSet"] =  indexPath!.section
             destination.QuizDetail["noOfQuizSet"] = indexPath!.row

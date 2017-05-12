@@ -7,13 +7,14 @@
 //
 
 import UIKit
+import CoreData
 
 class QuizHistoryViewController: UIViewController ,UITableViewDelegate ,UITableViewDataSource {
     @IBOutlet var navigation: UINavigationBar!
-
     @IBAction func BackButton(){
         self.performSegue(withIdentifier: "unWindToProfile", sender: self)
     }
+    var History : [History]!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +26,15 @@ class QuizHistoryViewController: UIViewController ,UITableViewDelegate ,UITableV
     
     override func viewWillAppear(_ animated: Bool) {
 //        self.tabBarController?.tabBar.isHidden = true
+        if let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext {
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "History")
+            do {
+                History = try context.fetch(fetchRequest) as! [History]
+            } catch let error as NSError {
+                print("error : \(error)")
+            }
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -37,12 +47,19 @@ class QuizHistoryViewController: UIViewController ,UITableViewDelegate ,UITableV
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        tableView.separatorStyle = .none
+        if History.count > 0 {
+            return History.count
+        }
+        return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        cell.textLabel?.text = "No Record"
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! HistoryCell
+        cell.ProfessionType.text = History[indexPath.row].professionType
+        cell.QuizSetName.text =  History[indexPath.row].quizSetName
+        cell.Score.text = "\(History[indexPath.row].score)%"
+        cell.numberOfCorrect.text = "\(History[indexPath.row].numberOfCorrect)"
         
         return cell
     }
@@ -58,4 +75,12 @@ class QuizHistoryViewController: UIViewController ,UITableViewDelegate ,UITableV
     }
     */
 
+}
+
+class HistoryCell : UITableViewCell{
+    @IBOutlet var ProfessionType: UILabel!
+    @IBOutlet var QuizSetName: UILabel!
+    @IBOutlet var numberOfCorrect: UILabel!
+    @IBOutlet var Score: UILabel!
+    
 }

@@ -10,12 +10,13 @@ import UIKit
 import CoreData
 
 class DoingQuizViewController: UIViewController , UICollectionViewDelegate , UICollectionViewDataSource ,UICollectionViewDelegateFlowLayout  {
-
+    
     var markedquiz = [MarkedQuiz]()
     var QuizSet : quizSet?
     var QuizDetail : [String:Int] = ["ProfessionSet":0,"ExamSet":0,"noOfQuizSet":0]
-
     var scoreDetails : [String:Int] = ["totalScore" : 0 , "scorePerQuiz" : 0, "Correct" : 0]
+    var EazierWrongSet : [TheEazierWrongQuiz]!
+    var quiz : [String]!
     var numberOfQuiz = 0
     @IBOutlet var markedButton: UIButton!
     @IBOutlet var QuestionNextBtn: UIButton!
@@ -24,16 +25,82 @@ class DoingQuizViewController: UIViewController , UICollectionViewDelegate , UIC
         QuestionNextBtn.isEnabled = false
         if QuestionNextBtn.titleLabel?.text == "Check" {
             if var SelectedIndex = QuizCollectionView.indexPathsForSelectedItems?.first {
-                if SelectedIndex.row == 3{
+                let cell = (QuizCollectionView.cellForItem(at: SelectedIndex) as! DoingQuizColllectionCell)
+                
+                if cell.Quizlbl.text == QuizSet?.quizList[numberOfQuiz].answer[0]{
                     QuizCollectionView.cellForItem(at: SelectedIndex)?.backgroundColor = UIColor.green
                     
                     
                     scoreDetails["Correct"]! += 1
                     scoreDetails["totalScore"]! += scoreDetails["scorePerQuiz"]!
                     print(scoreDetails["Correct"]!)
+                    if let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext {
+                        
+                        
+                        EazierWrongSet.filter({ (a) -> Bool in
+                            if a.examSet == Int16(QuizDetail["ExamSet"]!) && a.noOfQuizSet == Int16(QuizDetail["noOfQuizSet"]!) && a.professionSet == Int16(QuizDetail["ProfessionSet"]!) && a.quizID == Int16(QuizSet!.quizList[numberOfQuiz].id) {
+                                //                                    print("hello",a.count,EazierWrongSet.index(of: a)!)
+                                if a.count <= 0 {
+                                    EazierWrongSet.remove(at: EazierWrongSet.index(of: a)!)
+                                    context.delete(a)
+                                }else{
+                                    a.setValue(Int(a.value(forKey: "count") as! Int16)-1, forKey: "count")
+                                    
+                                }
+                                do{
+                                    try context.save()
+                                } catch let error as NSError{
+                                    print("error : \(error)")
+                                }
+                                return true
+                            }
+                            return false
+                            }
+                        )
+                        
+                    }
                 } else {
                     QuizCollectionView.cellForItem(at: SelectedIndex)?.backgroundColor = UIColor.red
-                    QuizCollectionView.cellForItem(at: IndexPath(row: 3, section: 0))?.backgroundColor = UIColor.green
+                    QuizCollectionView.cellForItem(at: IndexPath(row: quiz.index(of: (QuizSet?.quizList[numberOfQuiz].answer[0])!)!
+                        , section: 0))?.backgroundColor = UIColor.green
+                    if let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext {
+                        
+                        
+                        var check = false
+                        EazierWrongSet.filter({ (a) -> Bool in
+                            if a.examSet == Int16(QuizDetail["ExamSet"]!) && a.noOfQuizSet == Int16(QuizDetail["noOfQuizSet"]!) && a.professionSet == Int16(QuizDetail["ProfessionSet"]!) && a.quizID == Int16(QuizSet!.quizList[numberOfQuiz].id) {
+                                //                                    var tempContext = context
+                                //                                    let temp = a
+                                check = true
+                                print(a.value(forKey: "count"))
+                                a.setValue(Int(a.value(forKey: "count") as! Int16)+1, forKey: "count")
+                                
+                                do{
+                                    try context.save()
+                                } catch let error as NSError{
+                                    print("error : \(error)")
+                                }
+                                return true
+                            }
+                            
+                            return false
+                            }
+                        )
+                        if !check{
+                            let data = NSEntityDescription.insertNewObject(forEntityName: "TheEazierWrongQuiz", into: context) as! TheEazierWrongQuiz
+                            data.setValue(QuizSet?.quizList[numberOfQuiz].id, forKey: "quizID")
+                            data.setValue(QuizDetail["ProfessionSet"], forKey: "professionSet")
+                            data.setValue(QuizDetail["noOfQuizSet"], forKey: "noOfQuizSet")
+                            data.setValue(QuizDetail["ExamSet"], forKey: "examSet")
+                            data.setValue(1, forKey: "count")
+                            
+                            do{
+                                try context.save()
+                            } catch let error as NSError{
+                                print("error : \(error)")
+                            }
+                        }
+                    }
                     
                 }
                 if numberOfQuiz + 1 == QuizSet?.quizList.count{
@@ -43,10 +110,9 @@ class DoingQuizViewController: UIViewController , UICollectionViewDelegate , UIC
                 }else{
                     QuestionNextBtn.setTitle("Next", for: .normal)
                     QuestionNextBtn.titleLabel?.text = "Next"
-
+                    
                     
                 }
-                print("add")
                 numberOfQuiz += 1
                 QuestionNextBtn.isEnabled = true
                 
@@ -64,23 +130,45 @@ class DoingQuizViewController: UIViewController , UICollectionViewDelegate , UIC
                 temp.addAction(alertAction)
                 return temp
             }
+            
+            if let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext{
+                
+                let data = NSEntityDescription.insertNewObject(forEntityName: "History", into: context)
+                data.setValue(ProfessionSet[QuizDetail["ProfessionSet"]!].ProfessionName , forKey: "professionType")
+                data.setValue(ProfessionSet[QuizDetail["ProfessionSet"]!].ExamSet[QuizDetail["ExamSet"]!].QuizSet[QuizDetail["noOfQuizSet"]!].name , forKey: "quizSetName")
+                data.setValue(scoreDetails["Correct"], forKey: "numberOfCorrect")
+                data.setValue(scoreDetails["totalScore"], forKey: "score")
+                
+                do{
+                    try context.save()
+                } catch let error as NSError{
+                    print("Save Failed Error = \(error)")
+                }
+                
+            }
+            
             present(alertController(), animated: true, completion: nil)
-
-
+            
+            
         } else {
             resetall()
+            quiz = shuffle((QuizSet?.quizList[numberOfQuiz])!)
             QuizCollectionView.reloadData()
             if Markedchecker() {
                 markedButton.backgroundColor = UIColor.blue
                 markedButton.setTitle("✓", for: .normal)
+                markedButton.titleLabel?.text = "✓"
+                
             }else{
                 markedButton.backgroundColor = UIColor.clear
                 markedButton.setTitle("", for: .normal)
+                markedButton.titleLabel?.text = ""
+                
             }
-
+            
         }
-//        QuestionNextBtn.isEnabled = true
-
+        //        QuestionNextBtn.isEnabled = true
+        
     }
     
     @IBAction func markedBtn(_ sender: UIButton) {
@@ -89,13 +177,13 @@ class DoingQuizViewController: UIViewController , UICollectionViewDelegate , UIC
         
         if let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext{
             if sender.titleLabel?.text == "✓"{
-
-                    print("true")
-                    MarkedUncheck(context: context)
-                    markedButton.backgroundColor = UIColor.clear
-                    sender.titleLabel?.text = ""
-                    sender.setTitle("", for: .normal)
-                    return
+                
+                print("true")
+                MarkedUncheck(context: context)
+                markedButton.backgroundColor = UIColor.clear
+                sender.titleLabel?.text = ""
+                sender.setTitle("", for: .normal)
+                return
             }
             
             print("false")
@@ -105,9 +193,9 @@ class DoingQuizViewController: UIViewController , UICollectionViewDelegate , UIC
             markedQuiz.setValue(QuizDetail["noOfQuizSet"], forKey: "noOfQuizSet")
             markedQuiz.setValue(QuizDetail["ExamSet"], forKey: "examSet")
             markedquiz.append(markedQuiz)
-            markedquiz.sort(by: { (a, b) -> Bool in
-                return a.professionSet < a.professionSet
-            })
+            //            markedquiz.sort(by: { (a, b) -> Bool in
+            //                return a.professionSet < a.professionSet
+            //            })
             do{
                 try context.save()
                 markedButton.backgroundColor = UIColor.blue
@@ -116,13 +204,13 @@ class DoingQuizViewController: UIViewController , UICollectionViewDelegate , UIC
             } catch let error as NSError{
                 print("Save Failed Error = \(error)")
             }
-
+            
         }
         
-//        if let managedContext = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext{
-//            let insert = NSEntityDescription.insertNewObject(forEntityName: "MarkedQuiz", into: managedContext) as! MarkedQuiz
-//            insert.setValue("", forKey: "")
-//        }
+        //        if let managedContext = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext{
+        //            let insert = NSEntityDescription.insertNewObject(forEntityName: "MarkedQuiz", into: managedContext) as! MarkedQuiz
+        //            insert.setValue("", forKey: "")
+        //        }
     }
     
     
@@ -131,27 +219,11 @@ class DoingQuizViewController: UIViewController , UICollectionViewDelegate , UIC
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext{
-            let fetch = NSFetchRequest<NSFetchRequestResult>(entityName: "MarkedQuiz")
-            do{
-                markedquiz = try context.fetch(fetch) as! [MarkedQuiz]
-            } catch let error as NSError {
-                print("data fetching fail error = \(error)")
-            }
-            
-            
-            if Markedchecker() {
-                markedButton.backgroundColor = UIColor.blue
-                markedButton.setTitle("✓", for: .normal)
-            }else{
-                markedButton.backgroundColor = UIColor.clear
-                markedButton.setTitle("", for: .normal)
-            }
-        }
+        
         
         markedButton.layer.borderWidth = 1
         markedButton.layer.borderColor = UIColor.lightGray.cgColor
-               // Do any additional setup after loading the view.
+        // Do any additional setup after loading the view.
     }
     
     func MarkedUncheck(context : NSManagedObjectContext){
@@ -175,12 +247,50 @@ class DoingQuizViewController: UIViewController , UICollectionViewDelegate , UIC
     
     override func viewWillAppear(_ animated: Bool) {
         scoreDetails["scorePerQuiz"] =  100 /   (QuizSet?.quizList.count)!
+        quiz = shuffle((QuizSet?.quizList[numberOfQuiz])!)
+        if let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext{
+            let fetch = NSFetchRequest<NSFetchRequestResult>(entityName: "MarkedQuiz")
+            do{
+                markedquiz = try context.fetch(fetch) as! [MarkedQuiz]
+            } catch let error as NSError {
+                print("data fetching fail error = \(error)")
+            }
+            
+            
+            if Markedchecker() {
+                markedButton.backgroundColor = UIColor.blue
+                markedButton.setTitle("✓", for: .normal)
+                markedButton.titleLabel?.text = "✓"
+                
+            }else{
+                markedButton.backgroundColor = UIColor.clear
+                markedButton.setTitle("", for: .normal)
+                markedButton.titleLabel?.text = ""
+                
+            }
+            
+            let fetchdata = NSFetchRequest<NSFetchRequestResult>(entityName: "TheEazierWrongQuiz")
+            do{
+                EazierWrongSet = try context.fetch(fetchdata) as! [TheEazierWrongQuiz]
+            } catch let error as NSError {
+                print("error : \(error)")
+            }
+            
+            
+        }
+        if Markedchecker() {
+            markedButton.backgroundColor = UIColor.blue
+            markedButton.setTitle("✓", for: .normal)
+        }else{
+            markedButton.backgroundColor = UIColor.clear
+            markedButton.setTitle("", for: .normal)
+        }
         print(markedquiz)
         self.tabBarController?.tabBar.isHidden = true
         
     }
-   
-
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -195,11 +305,14 @@ class DoingQuizViewController: UIViewController , UICollectionViewDelegate , UIC
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return (QuizSet?.quizList.count)!
+        return ((QuizSet?.quizList[numberOfQuiz].answer.count)! + (QuizSet?.quizList[numberOfQuiz].choice.count)!)
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "Header", for: indexPath) as! DoingQuizCollectionHeader
+        
+        
         header.Headerlbl.text = QuizSet?.quizList[numberOfQuiz].question
         header.backgroundColor = UIColor.orange
         header.layer.borderWidth = 1
@@ -212,17 +325,14 @@ class DoingQuizViewController: UIViewController , UICollectionViewDelegate , UIC
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! DoingQuizColllectionCell
-        var test = ""
-        for i in 1...20{
-            test += "\(i) "
-        }
+        
         cell.Quizlbl.numberOfLines = 0
         cell.Quizlbl.lineBreakMode = .byWordWrapping
-        cell.Quizlbl.text = test
-
+        cell.Quizlbl.text = quiz[indexPath.row]
+        
         cell.layer.borderWidth  = 1
         cell.layer.borderColor = UIColor.gray.cgColor
-
+        
         return cell
     }
     
@@ -248,11 +358,11 @@ class DoingQuizViewController: UIViewController , UICollectionViewDelegate , UIC
         lbl.lineBreakMode = .byWordWrapping
         if QuizSet?.quizList[numberOfQuiz].question != nil{
             lbl.text = QuizSet?.quizList[numberOfQuiz].question
-
+            
         }
         lbl.sizeToFit()
         print(lbl.frame.size)
-
+        
         return CGSize(width: view.bounds.width - 50, height: lbl.frame.size.height + 40)
     }
     
@@ -263,17 +373,13 @@ class DoingQuizViewController: UIViewController , UICollectionViewDelegate , UIC
         
         
         let text = UILabel()
-        var test = ""
-        for i in 1...20{
-            test += "\(i)"
-        }
         text.bounds.size.width = view.bounds.width - 60
         text.numberOfLines = 0
         text.lineBreakMode = .byWordWrapping
-        text.text = test
-
+        text.text = quiz[indexPath.row]
+        
         text.sizeToFit()
-        return CGSize(width: view.bounds.width - 20 , height: text.frame.height + 50)
+        return CGSize(width: view.bounds.width - 20 , height: text.frame.height + 20)
     }
     
     
@@ -298,7 +404,7 @@ class DoingQuizViewController: UIViewController , UICollectionViewDelegate , UIC
     
     func resetall(){
         QuestionNextBtn.isEnabled = false
-
+        
         QuestionNextBtn.setTitle("Check", for: .normal)
         for i in 0..<QuizCollectionView.numberOfItems(inSection: 0){
             QuizCollectionView.cellForItem(at: IndexPath(row: i, section: 0))?.backgroundColor = .clear
@@ -306,17 +412,17 @@ class DoingQuizViewController: UIViewController , UICollectionViewDelegate , UIC
     }
     
     
-
+    
     /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+     // MARK: - Navigation
+     
+     // In a storyboard-based application, you will often want to do a little preparation before navigation
+     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     // Get the new view controller using segue.destinationViewController.
+     // Pass the selected object to the new view controller.
+     }
+     */
+    
 }
 
 class DoingQuizCollectionHeader : UICollectionReusableView{
