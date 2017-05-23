@@ -15,6 +15,7 @@ class OwnQuizProcessViewController: UIViewController , UITableViewDelegate, UITa
     
     var sourceDict = ["myFeaturedQuiz":1,"myMarkedQuiz":2,"TheEazierWrongQuiz":3]
     var MarkedQuiz : [MarkedQuiz] = []
+    var quizList : [TheEazierWrongQuiz] = []
     var TheEazierWrongQuiz : [TheEazierWrongQuiz] = []
     @IBOutlet var tableView: UITableView!
     
@@ -52,6 +53,12 @@ class OwnQuizProcessViewController: UIViewController , UITableViewDelegate, UITa
             for i in 0..<TheEazierWrongQuiz.count{
                 print(TheEazierWrongQuiz[i].quizID)
             }
+            for i in TheEazierWrongQuiz{
+                if i.count > 1{
+                    quizList.append(i)
+                    print(i)
+                }
+            }
             
         default:
             break
@@ -72,7 +79,9 @@ class OwnQuizProcessViewController: UIViewController , UITableViewDelegate, UITa
         case 1:
             return MarkedQuiz.count
         case 3:
-            return TheEazierWrongQuiz.count
+            var temp = 0
+            
+            return quizList.count
         default:
             return 0
         }
@@ -140,14 +149,13 @@ class OwnQuizProcessViewController: UIViewController , UITableViewDelegate, UITa
         case 3:
             let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! TableViewCell
             
-            cell.professionType.text = "\(ProfessionSet[Int(TheEazierWrongQuiz[indexPath.row].professionSet)].ProfessionName!)"
+            cell.professionType.text = "\(ProfessionSet[Int(quizList[indexPath.row].professionSet)].ProfessionName!)"
             
-            cell.ExamGrade.text = "\(ProfessionSet[Int(TheEazierWrongQuiz[indexPath.row].professionSet)].ExamSet[Int(TheEazierWrongQuiz[indexPath.row].examSet)].QuizGrade!)"
+            cell.ExamGrade.text = "\(ProfessionSet[Int(quizList[indexPath.row].professionSet)].ExamSet[Int(quizList[indexPath.row].examSet)].QuizGrade!)"
             
-            cell.ExamSet.text = "\(ProfessionSet[Int(TheEazierWrongQuiz[indexPath.row].professionSet)].ExamSet[Int(TheEazierWrongQuiz[indexPath.row].examSet)].QuizSet[Int(TheEazierWrongQuiz[indexPath.row].noOfQuizSet)].name!)"
-            let ExamSet = ProfessionSet[Int(TheEazierWrongQuiz[indexPath.row].professionSet)].ExamSet[Int(TheEazierWrongQuiz[indexPath.row].examSet)].QuizSet[Int(TheEazierWrongQuiz[indexPath.row].noOfQuizSet)]
-            cell.QuizQuestion.text = "\(ExamSet.quizList[Int(TheEazierWrongQuiz[indexPath.row].quizID)].question!)"
-            print(indexPath.row,TheEazierWrongQuiz[indexPath.row].count)
+            cell.ExamSet.text = "\(ProfessionSet[Int(quizList[indexPath.row].professionSet)].ExamSet[Int(quizList[indexPath.row].examSet)].QuizSet[Int(quizList[indexPath.row].noOfQuizSet)].name!)"
+            let ExamSet = ProfessionSet[Int(quizList[indexPath.row].professionSet)].ExamSet[Int(quizList[indexPath.row].examSet)].QuizSet[Int(quizList[indexPath.row].noOfQuizSet)]
+            cell.QuizQuestion.text = "\(ExamSet.quizList[Int(quizList[indexPath.row].quizID)].question!)"
             
             //        "\(ProfessionSet[Int(MarkedQuiz[indexPath.row].professionSet)].ExamSet[Int(MarkedQuiz[indexPath.row].examSet)].QuizSet[Int(MarkedQuiz[indexPath.row].noOfQuizSet)].quizList[Int(MarkedQuiz[indexPath.row].quizID)].question)"
             
@@ -172,8 +180,8 @@ class OwnQuizProcessViewController: UIViewController , UITableViewDelegate, UITa
             case 3:
                 let indexPath = tableView.indexPathForSelectedRow!
                 let destionation = segue.destination as! DoingOwnQuizViewController
-                let ExamSet = ProfessionSet[Int(TheEazierWrongQuiz[indexPath.row].professionSet)].ExamSet[Int(TheEazierWrongQuiz[indexPath.row].examSet)].QuizSet[Int(TheEazierWrongQuiz[indexPath.row].noOfQuizSet)]
-                destionation.quiz = ExamSet.quizList[Int(TheEazierWrongQuiz[indexPath.row].quizID)]
+                let ExamSet = ProfessionSet[Int(quizList[indexPath.row].professionSet)].ExamSet[Int(quizList[indexPath.row].examSet)].QuizSet[Int(quizList[indexPath.row].noOfQuizSet)]
+                destionation.quiz = ExamSet.quizList[Int(quizList[indexPath.row].quizID)]
             default:
                 break
             }

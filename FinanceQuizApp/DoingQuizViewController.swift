@@ -16,6 +16,7 @@ class DoingQuizViewController: UIViewController , UICollectionViewDelegate , UIC
     var QuizDetail : [String:Int] = ["ProfessionSet":0,"ExamSet":0,"noOfQuizSet":0]
     var scoreDetails : [String:Int] = ["totalScore" : 0 , "scorePerQuiz" : 0, "Correct" : 0]
     var EazierWrongSet : [TheEazierWrongQuiz]!
+    var EverWrongQuizSet : [EverWrongQuiz]!
     var quiz : [String]!
     var numberOfQuiz = 0
     @IBOutlet var markedButton: UIButton!
@@ -40,7 +41,7 @@ class DoingQuizViewController: UIViewController , UICollectionViewDelegate , UIC
                         EazierWrongSet.filter({ (a) -> Bool in
                             if a.examSet == Int16(QuizDetail["ExamSet"]!) && a.noOfQuizSet == Int16(QuizDetail["noOfQuizSet"]!) && a.professionSet == Int16(QuizDetail["ProfessionSet"]!) && a.quizID == Int16(QuizSet!.quizList[numberOfQuiz].id) {
                                 //                                    print("hello",a.count,EazierWrongSet.index(of: a)!)
-                                if a.count <= 0 {
+                                if a.count <= 1 {
                                     EazierWrongSet.remove(at: EazierWrongSet.index(of: a)!)
                                     context.delete(a)
                                 }else{
@@ -86,6 +87,7 @@ class DoingQuizViewController: UIViewController , UICollectionViewDelegate , UIC
                             return false
                             }
                         )
+                        
                         if !check{
                             let data = NSEntityDescription.insertNewObject(forEntityName: "TheEazierWrongQuiz", into: context) as! TheEazierWrongQuiz
                             data.setValue(QuizSet?.quizList[numberOfQuiz].id, forKey: "quizID")
@@ -100,6 +102,33 @@ class DoingQuizViewController: UIViewController , UICollectionViewDelegate , UIC
                                 print("error : \(error)")
                             }
                         }
+                        
+                        EverWrongQuizSet.contains(where: { (a) -> Bool in
+                            check = false
+                            if a.examSet == Int16(QuizDetail["ExamSet"]!) && a.noOfQuizSet == Int16(QuizDetail["noOfQuizSet"]!) && a.professionSet == Int16(QuizDetail["ProfessionSet"]!) && a.quizID == Int16(QuizSet!.quizList[numberOfQuiz].id) {
+                                //                                    var tempContext = context
+                                //                                    let temp = a
+                                check = true
+                                
+                                return true
+                            }
+                            return false
+                        })
+                        
+                        if !check{
+                            let data = NSEntityDescription.insertNewObject(forEntityName: "EverWrongQuiz", into: context) as! EverWrongQuiz
+                            data.setValue(QuizSet?.quizList[numberOfQuiz].id, forKey: "quizID")
+                            data.setValue(QuizDetail["ProfessionSet"], forKey: "professionSet")
+                            data.setValue(QuizDetail["noOfQuizSet"], forKey: "noOfQuizSet")
+                            data.setValue(QuizDetail["ExamSet"], forKey: "examSet")
+                            
+                            do{
+                                try context.save()
+                            } catch let error as NSError{
+                                print("error : \(error)")
+                            }
+                        }
+                        
                     }
                     
                 }
@@ -249,9 +278,15 @@ class DoingQuizViewController: UIViewController , UICollectionViewDelegate , UIC
         scoreDetails["scorePerQuiz"] =  100 /   (QuizSet?.quizList.count)!
         quiz = shuffle((QuizSet?.quizList[numberOfQuiz])!)
         if let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext{
-            let fetch = NSFetchRequest<NSFetchRequestResult>(entityName: "MarkedQuiz")
+            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "MarkedQuiz")
+            let fetchRequest2 = NSFetchRequest<NSFetchRequestResult>(entityName: "EverWrongQuiz")
+            let fetchRequest3 = NSFetchRequest<NSFetchRequestResult>(entityName: "TheEazierWrongQuiz")
+
             do{
-                markedquiz = try context.fetch(fetch) as! [MarkedQuiz]
+                markedquiz = try context.fetch(fetchRequest) as! [MarkedQuiz]
+                EverWrongQuizSet = try context.fetch(fetchRequest2) as! [EverWrongQuiz]
+                EazierWrongSet = try context.fetch(fetchRequest3) as! [TheEazierWrongQuiz]
+
             } catch let error as NSError {
                 print("data fetching fail error = \(error)")
             }
@@ -269,12 +304,6 @@ class DoingQuizViewController: UIViewController , UICollectionViewDelegate , UIC
                 
             }
             
-            let fetchdata = NSFetchRequest<NSFetchRequestResult>(entityName: "TheEazierWrongQuiz")
-            do{
-                EazierWrongSet = try context.fetch(fetchdata) as! [TheEazierWrongQuiz]
-            } catch let error as NSError {
-                print("error : \(error)")
-            }
             
             
         }

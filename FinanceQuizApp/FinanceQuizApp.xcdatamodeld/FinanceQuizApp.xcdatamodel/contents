@@ -9,6 +9,12 @@
         <attribute name="numberOfQuiz" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="setName" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
+    <entity name="EverWrongQuiz" representedClassName="EverWrongQuiz" syncable="YES" codeGenerationType="class">
+        <attribute name="examSet" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="noOfQuizSet" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="professionSet" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="quizID" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+    </entity>
     <entity name="History" representedClassName="History" syncable="YES" codeGenerationType="class">
         <attribute name="numberOfCorrect" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="professionType" optional="YES" attributeType="String" syncable="YES"/>
@@ -31,8 +37,9 @@
     <elements>
         <element name="CustomizedQuiz" positionX="-18" positionY="54" width="128" height="75"/>
         <element name="CustomizedQuizSet" positionX="-36" positionY="45" width="128" height="90"/>
+        <element name="History" positionX="-36" positionY="36" width="128" height="105"/>
         <element name="MarkedQuiz" positionX="-63" positionY="-18" width="128" height="105"/>
         <element name="TheEazierWrongQuiz" positionX="-54" positionY="18" width="128" height="120"/>
-        <element name="History" positionX="-36" positionY="36" width="128" height="105"/>
+        <element name="EverWrongQuiz" positionX="-36" positionY="36" width="128" height="105"/>
     </elements>
 </model>

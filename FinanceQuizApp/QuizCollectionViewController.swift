@@ -22,7 +22,7 @@ class QuizCollectionViewController: UIViewController {
     }
     @IBAction func theEazierWrongQuiz(_ sender: Any){
         processType = "TheEazierWrongQuiz"
-        performSegue(withIdentifier: "PageSwitch", sender: self)
+        performSegue(withIdentifier: "showEverWrongQuiz", sender: self)
     }
     
     @IBOutlet var buttonStackView: UIStackView!

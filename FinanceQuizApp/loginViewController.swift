@@ -33,6 +33,16 @@ class loginViewController: UIViewController {
     
     
     override func viewWillAppear(_ animated: Bool) {
+        let gradient = CAGradientLayer()
+        gradient.frame = view.bounds
+        gradient.colors = [UIColor.red.cgColor,UIColor.blue.cgColor]
+        gradient.startPoint = CGPoint(x: 0, y: view.frame.height)
+        gradient.endPoint = CGPoint(x: view.bounds.width, y: view.bounds.height)
+        
+        let a = RadialGradientLayer()
+        
+        
+        view.layer.insertSublayer(a, at: 0)
         if loginUser == loginData["user"] && Password.text == loginData["password"]{
             performSegue(withIdentifier: "loginSucess", sender: self)
         }
@@ -45,6 +55,7 @@ class loginViewController: UIViewController {
 
         // Do any additional setup after loading the view.
     }
+    
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
