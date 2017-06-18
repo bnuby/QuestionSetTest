@@ -1,0 +1,20 @@
+
+
+{
+    "quizSetName":"name",
+    "quiz":
+    [{
+        "question":"What is dog",
+        "answer": ["Husky"],
+        "choice": ["Husky","Golden Retriever","Labrador","Alaskan MalamuteAlaskan MalamuteAlaskan MalamuteAlaskan MalamuteAlaskan MalamuteAlaskan MalamuteAlaskan MalamuteAlaskan MalamuteAlaskan MalamuteAlaskan MalamuteAlaskan MalamuteAlaskan MalamuteAlaskan MalamuteAlaskan MalamuteAlaskan MalamuteAlaskan MalamuteAlaskan MalamuteAlaskan MalamuteAlaskan MalamuteAlaskan MalamuteAlaskan MalamuteAlaskan MalamuteAlaskan MalamuteAlaskan MalamuteAlaskan MalamuteAlaskan MalamuteAlaskan MalamuteAlaskan MalamuteAlaskan MalamuteAlaskan MalamuteAlaskan MalamuteAlaskan MalamuteAlaskan MalamuteAlaskan MalamuteAlaskan MalamuteAlaskan MalamuteAlaskan MalamuteAlaskan MalamuteAlaskan MalamuteAlaskan MalamuteAlaskan MalamuteAlaskan MalamuteAlaskan MalamuteAlaskan MalamuteAlaskan MalamuteAlaskan MalamuteAlaskan MalamuteAlaskan MalamuteAlaskan MalamuteAlaskan MalamuteAlaskan MalamuteAlaskan MalamuteAlaskan Malamute"]
+    },{
+        "question":"How long have you been with your dog?",
+        "answer": ["10"],
+        "choice": ["3","1","half month"]
+    },{
+        "question":"",
+        "answer": [""],
+        "choice": [""]
+    }]
+
+}

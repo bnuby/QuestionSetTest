@@ -28,13 +28,18 @@ class quiz{
 }
 
 
-class quizSet{
+class ExamSet{
     var setID : Int!
     var name : String!
     var quizList = [quiz]()
-    init(id:Int,name:String) {
+    var LicenseDir : String!
+    var Filename : String!
+
+    init(id : Int, name : String, LicenseDir : String, Filename : String) {
         self.setID = id
         self.name = name
+        self.LicenseDir = LicenseDir
+        self.Filename = Filename
     }
     func addQuiz(_ element:quiz){
         quizList.append(element)
@@ -68,8 +73,8 @@ class quizSet{
         }
     }
     
-    func clone() -> quizSet{
-        let temp = quizSet(id: self.setID, name: self.name)
+    func clone() -> ExamSet{
+        let temp = ExamSet(id: self.setID, name: self.name, LicenseDir: self.LicenseDir, Filename: self.Filename)
         for i in self.quizList{
             temp.quizList.append(i)
         }
@@ -77,27 +82,43 @@ class quizSet{
     }
 }
 
-class examSet{
-    var QuizGrade : String!
-    var QuizSet : [quizSet] = []
+class LicenseType {
+    var LicenseName:String!
+    var ExamSet : [ExamSet] = []
     
-    init(_ QuizGrade :String) {
-        self.QuizGrade = QuizGrade
+    init(_ LicenseName:String){
+        self.LicenseName = LicenseName
     }
     
-    func addQuizSet(_ Set:quizSet)  {
-        self.QuizSet.append(Set)
+    func addExamSet(_ Set:ExamSet)  {
+        self.ExamSet.append(Set)
     }
 }
 
+
+class LicenseGrade{
+    var Grade : String!
+    var LicenseType : [LicenseType] = []
+    
+    init(_ QuizGrade :String) {
+        self.Grade = QuizGrade
+    }
+    
+    func addLicenseType(_ Type:LicenseType){
+            LicenseType.append(Type)
+    }
+    
+}
+
+
 class professionType{
     var ProfessionName : String!
-    var ExamSet : [examSet] = []
+    var LicenseGrade : [LicenseGrade] = []
     init(Name : String) {
         self.ProfessionName = Name
     }
-    func addExamSet(_ ExamSet:examSet){
-        self.ExamSet.append(ExamSet)
+    func addLicenseGrade(_ LicenseGrade:LicenseGrade){
+        self.LicenseGrade.append(LicenseGrade)
     }
     
 }

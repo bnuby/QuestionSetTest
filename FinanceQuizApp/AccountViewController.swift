@@ -22,7 +22,9 @@ class AccountViewController: UIViewController {
         super.viewDidLoad()
         
         readJson(jsonFileName)
-
+        for i in ProfessionSet[0].LicenseGrade[0].LicenseType[0].ExamSet[0].quizList{
+            print(i.id)
+        }
         // Do any additional setup after loading the view.
         print((loginViewController() ).loginUser)
     }

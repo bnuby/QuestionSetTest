@@ -12,8 +12,8 @@ import CoreData
 class DoingQuizViewController: UIViewController , UICollectionViewDelegate , UICollectionViewDataSource ,UICollectionViewDelegateFlowLayout  {
     
     var markedquiz = [MarkedQuiz]()
-    var QuizSet : quizSet?
-    var QuizDetail : [String:Int] = ["ProfessionSet":0,"ExamSet":0,"noOfQuizSet":0]
+    var ExamSet : ExamSet?
+    var QuizDetail : [String:Int] = ["ProfessionSet":0,"LicenseGrade":0,"LicenseType":0,"ExamSet":0]
     var scoreDetails : [String:Int] = ["totalScore" : 0 , "scorePerQuiz" : 0, "Correct" : 0]
     var EazierWrongSet : [TheEazierWrongQuiz]!
     var EverWrongQuizSet : [EverWrongQuiz]!
@@ -28,7 +28,7 @@ class DoingQuizViewController: UIViewController , UICollectionViewDelegate , UIC
             if var SelectedIndex = QuizCollectionView.indexPathsForSelectedItems?.first {
                 let cell = (QuizCollectionView.cellForItem(at: SelectedIndex) as! DoingQuizColllectionCell)
                 
-                if cell.Quizlbl.text == QuizSet?.quizList[numberOfQuiz].answer[0]{
+                if cell.Quizlbl.text == ExamSet?.quizList[numberOfQuiz].answer[0]{
                     QuizCollectionView.cellForItem(at: SelectedIndex)?.backgroundColor = UIColor.green
                     
                     
@@ -39,7 +39,7 @@ class DoingQuizViewController: UIViewController , UICollectionViewDelegate , UIC
                         
                         
                         EazierWrongSet.filter({ (a) -> Bool in
-                            if a.examSet == Int16(QuizDetail["ExamSet"]!) && a.noOfQuizSet == Int16(QuizDetail["noOfQuizSet"]!) && a.professionSet == Int16(QuizDetail["ProfessionSet"]!) && a.quizID == Int16(QuizSet!.quizList[numberOfQuiz].id) {
+                            if a.examSet == Int16(QuizDetail["ExamSet"]!) && a.licenseGrade == Int16(QuizDetail["LicenseGrade"]!) && a.licenseType == Int16(QuizDetail["LicenseType"]!) && a.quizID == Int16(ExamSet!.quizList[numberOfQuiz].id) && a.professionSet == Int16(QuizDetail["ProfessionSet"]!){
                                 //                                    print("hello",a.count,EazierWrongSet.index(of: a)!)
                                 if a.count <= 1 {
                                     EazierWrongSet.remove(at: EazierWrongSet.index(of: a)!)
@@ -62,18 +62,18 @@ class DoingQuizViewController: UIViewController , UICollectionViewDelegate , UIC
                     }
                 } else {
                     QuizCollectionView.cellForItem(at: SelectedIndex)?.backgroundColor = UIColor.red
-                    QuizCollectionView.cellForItem(at: IndexPath(row: quiz.index(of: (QuizSet?.quizList[numberOfQuiz].answer[0])!)!
+                    QuizCollectionView.cellForItem(at: IndexPath(row: quiz.index(of: (ExamSet?.quizList[numberOfQuiz].answer[0])!)!
                         , section: 0))?.backgroundColor = UIColor.green
                     if let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext {
                         
                         
                         var check = false
+                        
                         EazierWrongSet.filter({ (a) -> Bool in
-                            if a.examSet == Int16(QuizDetail["ExamSet"]!) && a.noOfQuizSet == Int16(QuizDetail["noOfQuizSet"]!) && a.professionSet == Int16(QuizDetail["ProfessionSet"]!) && a.quizID == Int16(QuizSet!.quizList[numberOfQuiz].id) {
+                            if a.examSet == Int16(QuizDetail["ExamSet"]!) && a.licenseGrade == Int16(QuizDetail["LicenseGrade"]!) && a.licenseType == Int16(QuizDetail["LicenseType"]!) && a.quizID == Int16(ExamSet!.quizList[numberOfQuiz].id) && a.professionSet == Int16(QuizDetail["ProfessionSet"]!) {
                                 //                                    var tempContext = context
                                 //                                    let temp = a
                                 check = true
-                                print(a.value(forKey: "count"))
                                 a.setValue(Int(a.value(forKey: "count") as! Int16)+1, forKey: "count")
                                 
                                 do{
@@ -90,10 +90,12 @@ class DoingQuizViewController: UIViewController , UICollectionViewDelegate , UIC
                         
                         if !check{
                             let data = NSEntityDescription.insertNewObject(forEntityName: "TheEazierWrongQuiz", into: context) as! TheEazierWrongQuiz
-                            data.setValue(QuizSet?.quizList[numberOfQuiz].id, forKey: "quizID")
-                            data.setValue(QuizDetail["ProfessionSet"], forKey: "professionSet")
-                            data.setValue(QuizDetail["noOfQuizSet"], forKey: "noOfQuizSet")
-                            data.setValue(QuizDetail["ExamSet"], forKey: "examSet")
+                            data.setValue(ExamSet?.quizList[numberOfQuiz].id, forKey: "quizID")
+                            data.setValue(QuizDetail["LicenseGrade"]!, forKey: "licenseGrade")
+                            data.setValue(QuizDetail["LicenseType"]!, forKey: "licenseType")
+                            data.setValue(QuizDetail["ExamSet"]!, forKey: "examSet")
+                            print(QuizDetail["ProfessionSet"]!)
+                            data.setValue(QuizDetail["ProfessionSet"]!, forKey: "professionSet")
                             data.setValue(1, forKey: "count")
                             
                             do{
@@ -103,9 +105,12 @@ class DoingQuizViewController: UIViewController , UICollectionViewDelegate , UIC
                             }
                         }
                         
+                        check = false
+                        
                         EverWrongQuizSet.contains(where: { (a) -> Bool in
                             check = false
-                            if a.examSet == Int16(QuizDetail["ExamSet"]!) && a.noOfQuizSet == Int16(QuizDetail["noOfQuizSet"]!) && a.professionSet == Int16(QuizDetail["ProfessionSet"]!) && a.quizID == Int16(QuizSet!.quizList[numberOfQuiz].id) {
+                            print("here")
+                            if a.examSet == Int16(QuizDetail["ExamSet"]!) && a.licenseGrade == Int16(QuizDetail["LicenseGrade"]!) && a.licenseType == Int16(QuizDetail["LicenseType"]!) && a.quizID == Int16(ExamSet!.quizList[numberOfQuiz].id) && a.professionSet == Int16(QuizDetail["ProfessionSet"]!) {
                                 //                                    var tempContext = context
                                 //                                    let temp = a
                                 check = true
@@ -114,14 +119,15 @@ class DoingQuizViewController: UIViewController , UICollectionViewDelegate , UIC
                             }
                             return false
                         })
-                        
+                        print(check)
                         if !check{
+                            print("here")
                             let data = NSEntityDescription.insertNewObject(forEntityName: "EverWrongQuiz", into: context) as! EverWrongQuiz
-                            data.setValue(QuizSet?.quizList[numberOfQuiz].id, forKey: "quizID")
-                            data.setValue(QuizDetail["ProfessionSet"], forKey: "professionSet")
-                            data.setValue(QuizDetail["noOfQuizSet"], forKey: "noOfQuizSet")
+                            data.setValue(ExamSet?.quizList[numberOfQuiz].id, forKey: "quizID")
+                            data.setValue(QuizDetail["LicenseGrade"], forKey: "licenseGrade")
+                            data.setValue(QuizDetail["LicenseType"], forKey: "LicenseType")
                             data.setValue(QuizDetail["ExamSet"], forKey: "examSet")
-                            
+                            data.setValue(QuizDetail["ProfessionSet"], forKey: "professionSet")
                             do{
                                 try context.save()
                             } catch let error as NSError{
@@ -132,7 +138,7 @@ class DoingQuizViewController: UIViewController , UICollectionViewDelegate , UIC
                     }
                     
                 }
-                if numberOfQuiz + 1 == QuizSet?.quizList.count{
+                if numberOfQuiz + 1 == ExamSet?.quizList.count{
                     QuestionNextBtn.setTitle("Finished", for: .normal)
                     QuestionNextBtn.titleLabel?.text = "Finished"
                     
@@ -155,7 +161,7 @@ class DoingQuizViewController: UIViewController , UICollectionViewDelegate , UIC
                 self.performSegue(withIdentifier: "UnwindToQuizSetView", sender: self)
             })
             let alertController = { () -> UIAlertController in
-                let temp = UIAlertController(title: "Finished", message: "You had Correct \(self.scoreDetails["Correct"]!) in \(self.QuizSet!.quizList.count) .\nYour Score is \(self.scoreDetails["totalScore"]!).", preferredStyle: .alert)
+                let temp = UIAlertController(title: "Finished", message: "You had Correct \(self.scoreDetails["Correct"]!) in \(self.ExamSet!.quizList.count) .\nYour Score is \(self.scoreDetails["totalScore"]!).", preferredStyle: .alert)
                 temp.addAction(alertAction)
                 return temp
             }
@@ -163,8 +169,11 @@ class DoingQuizViewController: UIViewController , UICollectionViewDelegate , UIC
             if let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext{
                 
                 let data = NSEntityDescription.insertNewObject(forEntityName: "History", into: context)
-                data.setValue(ProfessionSet[QuizDetail["ProfessionSet"]!].ProfessionName , forKey: "professionType")
-                data.setValue(ProfessionSet[QuizDetail["ProfessionSet"]!].ExamSet[QuizDetail["ExamSet"]!].QuizSet[QuizDetail["noOfQuizSet"]!].name , forKey: "quizSetName")
+                data.setValue(Int16(QuizDetail["ProfessionSet"]!) , forKey: "professionSet")
+                data.setValue(Int16(QuizDetail["LicenseGrade"]!) , forKey: "licenseGrade")
+                data.setValue(Int16(QuizDetail["LicenseType"]!) , forKey: "licenseType")
+                data.setValue(Int16(QuizDetail["ExamSet"]!) , forKey: "examSet")
+                
                 data.setValue(scoreDetails["Correct"], forKey: "numberOfCorrect")
                 data.setValue(scoreDetails["totalScore"], forKey: "score")
                 
@@ -181,7 +190,7 @@ class DoingQuizViewController: UIViewController , UICollectionViewDelegate , UIC
             
         } else {
             resetall()
-            quiz = shuffle((QuizSet?.quizList[numberOfQuiz])!)
+            quiz = shuffle((ExamSet?.quizList[numberOfQuiz])!)
             QuizCollectionView.reloadData()
             if Markedchecker() {
                 markedButton.backgroundColor = UIColor.blue
@@ -217,9 +226,10 @@ class DoingQuizViewController: UIViewController , UICollectionViewDelegate , UIC
             
             print("false")
             let markedQuiz = NSEntityDescription.insertNewObject(forEntityName: "MarkedQuiz", into: context) as! MarkedQuiz
-            markedQuiz.setValue(QuizSet?.quizList[numberOfQuiz].id, forKey: "quizID")
+            markedQuiz.setValue(ExamSet?.quizList[numberOfQuiz].id, forKey: "quizID")
             markedQuiz.setValue(QuizDetail["ProfessionSet"], forKey: "professionSet")
-            markedQuiz.setValue(QuizDetail["noOfQuizSet"], forKey: "noOfQuizSet")
+            markedQuiz.setValue(QuizDetail["LicenseType"], forKey: "licenseType")
+            markedQuiz.setValue(QuizDetail["LicenseGrade"], forKey: "licenseGrade")
             markedQuiz.setValue(QuizDetail["ExamSet"], forKey: "examSet")
             markedquiz.append(markedQuiz)
             //            markedquiz.sort(by: { (a, b) -> Bool in
@@ -257,7 +267,7 @@ class DoingQuizViewController: UIViewController , UICollectionViewDelegate , UIC
     
     func MarkedUncheck(context : NSManagedObjectContext){
         for i in 0..<markedquiz.count{
-            if markedquiz[i].quizID == Int16((QuizSet?.quizList[numberOfQuiz].id)!) && markedquiz[i].examSet == Int16(QuizDetail["ExamSet"]!) && markedquiz[i].noOfQuizSet == Int16(QuizDetail["noOfQuizSet"]!) && markedquiz[i].professionSet == Int16(QuizDetail["ProfessionSet"]!) {
+            if markedquiz[i].quizID == Int16((ExamSet?.quizList[numberOfQuiz].id)!) && markedquiz[i].examSet == Int16(QuizDetail["ExamSet"]!) && markedquiz[i].licenseType == Int16(QuizDetail["LicenseType"]!) && markedquiz[i].licenseGrade == Int16(QuizDetail["LicenseType"]!) && markedquiz[i].professionSet == Int16(QuizDetail["ProfessionSet"]!) {
                 context.delete(markedquiz[i])
                 markedquiz.remove(at: i)
                 return
@@ -267,7 +277,7 @@ class DoingQuizViewController: UIViewController , UICollectionViewDelegate , UIC
     
     func Markedchecker() -> Bool{
         for i in 0..<markedquiz.count{
-            if markedquiz[i].quizID == Int16((QuizSet?.quizList[numberOfQuiz].id)!) && markedquiz[i].examSet == Int16(QuizDetail["ExamSet"]!) && markedquiz[i].noOfQuizSet == Int16(QuizDetail["noOfQuizSet"]!) && markedquiz[i].professionSet == Int16(QuizDetail["ProfessionSet"]!) {
+            if markedquiz[i].quizID == Int16((ExamSet?.quizList[numberOfQuiz].id)!) && markedquiz[i].examSet == Int16(QuizDetail["ExamSet"]!) && markedquiz[i].licenseType == Int16(QuizDetail["LicenseType"]!) && markedquiz[i].licenseGrade == Int16(QuizDetail["LicenseGrade"]!) && markedquiz[i].professionSet == Int16(QuizDetail["ProfessionSet"]!) {
                 return true
             }
         }
@@ -275,8 +285,8 @@ class DoingQuizViewController: UIViewController , UICollectionViewDelegate , UIC
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        scoreDetails["scorePerQuiz"] =  100 /   (QuizSet?.quizList.count)!
-        quiz = shuffle((QuizSet?.quizList[numberOfQuiz])!)
+        scoreDetails["scorePerQuiz"] =  100 / (ExamSet?.quizList.count)!
+        quiz = shuffle((ExamSet?.quizList[numberOfQuiz])!)
         if let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext{
             let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "MarkedQuiz")
             let fetchRequest2 = NSFetchRequest<NSFetchRequestResult>(entityName: "EverWrongQuiz")
@@ -326,7 +336,7 @@ class DoingQuizViewController: UIViewController , UICollectionViewDelegate , UIC
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        if QuizSet?.quizList.count != 0{
+        if ExamSet?.quizList.count != 0{
             return 1
         }
         return 0
@@ -334,7 +344,7 @@ class DoingQuizViewController: UIViewController , UICollectionViewDelegate , UIC
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        return ((QuizSet?.quizList[numberOfQuiz].answer.count)! + (QuizSet?.quizList[numberOfQuiz].choice.count)!)
+        return ((ExamSet?.quizList[numberOfQuiz].answer.count)! + (ExamSet?.quizList[numberOfQuiz].choice.count)!)
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -342,7 +352,7 @@ class DoingQuizViewController: UIViewController , UICollectionViewDelegate , UIC
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "Header", for: indexPath) as! DoingQuizCollectionHeader
         
         
-        header.Headerlbl.text = QuizSet?.quizList[numberOfQuiz].question
+        header.Headerlbl.text = ExamSet?.quizList[numberOfQuiz].question
         header.backgroundColor = UIColor.orange
         header.layer.borderWidth = 1
         header.layer.borderColor = UIColor.orange.cgColor
@@ -385,8 +395,8 @@ class DoingQuizViewController: UIViewController , UICollectionViewDelegate , UIC
         
         lbl.numberOfLines = 0
         lbl.lineBreakMode = .byWordWrapping
-        if QuizSet?.quizList[numberOfQuiz].question != nil{
-            lbl.text = QuizSet?.quizList[numberOfQuiz].question
+        if ExamSet?.quizList[numberOfQuiz].question != nil{
+            lbl.text = ExamSet?.quizList[numberOfQuiz].question
             
         }
         lbl.sizeToFit()

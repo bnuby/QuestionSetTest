@@ -74,9 +74,9 @@ class EverWrongQuizViewController: UIViewController , UICollectionViewDelegate ,
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "ShowEverWrongExamSet" {
-            let destination = segue.destination as! EverWrongQuizListViewController
-            destination.EverWrongQuizList = EverWrongQuiz
+        if segue.identifier == "ShowEverWrongLicense" {
+            let destination = segue.destination as! EverWrongLicenseTableViewController
+            destination.EverWrongQuiz = EverWrongQuiz
             destination.getProfessionSetId = filterExam[(collectionView.indexPathsForSelectedItems?.first?.row)!]
         }
     }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		27FFC0471EEEAD1B00F201D0 /* ExamSetTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FFC0461EEEAD1B00F201D0 /* ExamSetTableViewController.swift */; };
 		ACE5EDD21EB9A97500195A8B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE5EDD11EB9A97500195A8B /* AppDelegate.swift */; };
 		ACE5EDD41EB9A97500195A8B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE5EDD31EB9A97500195A8B /* ViewController.swift */; };
 		ACE5EDD71EB9A97500195A8B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACE5EDD51EB9A97500195A8B /* Main.storyboard */; };
@@ -30,6 +31,9 @@
 		CFDD16741EBC5FB1001B536E /* QuizHistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFDD16731EBC5FB1001B536E /* QuizHistoryViewController.swift */; };
 		CFDD16761EBD84B1001B536E /* DoingQuizViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFDD16751EBD84B1001B536E /* DoingQuizViewController.swift */; };
 		CFEF180F1EBF749F00CA5A0E /* FinanceQuizApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CFEF180D1EBF749F00CA5A0E /* FinanceQuizApp.xcdatamodeld */; };
+		F05A6F661EF24AD80057CAC8 /* EverWrongLicenseTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F05A6F651EF24AD80057CAC8 /* EverWrongLicenseTableViewController.swift */; };
+		F05A6F681EF2537B0057CAC8 /* EverWrongExamSetTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F05A6F671EF2537B0057CAC8 /* EverWrongExamSetTableViewController.swift */; };
+		F095E3FB1EF2BB4800C51737 /* Json in Resources */ = {isa = PBXBuildFile; fileRef = F095E3FA1EF2BB4800C51737 /* Json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +54,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		27FFC0461EEEAD1B00F201D0 /* ExamSetTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExamSetTableViewController.swift; sourceTree = "<group>"; };
 		ACE5EDCE1EB9A97500195A8B /* FinanceQuizApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FinanceQuizApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACE5EDD11EB9A97500195A8B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ACE5EDD31EB9A97500195A8B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -79,6 +84,9 @@
 		CFDD16731EBC5FB1001B536E /* QuizHistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizHistoryViewController.swift; sourceTree = "<group>"; };
 		CFDD16751EBD84B1001B536E /* DoingQuizViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DoingQuizViewController.swift; sourceTree = "<group>"; };
 		CFEF180E1EBF749F00CA5A0E /* FinanceQuizApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FinanceQuizApp.xcdatamodel; sourceTree = "<group>"; };
+		F05A6F651EF24AD80057CAC8 /* EverWrongLicenseTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EverWrongLicenseTableViewController.swift; sourceTree = "<group>"; };
+		F05A6F671EF2537B0057CAC8 /* EverWrongExamSetTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EverWrongExamSetTableViewController.swift; sourceTree = "<group>"; };
+		F095E3FA1EF2BB4800C51737 /* Json */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,28 +137,19 @@
 		ACE5EDD01EB9A97500195A8B /* FinanceQuizApp */ = {
 			isa = PBXGroup;
 			children = (
+				F010402F1EF3AA3B00853E27 /* Personalinfo */,
+				F010402D1EF3A9C600853E27 /* MainQuiz */,
+				F010402C1EF3A98C00853E27 /* OwnQuiz */,
+				F095E3FA1EF2BB4800C51737 /* Json */,
+				F010402E1EF3AA1F00853E27 /* Other */,
 				ACE5EDD11EB9A97500195A8B /* AppDelegate.swift */,
-				ACE5EDD31EB9A97500195A8B /* ViewController.swift */,
-				CFC262581EBA1E53002B241A /* QuestionSet.swift */,
 				ACE5EDD51EB9A97500195A8B /* Main.storyboard */,
-				CF2FD82F1EBB7A0700B1A594 /* loginViewController.swift */,
 				ACE5EDD81EB9A97500195A8B /* Assets.xcassets */,
 				ACE5EDDA1EB9A97500195A8B /* LaunchScreen.storyboard */,
 				CFD17A041EBA1A2D00235CD1 /* FinanceQuizApp.json */,
 				ACE5EDDD1EB9A97500195A8B /* Info.plist */,
-				CF2FD8291EBB63EB00B1A594 /* AccountViewController.swift */,
-				CF16D0791EBF9F2E00DF641C /* ReadyDoingQuizViewController.swift */,
-				CFDD16751EBD84B1001B536E /* DoingQuizViewController.swift */,
-				CF2FD82B1EBB64E000B1A594 /* QuizCollectionViewController.swift */,
-				CF2FD82D1EBB759200B1A594 /* OwnQuizProcessViewController.swift */,
-				CFDD16731EBC5FB1001B536E /* QuizHistoryViewController.swift */,
 				CFEF180D1EBF749F00CA5A0E /* FinanceQuizApp.xcdatamodeld */,
-				CF4C3FC11EC389800071DF06 /* FuncBase.swift */,
-				CF4C3FC31EC4BE160071DF06 /* DoingOwnQuizViewController.swift */,
-				CFDB226E1EC77E200006B215 /* EverWrongQuizViewController.swift */,
 				CFDB22701EC781590006B215 /* EverWrongExamSetViewController.swift */,
-				CFD0F4661EC82A9E002C41E4 /* EverWrongQuizListTableViewController.swift */,
-				CF3065F21EC819F90046D055 /* DoingEverWrongQuizViewController.swift */,
 			);
 			path = FinanceQuizApp;
 			sourceTree = "<group>";
@@ -171,6 +170,67 @@
 				ACE5EDF31EB9A97500195A8B /* Info.plist */,
 			);
 			path = FinanceQuizAppUITests;
+			sourceTree = "<group>";
+		};
+		F010402C1EF3A98C00853E27 /* OwnQuiz */ = {
+			isa = PBXGroup;
+			children = (
+				CF2FD82B1EBB64E000B1A594 /* QuizCollectionViewController.swift */,
+				F01040301EF3AAA300853E27 /* CustomQuiz */,
+				F05A6F691EF253B40057CAC8 /* EverWrongExamClass */,
+			);
+			name = OwnQuiz;
+			sourceTree = "<group>";
+		};
+		F010402D1EF3A9C600853E27 /* MainQuiz */ = {
+			isa = PBXGroup;
+			children = (
+				ACE5EDD31EB9A97500195A8B /* ViewController.swift */,
+				27FFC0461EEEAD1B00F201D0 /* ExamSetTableViewController.swift */,
+				CF16D0791EBF9F2E00DF641C /* ReadyDoingQuizViewController.swift */,
+				CFDD16751EBD84B1001B536E /* DoingQuizViewController.swift */,
+			);
+			name = MainQuiz;
+			sourceTree = "<group>";
+		};
+		F010402E1EF3AA1F00853E27 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				CFC262581EBA1E53002B241A /* QuestionSet.swift */,
+				CF4C3FC11EC389800071DF06 /* FuncBase.swift */,
+			);
+			name = Other;
+			sourceTree = "<group>";
+		};
+		F010402F1EF3AA3B00853E27 /* Personalinfo */ = {
+			isa = PBXGroup;
+			children = (
+				CF2FD82F1EBB7A0700B1A594 /* loginViewController.swift */,
+				CF2FD8291EBB63EB00B1A594 /* AccountViewController.swift */,
+				CFDD16731EBC5FB1001B536E /* QuizHistoryViewController.swift */,
+			);
+			name = Personalinfo;
+			sourceTree = "<group>";
+		};
+		F01040301EF3AAA300853E27 /* CustomQuiz */ = {
+			isa = PBXGroup;
+			children = (
+				CF2FD82D1EBB759200B1A594 /* OwnQuizProcessViewController.swift */,
+				CF4C3FC31EC4BE160071DF06 /* DoingOwnQuizViewController.swift */,
+			);
+			name = CustomQuiz;
+			sourceTree = "<group>";
+		};
+		F05A6F691EF253B40057CAC8 /* EverWrongExamClass */ = {
+			isa = PBXGroup;
+			children = (
+				CFDB226E1EC77E200006B215 /* EverWrongQuizViewController.swift */,
+				F05A6F651EF24AD80057CAC8 /* EverWrongLicenseTableViewController.swift */,
+				F05A6F671EF2537B0057CAC8 /* EverWrongExamSetTableViewController.swift */,
+				CFD0F4661EC82A9E002C41E4 /* EverWrongQuizListTableViewController.swift */,
+				CF3065F21EC819F90046D055 /* DoingEverWrongQuizViewController.swift */,
+			);
+			name = EverWrongExamClass;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -242,6 +302,7 @@
 					ACE5EDCD1EB9A97500195A8B = {
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = LSPJSUNBUC;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Automatic;
 					};
 					ACE5EDE11EB9A97500195A8B = {
@@ -284,6 +345,7 @@
 				ACE5EDDC1EB9A97500195A8B /* LaunchScreen.storyboard in Resources */,
 				ACE5EDD91EB9A97500195A8B /* Assets.xcassets in Resources */,
 				CFD17A051EBA1A2D00235CD1 /* FinanceQuizApp.json in Resources */,
+				F095E3FB1EF2BB4800C51737 /* Json in Resources */,
 				ACE5EDD71EB9A97500195A8B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -320,11 +382,14 @@
 				CFD0F4671EC82A9E002C41E4 /* EverWrongQuizListTableViewController.swift in Sources */,
 				CFDD16761EBD84B1001B536E /* DoingQuizViewController.swift in Sources */,
 				CF3065F31EC819F90046D055 /* DoingEverWrongQuizViewController.swift in Sources */,
+				F05A6F661EF24AD80057CAC8 /* EverWrongLicenseTableViewController.swift in Sources */,
 				CFDB22711EC781590006B215 /* EverWrongExamSetViewController.swift in Sources */,
 				CF2FD82A1EBB63EB00B1A594 /* AccountViewController.swift in Sources */,
 				CF4C3FC21EC389800071DF06 /* FuncBase.swift in Sources */,
 				CFC262591EBA1E53002B241A /* QuestionSet.swift in Sources */,
 				CF16D07A1EBF9F2E00DF641C /* ReadyDoingQuizViewController.swift in Sources */,
+				F05A6F681EF2537B0057CAC8 /* EverWrongExamSetTableViewController.swift in Sources */,
+				27FFC0471EEEAD1B00F201D0 /* ExamSetTableViewController.swift in Sources */,
 				CFEF180F1EBF749F00CA5A0E /* FinanceQuizApp.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -479,12 +544,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = LSPJSUNBUC;
 				INFOPLIST_FILE = FinanceQuizApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = FinanceQuizApp.FinanceQuizAppGibsob;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -493,6 +560,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = LSPJSUNBUC;
 				INFOPLIST_FILE = FinanceQuizApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;

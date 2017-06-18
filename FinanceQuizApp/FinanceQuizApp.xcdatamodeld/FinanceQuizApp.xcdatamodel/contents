@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16E195" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16F73" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="CustomizedQuiz" representedClassName="CustomizedQuiz" syncable="YES" codeGenerationType="class">
         <attribute name="groupOfQuiz" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="quizNo" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
@@ -11,35 +11,40 @@
     </entity>
     <entity name="EverWrongQuiz" representedClassName="EverWrongQuiz" syncable="YES" codeGenerationType="class">
         <attribute name="examSet" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="noOfQuizSet" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="licenseGrade" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="licenseType" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="professionSet" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="quizID" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <entity name="History" representedClassName="History" syncable="YES" codeGenerationType="class">
+        <attribute name="examSet" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="licenseGrade" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="licenseType" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="numberOfCorrect" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="professionType" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="quizSetName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="professionSet" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="score" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <entity name="MarkedQuiz" representedClassName="MarkedQuiz" syncable="YES" codeGenerationType="class">
         <attribute name="examSet" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="noOfQuizSet" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="licenseGrade" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="licenseType" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="professionSet" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="quizID" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <entity name="TheEazierWrongQuiz" representedClassName="TheEazierWrongQuiz" syncable="YES" codeGenerationType="class">
         <attribute name="count" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="examSet" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
-        <attribute name="noOfQuizSet" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="licenseGrade" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="licenseType" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="professionSet" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="quizID" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <elements>
         <element name="CustomizedQuiz" positionX="-18" positionY="54" width="128" height="75"/>
         <element name="CustomizedQuizSet" positionX="-36" positionY="45" width="128" height="90"/>
-        <element name="History" positionX="-36" positionY="36" width="128" height="105"/>
-        <element name="MarkedQuiz" positionX="-63" positionY="-18" width="128" height="105"/>
-        <element name="TheEazierWrongQuiz" positionX="-54" positionY="18" width="128" height="120"/>
-        <element name="EverWrongQuiz" positionX="-36" positionY="36" width="128" height="105"/>
+        <element name="EverWrongQuiz" positionX="-36" positionY="36" width="128" height="30"/>
+        <element name="History" positionX="-36" positionY="36" width="128" height="30"/>
+        <element name="MarkedQuiz" positionX="-36" positionY="45" width="128" height="30"/>
+        <element name="TheEazierWrongQuiz" positionX="-27" positionY="81" width="128" height="30"/>
     </elements>
 </model>

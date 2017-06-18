@@ -10,8 +10,8 @@ import UIKit
 
 class ReadyDoingQuizViewController: UIViewController {
 
-    var QuizSet : quizSet!
-    var QuizDetail : [String:Int] = ["ProfessionSet":0,"ExamSet":0,"noOfQuizSet":0]
+    var QuizSet : ExamSet!
+    var QuizDetail : [String:Int] = ["ProfessionSet":0,"LicenseGrade":0,"LicenseType":0,"ExamSet":0]
     
     @IBAction func StartBtn(_ sender: Any) {
         for i in 0..<QuizSet.quizList.count{
@@ -44,11 +44,12 @@ class ReadyDoingQuizViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "StartQuiz" {
             let destination = segue.destination as! DoingQuizViewController
-            destination.QuizSet = QuizSet
+            destination.ExamSet = QuizSet
 
             destination.QuizDetail["ProfessionSet"] = self.QuizDetail["ProfessionSet"]
-            destination.QuizDetail["ExamSet"] =  self.QuizDetail["ExamSet"]
-            destination.QuizDetail["noOfQuizSet"] = self.QuizDetail["noOfQuizSet"]
+            destination.QuizDetail["LicenseGrade"] =  self.QuizDetail["LicenseGrade"]
+            destination.QuizDetail["LicenseType"] =  self.QuizDetail["LicenseType"]
+            destination.QuizDetail["ExamSet"] = self.QuizDetail["ExamSet"]
         }
     }
     

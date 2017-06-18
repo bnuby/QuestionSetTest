@@ -46,20 +46,42 @@ func dataProcess(object : [String: Any] ){
         let data = profession_type[i]["data"] as! [[String:Any]]
         
         for j in 0..<data.count{
-            temp.addExamSet(examSet(data[j]["ExamGrade"] as! String))
+            temp.addLicenseGrade(LicenseGrade(data[j]["Grade"] as! String))
             
             // Get Profession_Type.data.ExamSet Such As ExamName
-            let ExamSet = data[j]["ExamSet"] as! [[String:Any]]
-            for k in 0..<ExamSet.count{
-                temp.ExamSet[j].addQuizSet(quizSet(id: k, name: ExamSet[k]["ExamName"]! as! String))
-                if let QuizSet = ExamSet[k]["QuizSet"] as? [[String:Any]]{
-                    for l in 0..<QuizSet.count{
-                        let answer = QuizSet[l]["answer"] as! [String]
-                        let choice = QuizSet[l]["choice"] as! [String]
-                        temp.ExamSet[j].QuizSet[k].addQuiz(quiz(id: l, question: QuizSet[l]["question"] as! String, choice: choice, answer: answer))
-                        
+            let temp_LicenseSet = data[j]["LicenseSet"] as! [[String:Any]]
+            for k in 0 ..< temp_LicenseSet.count{
+                temp.LicenseGrade[j].addLicenseType(LicenseType(temp_LicenseSet[k]["LicenseType"] as! String))
+                let temp_ExamSet = temp_LicenseSet[k]["ExamSet"] as! [[String:Any]]
+                for l in 0 ..< temp_ExamSet.count{
+                    let temp_ExamSetContent = temp_ExamSet[l] as! [String:String]
+                    temp.LicenseGrade[j].LicenseType[k].addExamSet(ExamSet(id: l, name: temp_ExamSetContent["name"]!, LicenseDir: temp_ExamSetContent["LicenseDir"]!, Filename: temp_ExamSetContent["Filename"]!))
+                    //                    (quizSet(id: k, name: ExamSet[k]["LicenseType"]! as! String))
+                    if temp_ExamSetContent["Filename"] != "" {
+                        if let file = Bundle.main.url(forResource: temp_ExamSetContent["Filename"]!, withExtension: "json", subdirectory: temp_ExamSetContent["LicenseDir"]!){
+                            
+                            let data2 = try! Data(contentsOf: file)
+                            let json = try! JSONSerialization.jsonObject(with: data2, options: []) as! [String:Any]
+                            
+                            temp.LicenseGrade[j].LicenseType[k].ExamSet[l].name = json["quizSetName"]! as! String
+                            var QuizList = json["quiz"] as! [[String:Any]]
+                            print(QuizList)
+                            for m in 0 ..< QuizList.count {
+                                temp.LicenseGrade[j].LicenseType[k].ExamSet[l].addQuiz(quiz(id: m, question: QuizList[m]["question"]! as! String, choice: QuizList[m]["choice"]! as! [String], answer: QuizList[m]["answer"]! as! [String]))
+                            }                            
+                        }
                     }
+                    
+//                    if let QuizSet = ExamSet[k]["QuizSet"] as? [[String:Any]]{
+//                        for l in 0..<QuizSet.count{
+//                            let answer = QuizSet[l]["answer"] as! [String]
+//                            let choice = QuizSet[l]["choice"] as! [String]
+//                            temp.ExamSet[j].QuizSet[k].addQuiz(quiz(id: l, question: QuizSet[l]["question"] as! String, choice: choice, answer: answer))
+//                            
+//                        }
+//                    }
                 }
+                
                 
             }
         }
@@ -159,4 +181,19 @@ class RadialGradientView: UIView {
         gradientLayer.frame = bounds
     }
     
+}
+
+extension Int16{
+    func toInt() -> Int{
+        return Int(self)
+    }
+}
+
+extension UITableViewCell{
+    func setGradiantLayer(_ color : [Any]){
+        let gL = CAGradientLayer()
+        gL.frame = self.bounds
+        gL.colors = color
+        self.layer.addSublayer(gL)
+    }
 }

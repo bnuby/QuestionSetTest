@@ -47,24 +47,35 @@ class QuizHistoryViewController: UIViewController ,UITableViewDelegate ,UITableV
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        tableView.separatorStyle = .none
+        tableView.separatorStyle = .singleLine
         if History.count > 0 {
             return History.count
         }
         return 0
     }
     
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! HistoryCell
-        cell.ProfessionType.text = History[indexPath.row].professionType
-        cell.QuizSetName.text =  History[indexPath.row].quizSetName
+        let history = History[indexPath.row]
+        cell.ProfessionType.text = ProfessionSet[history.professionSet.toInt()].ProfessionName
+        cell.QuizSetName.text =  ProfessionSet[history.professionSet.toInt()].LicenseGrade[history.licenseGrade.toInt()].LicenseType[history.licenseType.toInt()].ExamSet[history.examSet.toInt()].name
         cell.Score.text = "\(History[indexPath.row].score)%"
         cell.numberOfCorrect.text = "\(History[indexPath.row].numberOfCorrect)"
+        
+//        var subview = UIView(frame: CGRect(x: cell.frame.origin.x + 5, y: cell.frame.origin.y + 10, width: cell.frame.width - 10, height: cell.frame.height - 20))
+//        subview.layer.backgroundColor = UIColor.gray.cgColor
+//        subview.layer.cornerRadius = subview.frame.height/2-20
+//        cell.addSubview(subview)
+//        cell.sendSubview(toBack: subview)
+//        print("here")
         
         return cell
     }
     
-
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
     /*
     // MARK: - Navigation
 

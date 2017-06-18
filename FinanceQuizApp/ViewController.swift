@@ -83,7 +83,7 @@ class ViewController: UIViewController , UICollectionViewDelegate , UICollection
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         if collectionView == InnerCollectionView{
             
-            return ProfessionSet[InnerCellCount].ExamSet.count
+            return ProfessionSet[InnerCellCount].LicenseGrade.count
         }
         return 1
     }
@@ -93,7 +93,7 @@ class ViewController: UIViewController , UICollectionViewDelegate , UICollection
         if collectionView == InnerCollectionView{
             
             let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "InnerCellHeader", for: indexPath) as! InnerCollectionReuseable
-            header.textlbl.text = ProfessionSet[InnerCellCount].ExamSet[indexPath.section].QuizGrade
+            header.textlbl.text = ProfessionSet[InnerCellCount].LicenseGrade[indexPath.section].Grade
             return header
         }
         return UICollectionReusableView()
@@ -103,11 +103,9 @@ class ViewController: UIViewController , UICollectionViewDelegate , UICollection
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == InnerCollectionView{
-           return ProfessionSet[InnerCellCount].ExamSet[section].QuizSet.count
-            
+           return ProfessionSet[InnerCellCount].LicenseGrade[section].LicenseType.count
         }
         return ProfessionSet.count
-        
     }
     
     
@@ -115,7 +113,7 @@ class ViewController: UIViewController , UICollectionViewDelegate , UICollection
         if collectionView == InnerCollectionView{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "InnerCell", for: indexPath) as! InnerCollectionCell
             
-            cell.textlbl.text = ProfessionSet[InnerCellCount].ExamSet[indexPath.section].QuizSet[indexPath.row].name
+            cell.textlbl.text = ProfessionSet[InnerCellCount].LicenseGrade[indexPath.section].LicenseType[indexPath.row].LicenseName
             cell.textlbl.adjustsFontSizeToFitWidth = true
             return cell
         }
@@ -155,13 +153,16 @@ class ViewController: UIViewController , UICollectionViewDelegate , UICollection
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "ReadytoStartPage"{
+        if segue.identifier == "ChooseExamSet"{
             let indexPath = InnerCollectionView.indexPathsForSelectedItems?.last
-                let destination = segue.destination as! ReadyDoingQuizViewController
-            destination.QuizSet = ProfessionSet[InnerCellCount].ExamSet[indexPath!.section].QuizSet[indexPath!.row].clone()
+                let destination = segue.destination as! ExamSetTableViewController
+            destination.licenseType = ProfessionSet[InnerCellCount].LicenseGrade[indexPath!.section].LicenseType[indexPath!.row]
             destination.QuizDetail["ProfessionSet"] = InnerCellCount
-            destination.QuizDetail["ExamSet"] =  indexPath!.section
-            destination.QuizDetail["noOfQuizSet"] = indexPath!.row
+            destination.QuizDetail["LicenseGrade"] =  indexPath!.section
+            destination.QuizDetail["LicenseType"] = indexPath!.row
+            
+            print("here")
+
         }
         
     }

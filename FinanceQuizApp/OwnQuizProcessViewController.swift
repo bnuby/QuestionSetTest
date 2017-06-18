@@ -15,7 +15,7 @@ class OwnQuizProcessViewController: UIViewController , UITableViewDelegate, UITa
     
     var sourceDict = ["myFeaturedQuiz":1,"myMarkedQuiz":2,"TheEazierWrongQuiz":3]
     var MarkedQuiz : [MarkedQuiz] = []
-    var quizList : [TheEazierWrongQuiz] = []
+    var TEWQ : [TheEazierWrongQuiz] = []
     var TheEazierWrongQuiz : [TheEazierWrongQuiz] = []
     @IBOutlet var tableView: UITableView!
     
@@ -43,9 +43,9 @@ class OwnQuizProcessViewController: UIViewController , UITableViewDelegate, UITa
             
             
         case 3:
-            let fetchMarkedQuiz = NSFetchRequest<NSFetchRequestResult>(entityName: "TheEazierWrongQuiz")
+            let fetchTEWQ = NSFetchRequest<NSFetchRequestResult>(entityName: "TheEazierWrongQuiz")
             do{
-                TheEazierWrongQuiz = try context?.fetch(fetchMarkedQuiz) as! [TheEazierWrongQuiz]
+                TheEazierWrongQuiz = try context?.fetch(fetchTEWQ) as! [TheEazierWrongQuiz]
             } catch let error as NSError{
                 print(error)
             }
@@ -55,7 +55,7 @@ class OwnQuizProcessViewController: UIViewController , UITableViewDelegate, UITa
             }
             for i in TheEazierWrongQuiz{
                 if i.count > 1{
-                    quizList.append(i)
+                    TEWQ.append(i)
                     print(i)
                 }
             }
@@ -81,7 +81,7 @@ class OwnQuizProcessViewController: UIViewController , UITableViewDelegate, UITa
         case 3:
             var temp = 0
             
-            return quizList.count
+            return TEWQ.count
         default:
             return 0
         }
@@ -132,16 +132,12 @@ class OwnQuizProcessViewController: UIViewController , UITableViewDelegate, UITa
             
             cell.professionType.text = "\(ProfessionSet[Int(MarkedQuiz[indexPath.row].professionSet)].ProfessionName!)"
             
-            cell.ExamGrade.text = "\(ProfessionSet[Int(MarkedQuiz[indexPath.row].professionSet)].ExamSet[Int(MarkedQuiz[indexPath.row].examSet)].QuizGrade!)"
+            cell.ExamGrade.text = "\(ProfessionSet[MarkedQuiz[indexPath.row].professionSet.toInt()].LicenseGrade[MarkedQuiz[indexPath.row].licenseGrade.toInt()].Grade!)"
             
-            cell.ExamSet.text = "\(ProfessionSet[Int(MarkedQuiz[indexPath.row].professionSet)].ExamSet[Int(MarkedQuiz[indexPath.row].examSet)].QuizSet[Int(MarkedQuiz[indexPath.row].noOfQuizSet)].name!)"
-            let ExamSet = ProfessionSet[Int(MarkedQuiz[indexPath.row].professionSet)].ExamSet[Int(MarkedQuiz[indexPath.row].examSet)].QuizSet[Int(MarkedQuiz[indexPath.row].noOfQuizSet)]
+            cell.ExamSet.text = "\(ProfessionSet[MarkedQuiz[indexPath.row].professionSet.toInt()].LicenseGrade[MarkedQuiz[indexPath.row].licenseGrade.toInt()].LicenseType[MarkedQuiz[indexPath.row].licenseGrade.toInt()].ExamSet[MarkedQuiz[indexPath.row].examSet.toInt()].name!)"
+            let ExamSet = ProfessionSet[MarkedQuiz[indexPath.row].professionSet.toInt()].LicenseGrade[MarkedQuiz[indexPath.row].licenseGrade.toInt()].LicenseType[MarkedQuiz[indexPath.row].licenseGrade.toInt()].ExamSet[MarkedQuiz[indexPath.row].examSet.toInt()]
             cell.QuizQuestion.text = "\(ExamSet.quizList[Int(MarkedQuiz[indexPath.row].quizID)].question!)"
             
-            print(ExamSet.quizList[Int(MarkedQuiz[indexPath.row].quizID)].question!)
-            
-            
-            //        "\(ProfessionSet[Int(MarkedQuiz[indexPath.row].professionSet)].ExamSet[Int(MarkedQuiz[indexPath.row].examSet)].QuizSet[Int(MarkedQuiz[indexPath.row].noOfQuizSet)].quizList[Int(MarkedQuiz[indexPath.row].quizID)].question)"
             
             return cell
             
@@ -149,15 +145,14 @@ class OwnQuizProcessViewController: UIViewController , UITableViewDelegate, UITa
         case 3:
             let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! TableViewCell
             
-            cell.professionType.text = "\(ProfessionSet[Int(quizList[indexPath.row].professionSet)].ProfessionName!)"
+            cell.professionType.text = "\(ProfessionSet[Int(TEWQ[indexPath.row].professionSet)].ProfessionName!)"
             
-            cell.ExamGrade.text = "\(ProfessionSet[Int(quizList[indexPath.row].professionSet)].ExamSet[Int(quizList[indexPath.row].examSet)].QuizGrade!)"
+            cell.ExamGrade.text = "\(ProfessionSet[TEWQ[indexPath.row].professionSet.toInt()].LicenseGrade[TEWQ[indexPath.row].licenseGrade.toInt()].Grade)"
             
-            cell.ExamSet.text = "\(ProfessionSet[Int(quizList[indexPath.row].professionSet)].ExamSet[Int(quizList[indexPath.row].examSet)].QuizSet[Int(quizList[indexPath.row].noOfQuizSet)].name!)"
-            let ExamSet = ProfessionSet[Int(quizList[indexPath.row].professionSet)].ExamSet[Int(quizList[indexPath.row].examSet)].QuizSet[Int(quizList[indexPath.row].noOfQuizSet)]
-            cell.QuizQuestion.text = "\(ExamSet.quizList[Int(quizList[indexPath.row].quizID)].question!)"
+            cell.ExamSet.text = "\(ProfessionSet[TEWQ[indexPath.row].professionSet.toInt()].LicenseGrade[TEWQ[indexPath.row].licenseGrade.toInt()].LicenseType[TEWQ[indexPath.row].licenseGrade.toInt()].ExamSet[TEWQ[indexPath.row].examSet.toInt()].name)"
+            let ExamSet = ProfessionSet[TEWQ[indexPath.row].professionSet.toInt()].LicenseGrade[TEWQ[indexPath.row].licenseGrade.toInt()].LicenseType[TEWQ[indexPath.row].licenseGrade.toInt()].ExamSet[TEWQ[indexPath.row].examSet.toInt()]
+            cell.QuizQuestion.text = "\(ExamSet.quizList[Int(TEWQ[indexPath.row].quizID)].question!)"
             
-            //        "\(ProfessionSet[Int(MarkedQuiz[indexPath.row].professionSet)].ExamSet[Int(MarkedQuiz[indexPath.row].examSet)].QuizSet[Int(MarkedQuiz[indexPath.row].noOfQuizSet)].quizList[Int(MarkedQuiz[indexPath.row].quizID)].question)"
             
             return cell
             
@@ -165,9 +160,12 @@ class OwnQuizProcessViewController: UIViewController , UITableViewDelegate, UITa
              let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! TableViewCell
              return cell
         }
-        
-        
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "DoingQuizView"{
@@ -175,30 +173,19 @@ class OwnQuizProcessViewController: UIViewController , UITableViewDelegate, UITa
             case 1:
                 let indexPath = tableView.indexPathForSelectedRow!
                 let destionation = segue.destination as! DoingOwnQuizViewController
-                let ExamSet = ProfessionSet[Int(MarkedQuiz[indexPath.row].professionSet)].ExamSet[Int(MarkedQuiz[indexPath.row].examSet)].QuizSet[Int(MarkedQuiz[indexPath.row].noOfQuizSet)]
+                let ExamSet = ProfessionSet[MarkedQuiz[indexPath.row].professionSet.toInt()].LicenseGrade[MarkedQuiz[indexPath.row].licenseGrade.toInt()].LicenseType[MarkedQuiz[indexPath.row].licenseGrade.toInt()].ExamSet[MarkedQuiz[indexPath.row].examSet.toInt()]
                 destionation.quiz = ExamSet.quizList[Int(MarkedQuiz[indexPath.row].quizID)]
             case 3:
                 let indexPath = tableView.indexPathForSelectedRow!
                 let destionation = segue.destination as! DoingOwnQuizViewController
-                let ExamSet = ProfessionSet[Int(quizList[indexPath.row].professionSet)].ExamSet[Int(quizList[indexPath.row].examSet)].QuizSet[Int(quizList[indexPath.row].noOfQuizSet)]
-                destionation.quiz = ExamSet.quizList[Int(quizList[indexPath.row].quizID)]
+                let ExamSet = ProfessionSet[TEWQ[indexPath.row].professionSet.toInt()].LicenseGrade[TEWQ[indexPath.row].licenseGrade.toInt()].LicenseType[TEWQ[indexPath.row].licenseGrade.toInt()].ExamSet[TEWQ[indexPath.row].examSet.toInt()]
+                destionation.quiz = ExamSet.quizList[Int(TEWQ[indexPath.row].quizID)]
             default:
                 break
             }
             
         }
     }
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
 }
 
 
