@@ -26,6 +26,7 @@ class OwnQuizProcessViewController: UIViewController , UITableViewDelegate, UITa
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        navigationController?.isNavigationBarHidden = false     
         self.tabBarController?.tabBar.isHidden = true
         let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
         

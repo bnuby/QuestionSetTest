@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreData
 
 class AccountViewController: UIViewController {
 
@@ -16,6 +17,35 @@ class AccountViewController: UIViewController {
     var get_id = ""
     var get_job = ""
 
+    @IBAction func clearHistory(_ sender: Any) {
+        let accept = UIAlertAction(title: "Yes", style: .default, handler: {(alert: UIAlertAction!) in
+            let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+            let fetch = NSFetchRequest<NSFetchRequestResult>(entityName: "History")
+            let batchDelete = NSBatchDeleteRequest(fetchRequest: fetch)
+            do {
+                try context.execute(batchDelete)
+            } catch let error as NSError{
+                print("Error : \(error)")
+            }
+        })
+        let cancel = UIAlertAction(title: "Cancel", style: .default, handler: {(alert: UIAlertAction!) in
+            let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+            let fetch = NSFetchRequest<NSFetchRequestResult>(entityName: "History")
+            let batchDelete = NSBatchDeleteRequest(fetchRequest: fetch)
+            do {
+                try context.execute(batchDelete)
+            } catch let error as NSError{
+                print("Error : \(error)")
+            }
+        })
+        let actionController = UIAlertController(title: "Clear Record", message: "Are you sure u wan't fully remove Exam Record?", preferredStyle: .alert)
+        actionController.addAction(accept)
+        actionController.addAction(cancel)
+        present(actionController, animated: true, completion: nil)
+        
+    }
+    
+    
     @IBAction func logOut(){
         self.performSegue(withIdentifier: "unwindToLoginPage", sender: self)
         loginViewController().User.removeObject(forKey: "user")
@@ -30,9 +60,6 @@ class AccountViewController: UIViewController {
         
         Namelbl.text = get_id
         Jobslbl.text = get_job
-//        for i in ProfessionSet[0].LicenseGrade[0].LicenseType[0].ExamSet[0].quizList{
-//            print(i.id)
-//        }
         // Do any additional setup after loading the view.
     }
 

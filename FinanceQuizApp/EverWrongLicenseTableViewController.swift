@@ -13,6 +13,7 @@ class EverWrongLicenseTableViewController: UITableViewController {
     var getProfessionSetId : Int!
     var LicenseType : [[Int]] = [[]]
     
+    @IBOutlet var header: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.backgroundView = UIImageView(image: #imageLiteral(resourceName: "BackGround"))
@@ -58,9 +59,9 @@ class EverWrongLicenseTableViewController: UITableViewController {
         return LicenseType[section].count
     }
     
+    
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return ProfessionSet[getProfessionSetId].LicenseGrade[section].Grade
-
     }
 
     

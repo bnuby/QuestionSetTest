@@ -41,6 +41,7 @@ class QuizCollectionViewController: UIViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        navigationController?.isNavigationBarHidden = true
         self.tabBarController?.tabBar.isHidden = false
     }
     

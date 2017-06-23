@@ -22,6 +22,7 @@ class EverWrongQuizViewController: UIViewController , UICollectionViewDelegate ,
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        navigationController?.isNavigationBarHidden = false
         self.tabBarController?.tabBar.isHidden = true
         if let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext{
             let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "EverWrongQuiz")
@@ -53,9 +54,9 @@ class EverWrongQuizViewController: UIViewController , UICollectionViewDelegate ,
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let Header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "Header", for: indexPath) as! EverWrongQuizCollectionHeader
-        
+            Header.backgroundColor = UIColor.clear
         if filterExam.count > 0 {
-            Header.textlbl.text = "以下為答錯的題目"
+            Header.textlbl.text = "以下為答錯的紀錄"
         } else {
             Header.textlbl.text = "無錯誤的題目"
         }
