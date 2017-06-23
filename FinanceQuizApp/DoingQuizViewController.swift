@@ -19,13 +19,16 @@ class DoingQuizViewController: UIViewController , UICollectionViewDelegate , UIC
     var EverWrongQuizSet : [EverWrongQuiz]!
     var quiz : [String]!
     var numberOfQuiz = 0
-    @IBOutlet var markedButton: UIButton!
+    @IBOutlet var markedSwitch: UISwitch!
     @IBOutlet var QuestionNextBtn: UIButton!
     @IBOutlet var QuizCollectionView: UICollectionView!
+    
+    
+    
     @IBAction func QuestionBtn(_ sender: Any) {
         QuestionNextBtn.isEnabled = false
         if QuestionNextBtn.titleLabel?.text == "Check" {
-            if var SelectedIndex = QuizCollectionView.indexPathsForSelectedItems?.first {
+            if let SelectedIndex = QuizCollectionView.indexPathsForSelectedItems?.first {
                 let cell = (QuizCollectionView.cellForItem(at: SelectedIndex) as! DoingQuizColllectionCell)
                 
                 if cell.Quizlbl.text == ExamSet?.quizList[numberOfQuiz].answer[0]{
@@ -34,13 +37,11 @@ class DoingQuizViewController: UIViewController , UICollectionViewDelegate , UIC
                     
                     scoreDetails["Correct"]! += 1
                     scoreDetails["totalScore"]! += scoreDetails["scorePerQuiz"]!
-                    print(scoreDetails["Correct"]!)
                     if let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext {
                         
                         
                         EazierWrongSet.filter({ (a) -> Bool in
                             if a.examSet == Int16(QuizDetail["ExamSet"]!) && a.licenseGrade == Int16(QuizDetail["LicenseGrade"]!) && a.licenseType == Int16(QuizDetail["LicenseType"]!) && a.quizID == Int16(ExamSet!.quizList[numberOfQuiz].id) && a.professionSet == Int16(QuizDetail["ProfessionSet"]!){
-                                //                                    print("hello",a.count,EazierWrongSet.index(of: a)!)
                                 if a.count <= 1 {
                                     EazierWrongSet.remove(at: EazierWrongSet.index(of: a)!)
                                     context.delete(a)
@@ -94,7 +95,6 @@ class DoingQuizViewController: UIViewController , UICollectionViewDelegate , UIC
                             data.setValue(QuizDetail["LicenseGrade"]!, forKey: "licenseGrade")
                             data.setValue(QuizDetail["LicenseType"]!, forKey: "licenseType")
                             data.setValue(QuizDetail["ExamSet"]!, forKey: "examSet")
-                            print(QuizDetail["ProfessionSet"]!)
                             data.setValue(QuizDetail["ProfessionSet"]!, forKey: "professionSet")
                             data.setValue(1, forKey: "count")
                             
@@ -109,7 +109,6 @@ class DoingQuizViewController: UIViewController , UICollectionViewDelegate , UIC
                         
                         EverWrongQuizSet.contains(where: { (a) -> Bool in
                             check = false
-                            print("here")
                             if a.examSet == Int16(QuizDetail["ExamSet"]!) && a.licenseGrade == Int16(QuizDetail["LicenseGrade"]!) && a.licenseType == Int16(QuizDetail["LicenseType"]!) && a.quizID == Int16(ExamSet!.quizList[numberOfQuiz].id) && a.professionSet == Int16(QuizDetail["ProfessionSet"]!) {
                                 //                                    var tempContext = context
                                 //                                    let temp = a
@@ -119,9 +118,7 @@ class DoingQuizViewController: UIViewController , UICollectionViewDelegate , UIC
                             }
                             return false
                         })
-                        print(check)
                         if !check{
-                            print("here")
                             let data = NSEntityDescription.insertNewObject(forEntityName: "EverWrongQuiz", into: context) as! EverWrongQuiz
                             data.setValue(ExamSet?.quizList[numberOfQuiz].id, forKey: "quizID")
                             data.setValue(QuizDetail["LicenseGrade"], forKey: "licenseGrade")
@@ -145,13 +142,10 @@ class DoingQuizViewController: UIViewController , UICollectionViewDelegate , UIC
                 }else{
                     QuestionNextBtn.setTitle("Next", for: .normal)
                     QuestionNextBtn.titleLabel?.text = "Next"
-                    
-                    
                 }
-                numberOfQuiz += 1
                 QuestionNextBtn.isEnabled = true
                 
-                QuestionNextBtn.sizeToFit()
+//                QuestionNextBtn.sizeToFit()
             }
             
             
@@ -189,18 +183,22 @@ class DoingQuizViewController: UIViewController , UICollectionViewDelegate , UIC
             
             
         } else {
+            numberOfQuiz += 1
+
             resetall()
             quiz = shuffle((ExamSet?.quizList[numberOfQuiz])!)
             QuizCollectionView.reloadData()
             if Markedchecker() {
-                markedButton.backgroundColor = UIColor.blue
-                markedButton.setTitle("✓", for: .normal)
-                markedButton.titleLabel?.text = "✓"
+//                markedButton.backgroundColor = UIColor.blue
+//                markedButton.setTitle("✓", for: .normal)
+//                markedButton.titleLabel?.text = "✓"
+                markedSwitch.setOn(true, animated: true)
                 
             }else{
-                markedButton.backgroundColor = UIColor.clear
-                markedButton.setTitle("", for: .normal)
-                markedButton.titleLabel?.text = ""
+                markedSwitch.setOn(false, animated: true)
+//                markedButton.backgroundColor = UIColor.clear
+//                markedButton.setTitle("", for: .normal)
+//                markedButton.titleLabel?.text = ""
                 
             }
             
@@ -209,22 +207,13 @@ class DoingQuizViewController: UIViewController , UICollectionViewDelegate , UIC
         
     }
     
-    @IBAction func markedBtn(_ sender: UIButton) {
-        
-        
-        
+    @IBAction func markedBtn(_ sender: UISwitch) {
         if let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext{
-            if sender.titleLabel?.text == "✓"{
-                
-                print("true")
+            
+            if !sender.isOn{
                 MarkedUncheck(context: context)
-                markedButton.backgroundColor = UIColor.clear
-                sender.titleLabel?.text = ""
-                sender.setTitle("", for: .normal)
                 return
             }
-            
-            print("false")
             let markedQuiz = NSEntityDescription.insertNewObject(forEntityName: "MarkedQuiz", into: context) as! MarkedQuiz
             markedQuiz.setValue(ExamSet?.quizList[numberOfQuiz].id, forKey: "quizID")
             markedQuiz.setValue(QuizDetail["ProfessionSet"], forKey: "professionSet")
@@ -237,8 +226,9 @@ class DoingQuizViewController: UIViewController , UICollectionViewDelegate , UIC
             //            })
             do{
                 try context.save()
-                markedButton.backgroundColor = UIColor.blue
-                sender.setTitle("✓", for: .normal)
+//                markedSwitch.setOn(true, animated: true)
+//                markedButton.backgroundColor = UIColor.blue
+//                sender.setTitle("✓", for: .normal)
                 
             } catch let error as NSError{
                 print("Save Failed Error = \(error)")
@@ -260,8 +250,8 @@ class DoingQuizViewController: UIViewController , UICollectionViewDelegate , UIC
         
         
         
-        markedButton.layer.borderWidth = 1
-        markedButton.layer.borderColor = UIColor.lightGray.cgColor
+//        markedButton.layer.borderWidth = 1
+//        markedButton.layer.borderColor = UIColor.lightGray.cgColor
         // Do any additional setup after loading the view.
     }
     
@@ -303,28 +293,29 @@ class DoingQuizViewController: UIViewController , UICollectionViewDelegate , UIC
             
             
             if Markedchecker() {
-                markedButton.backgroundColor = UIColor.blue
-                markedButton.setTitle("✓", for: .normal)
-                markedButton.titleLabel?.text = "✓"
+                markedSwitch.setOn(true, animated: true)
+//                markedButton.backgroundColor = UIColor.blue
+//                markedButton.setTitle("✓", for: .normal)
+//                markedButton.titleLabel?.text = "✓"
                 
             }else{
-                markedButton.backgroundColor = UIColor.clear
-                markedButton.setTitle("", for: .normal)
-                markedButton.titleLabel?.text = ""
+                markedSwitch.setOn(false, animated: true)
+//                markedButton.backgroundColor = UIColor.clear
+//                markedButton.setTitle("", for: .normal)
+//                markedButton.titleLabel?.text = ""
                 
             }
             
             
             
         }
-        if Markedchecker() {
-            markedButton.backgroundColor = UIColor.blue
-            markedButton.setTitle("✓", for: .normal)
-        }else{
-            markedButton.backgroundColor = UIColor.clear
-            markedButton.setTitle("", for: .normal)
-        }
-        print(markedquiz)
+//        if Markedchecker() {
+//            markedButton.backgroundColor = UIColor.blue
+//            markedButton.setTitle("✓", for: .normal)
+//        }else{
+//            markedButton.backgroundColor = UIColor.clear
+//            markedButton.setTitle("", for: .normal)
+//        }
         self.tabBarController?.tabBar.isHidden = true
         
     }
@@ -356,7 +347,6 @@ class DoingQuizViewController: UIViewController , UICollectionViewDelegate , UIC
         header.backgroundColor = UIColor.orange
         header.layer.borderWidth = 1
         header.layer.borderColor = UIColor.orange.cgColor
-        print(header.Headerlbl.frame.size)
         
         return header
     }
@@ -400,7 +390,6 @@ class DoingQuizViewController: UIViewController , UICollectionViewDelegate , UIC
             
         }
         lbl.sizeToFit()
-        print(lbl.frame.size)
         
         return CGSize(width: view.bounds.width - 50, height: lbl.frame.size.height + 40)
     }
@@ -418,7 +407,7 @@ class DoingQuizViewController: UIViewController , UICollectionViewDelegate , UIC
         text.text = quiz[indexPath.row]
         
         text.sizeToFit()
-        return CGSize(width: view.bounds.width - 20 , height: text.frame.height + 20)
+        return CGSize(width: collectionView.bounds.width , height: text.frame.height + 20)
     }
     
     

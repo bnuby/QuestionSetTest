@@ -67,9 +67,7 @@ class ViewController: UIViewController , UICollectionViewDelegate , UICollection
     
     func getCellFrame(_ collectionViewCell : UICollectionViewCell,_ collectionView : UICollectionView) -> CGRect{
         var frame = collectionViewCell.frame
-        frame.origin.y += (collectionView.frame.origin.x + collectionView.contentInset.top + collectionView.contentInset.bottom)
-        print(collectionViewCell.frame.origin,collectionViewCell.bounds.origin)
-        
+        frame.origin.y += (collectionView.frame.origin.x + collectionView.contentInset.top + collectionView.contentInset.bottom)        
         return frame
     }
     
@@ -161,7 +159,6 @@ class ViewController: UIViewController , UICollectionViewDelegate , UICollection
             destination.QuizDetail["LicenseGrade"] =  indexPath!.section
             destination.QuizDetail["LicenseType"] = indexPath!.row
             
-            print("here")
 
         }
         

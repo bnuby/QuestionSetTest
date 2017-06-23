@@ -18,7 +18,8 @@ class QuizHistoryViewController: UIViewController ,UITableViewDelegate ,UITableV
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigation.frame.origin.y = 20
+        navigation.frame.origin.y = 0
+        navigation.frame.size.height = 60
         navigation.frame.size.width = view.frame.width
         view.addSubview(navigation)
         // Do any additional setup after loading the view.

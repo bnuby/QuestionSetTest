@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		22564D7D1EFCD63F00998CFF /* Personal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22564D7C1EFCD63E00998CFF /* Personal.swift */; };
 		27FFC0471EEEAD1B00F201D0 /* ExamSetTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FFC0461EEEAD1B00F201D0 /* ExamSetTableViewController.swift */; };
 		ACE5EDD21EB9A97500195A8B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE5EDD11EB9A97500195A8B /* AppDelegate.swift */; };
 		ACE5EDD41EB9A97500195A8B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE5EDD31EB9A97500195A8B /* ViewController.swift */; };
@@ -54,6 +55,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		22564D7C1EFCD63E00998CFF /* Personal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Personal.swift; sourceTree = "<group>"; };
 		27FFC0461EEEAD1B00F201D0 /* ExamSetTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExamSetTableViewController.swift; sourceTree = "<group>"; };
 		ACE5EDCE1EB9A97500195A8B /* FinanceQuizApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FinanceQuizApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACE5EDD11EB9A97500195A8B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -198,6 +200,7 @@
 			children = (
 				CFC262581EBA1E53002B241A /* QuestionSet.swift */,
 				CF4C3FC11EC389800071DF06 /* FuncBase.swift */,
+				22564D7C1EFCD63E00998CFF /* Personal.swift */,
 			);
 			name = Other;
 			sourceTree = "<group>";
@@ -377,6 +380,7 @@
 				CF2FD82E1EBB759200B1A594 /* OwnQuizProcessViewController.swift in Sources */,
 				ACE5EDD41EB9A97500195A8B /* ViewController.swift in Sources */,
 				ACE5EDD21EB9A97500195A8B /* AppDelegate.swift in Sources */,
+				22564D7D1EFCD63F00998CFF /* Personal.swift in Sources */,
 				CFDD16741EBC5FB1001B536E /* QuizHistoryViewController.swift in Sources */,
 				CF2FD82C1EBB64E000B1A594 /* QuizCollectionViewController.swift in Sources */,
 				CFD0F4671EC82A9E002C41E4 /* EverWrongQuizListTableViewController.swift in Sources */,

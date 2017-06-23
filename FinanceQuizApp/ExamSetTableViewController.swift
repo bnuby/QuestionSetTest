@@ -12,10 +12,10 @@ class ExamSetTableViewController: UITableViewController {
     
     var licenseType : LicenseType!
     var QuizDetail : [String:Int] = ["ProfessionSet":0,"LicenseGrade":0,"LicenseType":0]
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        tableView.backgroundView = UIImageView(image: #imageLiteral(resourceName: "BackGround"))
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -45,6 +45,7 @@ class ExamSetTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        cell.backgroundColor = UIColor.clear
         cell.textLabel?.text = licenseType.ExamSet[indexPath.row].name
         return cell
     }

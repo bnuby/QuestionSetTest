@@ -14,19 +14,13 @@ class ReadyDoingQuizViewController: UIViewController {
     var QuizDetail : [String:Int] = ["ProfessionSet":0,"LicenseGrade":0,"LicenseType":0,"ExamSet":0]
     
     @IBAction func StartBtn(_ sender: Any) {
-        for i in 0..<QuizSet.quizList.count{
-            print(QuizSet.quizList[i].question)
-        }
+
         QuizSet.shuffle()
         
-        for i in 0..<QuizSet.quizList.count{
-            print(QuizSet.quizList[i].question)
-        }
 
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Do any additional setup after loading the view.
     }
     

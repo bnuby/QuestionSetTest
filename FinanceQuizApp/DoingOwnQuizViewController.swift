@@ -47,9 +47,7 @@ class DoingOwnQuizViewController: UIViewController , UICollectionViewDelegate , 
         lbl.numberOfLines = 0
         lbl.lineBreakMode = .byWordWrapping
         lbl.text = quiz.question
-        print(lbl.frame.height)
         lbl.sizeToFit()
-        print(lbl.frame.height)
 
         return CGSize(width: view.bounds.width - 50, height: lbl.bounds.height + 30)
         

@@ -17,6 +17,7 @@ class EverWrongQuizListTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.tabBarController?.prefersStatusBarHidden == true
+        tableView.backgroundView = UIImageView(image: #imageLiteral(resourceName: "BackGround"))
     }
     
     override func viewWillAppear(_ animated: Bool) {

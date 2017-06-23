@@ -13,20 +13,27 @@ class AccountViewController: UIViewController {
     @IBOutlet var Namelbl: UILabel!
     @IBOutlet var Jobslbl: UILabel!
     @IBInspectable var jsonFileName : String!
+    var get_id = ""
+    var get_job = ""
 
     @IBAction func logOut(){
-        print("hello")
         self.performSegue(withIdentifier: "unwindToLoginPage", sender: self)
+        loginViewController().User.removeObject(forKey: "user")
+        loginViewController().User.removeObject(forKey: "job")
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        get_id = loginViewController().User.string(forKey: "user")!
+
+        get_job = loginViewController().User.string(forKey: "job")!
         readJson(jsonFileName)
-        for i in ProfessionSet[0].LicenseGrade[0].LicenseType[0].ExamSet[0].quizList{
-            print(i.id)
-        }
+        
+        Namelbl.text = get_id
+        Jobslbl.text = get_job
+//        for i in ProfessionSet[0].LicenseGrade[0].LicenseType[0].ExamSet[0].quizList{
+//            print(i.id)
+//        }
         // Do any additional setup after loading the view.
-        print((loginViewController() ).loginUser)
     }
 
     override func didReceiveMemoryWarning() {

@@ -37,9 +37,6 @@ class OwnQuizProcessViewController: UIViewController , UITableViewDelegate, UITa
             } catch let error as NSError{
                 print(error)
             }
-            for i in 0..<MarkedQuiz.count{
-                print(MarkedQuiz[i].quizID)
-            }
             
             
         case 3:
@@ -49,14 +46,9 @@ class OwnQuizProcessViewController: UIViewController , UITableViewDelegate, UITa
             } catch let error as NSError{
                 print(error)
             }
-            print(TheEazierWrongQuiz.count)
-            for i in 0..<TheEazierWrongQuiz.count{
-                print(TheEazierWrongQuiz[i].quizID)
-            }
             for i in TheEazierWrongQuiz{
                 if i.count > 1{
                     TEWQ.append(i)
-                    print(i)
                 }
             }
             
@@ -92,7 +84,6 @@ class OwnQuizProcessViewController: UIViewController , UITableViewDelegate, UITa
         case 1:
             let action = UITableViewRowAction(style: .default, title: "Delete") { (UITableViewRowAction, indexPath) in
                 let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
-                print(indexPath.row)
                 context?.delete(self.MarkedQuiz[indexPath.row])
                 self.MarkedQuiz.remove(at: indexPath.row)
                 tableView.reloadData()
@@ -106,7 +97,6 @@ class OwnQuizProcessViewController: UIViewController , UITableViewDelegate, UITa
         case 3:
             let action = UITableViewRowAction(style: .default, title: "Delete") { (UITableViewRowAction, indexPath) in
                 let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext
-                print(indexPath.row)
                 
                 context?.delete(self.TheEazierWrongQuiz[indexPath.row])
                 self.TheEazierWrongQuiz.remove(at: indexPath.row)

@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16F73" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16E195" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="AccountMO" representedClassName="AccountMO" syncable="YES" codeGenerationType="class">
+        <attribute name="job" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="username" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="CustomizedQuiz" representedClassName="CustomizedQuiz" syncable="YES" codeGenerationType="class">
         <attribute name="groupOfQuiz" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="quizNo" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
@@ -40,6 +44,7 @@
         <attribute name="quizID" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
     </entity>
     <elements>
+        <element name="AccountMO" positionX="-27" positionY="63" width="128" height="75"/>
         <element name="CustomizedQuiz" positionX="-18" positionY="54" width="128" height="75"/>
         <element name="CustomizedQuizSet" positionX="-36" positionY="45" width="128" height="90"/>
         <element name="EverWrongQuiz" positionX="-36" positionY="36" width="128" height="30"/>
