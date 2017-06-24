@@ -25,7 +25,6 @@ class EverWrongExamSetTableViewController: UITableViewController {
                 }){
                      ExamSet.append(i.examSet.toInt())
                 }
-               
             }
         }
         print(ExamSet)

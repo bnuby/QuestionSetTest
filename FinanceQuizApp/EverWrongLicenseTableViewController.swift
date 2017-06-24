@@ -10,10 +10,12 @@ import UIKit
 
 class EverWrongLicenseTableViewController: UITableViewController {
     var EverWrongQuiz : [EverWrongQuiz] = []
+    var MarkedQuiz : [MarkedQuiz] = []
+    var TheEazierWrongQuiz : [TheEazierWrongQuiz] = []
     var getProfessionSetId : Int!
     var LicenseType : [[Int]] = [[]]
+    var sourceProcessType = ""
     
-    @IBOutlet var header: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.backgroundView = UIImageView(image: #imageLiteral(resourceName: "BackGround"))
@@ -27,17 +29,38 @@ class EverWrongLicenseTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         for i in 0 ..< ProfessionSet[getProfessionSetId].LicenseGrade.count{
             LicenseType.append([])
-            for j in EverWrongQuiz{
-                if j.professionSet == Int16(getProfessionSetId) && j.licenseGrade.toInt() == i{
-                    if !LicenseType[i].contains(where: { (a) -> Bool in
-                        return a == j.licenseGrade.toInt()
-                    }){
-                        LicenseType[i].append(Int(j.licenseType))
+            if sourceProcessType == "EverWrongQuiz" {
+                for j in EverWrongQuiz{
+                    if j.professionSet == Int16(getProfessionSetId) && j.licenseGrade.toInt() == i{
+                        if !LicenseType[i].contains(where: { (a) -> Bool in
+                            return a == j.licenseGrade.toInt()
+                        }){
+                            LicenseType[i].append(Int(j.licenseType))
+                        }
                     }
-                    
-                    
+                }
+            } else if sourceProcessType == "MarkedQuiz" {
+                for j in MarkedQuiz{
+                    if j.professionSet == Int16(getProfessionSetId) && j.licenseGrade.toInt() == i{
+                        if !LicenseType[i].contains(where: { (a) -> Bool in
+                            return a == j.licenseGrade.toInt()
+                        }){
+                            LicenseType[i].append(Int(j.licenseType))
+                        }
+                    }
+                }
+            } else if sourceProcessType == "TheEazierWrongQuiz" {
+                for j in TheEazierWrongQuiz{
+                    if j.professionSet == Int16(getProfessionSetId) && j.licenseGrade.toInt() == i{
+                        if !LicenseType[i].contains(where: { (a) -> Bool in
+                            return a == j.licenseGrade.toInt()
+                        }){
+                            LicenseType[i].append(Int(j.licenseType))
+                        }
+                    }
                 }
             }
+            
         }
     }
 
@@ -74,11 +97,17 @@ class EverWrongLicenseTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if sourceProcessType == "EverWrongQuiz"{
+            performSegue(withIdentifier: "ShowEverWrongExamSet", sender: self)
+        }else{
+            performSegue(withIdentifier: "2ndView", sender: self)
+        }
         tableView.deselectRow(at: indexPath, animated: true)
 
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
         if segue.identifier == "ShowEverWrongExamSet"{
             let destination = segue.destination as! EverWrongExamSetTableViewController
             let section = tableView.indexPathForSelectedRow?.section
@@ -87,8 +116,17 @@ class EverWrongLicenseTableViewController: UITableViewController {
             destination.QuizDetail["ProfessionId"] = getProfessionSetId
             destination.QuizDetail["LicenseGrade"] = section
             destination.QuizDetail["LicenseType"] = LicenseType[section!][row!]
+        } else {
+            let destination = segue.destination as! OwnQuiz2ndTableViewController
+            let section = tableView.indexPathForSelectedRow?.section
+            let row = tableView.indexPathForSelectedRow?.row
+            destination.TheEazierWrongQuiz = TheEazierWrongQuiz
+            destination.MarkedQuiz = MarkedQuiz
+            destination.sourceProcessType = sourceProcessType
+            destination.QuizDetail["ProfessionId"] = getProfessionSetId
+            destination.QuizDetail["LicenseGrade"] = section
+            destination.QuizDetail["LicenseType"] = LicenseType[section!][row!]
         }
-        
     }
     
 

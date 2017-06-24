@@ -13,23 +13,33 @@ class QuizCollectionViewController: UIViewController {
     var processType = ""
     
     @IBAction func myFeatureQuiz(_ sender: Any){
-        processType = "myFeaturedQuiz"
+        processType = "FeaturedQuiz"
         performSegue(withIdentifier: "PageSwitch", sender: self)
     }
     @IBAction func myMarkedQuiz(_ sender: Any){
-        processType = "myMarkedQuiz"
+        processType = "MarkedQuiz"
         performSegue(withIdentifier: "PageSwitch", sender: self)
     }
+    
+    @IBAction func EverWrongQuiz(_ sender: Any){
+        processType = "EverWrongQuiz"
+        performSegue(withIdentifier: "PageSwitch", sender: self)
+    }
+    
     @IBAction func theEazierWrongQuiz(_ sender: Any){
         processType = "TheEazierWrongQuiz"
-        performSegue(withIdentifier: "showEverWrongQuiz", sender: self)
+        performSegue(withIdentifier: "PageSwitch", sender: self)
     }
     
     @IBOutlet var buttonStackView: UIStackView!
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "PageSwitch"{
+//            let destination = segue.destination as! OwnQuizProcessViewController
+//            destination.sourceProcessType = processType
+//        }
         if segue.identifier == "PageSwitch"{
-            let destination = segue.destination as! OwnQuizProcessViewController
+            let destination = segue.destination as! EverWrongQuizViewController
             destination.sourceProcessType = processType
         }
     }

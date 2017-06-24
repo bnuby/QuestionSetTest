@@ -16,23 +16,7 @@ class loginViewController: UIViewController {
     @IBOutlet var Username: UITextField!
     @IBOutlet var Password: UITextField!
     var Account : [AccountMO] = []
-    @IBAction func Login(_ sender: Any) {
-        let loginUser = Username.text!
-        if loginUser == loginData["user"] && Password.text == loginData["password"]{
-            User.set(loginUser, forKey: "user")
-            User.set("Student", forKey: "job")
-            performSegue(withIdentifier: "loginSucess", sender: self)
-        }
-        let alertController = UIAlertController(title: "Login Failed", message: "Invalid username or password", preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
-        self.present(alertController, animated: true, completion: nil)
-    }
-    
-    @IBAction func loginAsGuest(_ sender: Any) {
-        User.set("Guest", forKey: "user")
-        User.set("Unknown", forKey: "job")
-        self.performSegue(withIdentifier: "loginSucess", sender: self)
-    }
+
     
     
     override func viewWillAppear(_ animated: Bool) {
@@ -47,12 +31,6 @@ class loginViewController: UIViewController {
         
         
         view.layer.insertSublayer(a, at: 0)
-//        if loginUser == loginData["user"] && Password.text == loginData["password"]{
-//            performSegue(withIdentifier: "loginSucess", sender: self)
-//        }
-//        if let id = defaults.string(forKey: "id"){
-//            Username.text = id
-//        }
     }
     
     override func viewDidLoad() {
@@ -71,7 +49,6 @@ class loginViewController: UIViewController {
         
         
 
-        // Do any additional setup after loading the view.
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -84,33 +61,33 @@ class loginViewController: UIViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    @IBAction func Login(_ sender: Any) {
+        let loginUser = Username.text!
+        if loginUser == loginData["user"] && Password.text == loginData["password"]{
+            User.set(loginUser, forKey: "user")
+            User.set("Student", forKey: "job")
+            User.set("noPic", forKey: "profilePic")
+            performSegue(withIdentifier: "loginSucess", sender: self)
+        }
+        let alertController = UIAlertController(title: "Login Failed", message: "Invalid username or password", preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alertController, animated: true, completion: nil)
     }
-    */
     
-//    var loginUser : String{
-//        get{
-//            if let returnValue = UserDefaults.standard.string(forKey: "loginUser") as? String {
-//                return returnValue
-//            } else {
-//                return "nil" //Default value
-//            }
-//        }
-//        set{
-//            UserDefaults.standard.set(newValue, forKey: "loginUser")
-//            UserDefaults.standard.synchronize()
-//        }
-//    }
+    @IBAction func loginAsGuest(_ sender: Any) {
+        User.set("Guest", forKey: "user")
+        User.set("Unknown", forKey: "job")
+//        User.set("noPic", forKey: "profilePic")
+        let data = NSKeyedArchiver.archivedData(withRootObject: #imageLiteral(resourceName: "noPic"))
+        User.set(data, forKey: "profilePic")
+
+        print("here\n\n\n\n\n")
+        print(User.value(forKey: "Pic"))
+        self.performSegue(withIdentifier: "loginSucess", sender: self)
+    }
+
     
     override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         view.endEditing(true)

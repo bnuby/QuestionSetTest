@@ -65,7 +65,6 @@ func dataProcess(object : [String: Any] ){
                             
                             temp.LicenseGrade[j].LicenseType[k].ExamSet[l].name = json["quizSetName"]! as! String
                             var QuizList = json["quiz"] as! [[String:Any]]
-                            print(QuizList)
                             for m in 0 ..< QuizList.count {
                                 temp.LicenseGrade[j].LicenseType[k].ExamSet[l].addQuiz(quiz(id: m, question: QuizList[m]["question"]! as! String, choice: QuizList[m]["choice"]! as! [String], answer: QuizList[m]["answer"]! as! [String]))
                             }                            
@@ -217,5 +216,13 @@ extension UITableViewCell{
         gL.frame = self.bounds
         gL.colors = color
         self.layer.addSublayer(gL)
+    }
+}
+extension UIButton{
+    open override func `self`() -> Self {
+        self.titleLabel?.minimumScaleFactor = 0.5
+        self.titleLabel?.numberOfLines = 0
+        self.titleLabel?.adjustsFontSizeToFitWidth = true
+        return self
     }
 }
