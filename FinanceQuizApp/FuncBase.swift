@@ -158,7 +158,29 @@ class RadialGradientLayer: CALayer {
     
 }
 
+func collectionHeaderSize(_ lbl:UILabel){
+    lbl.minimumScaleFactor = 0.7
+    lbl.adjustsFontSizeToFitWidth = true
+    lbl.numberOfLines = 20
+    lbl.lineBreakMode = .byClipping
+}
 
+func collectionCellSize(text:UILabel,_ quiz:String ,_ collectionView:UICollectionView){
+    text.frame.size = CGSize(width: collectionView.bounds.width - 60, height: 20)
+    text.numberOfLines = 30
+    text.lineBreakMode = .byClipping
+    text.minimumScaleFactor = 0.6
+    text.adjustsFontSizeToFitWidth = true
+    text.text = quiz
+    text.sizeToFit()
+    if text.frame.height > 300{
+        text.frame.size.height = 300
+        text.sizeThatFits(CGSize(width: collectionView.bounds.width - 60, height: 300))
+    } else if text.frame.height < 30{
+        text.frame.size.height = 30
+        text.sizeThatFits(CGSize(width: collectionView.bounds.width - 60, height: 30))
+    }
+}
 
 class RadialGradientView: UIView {
     

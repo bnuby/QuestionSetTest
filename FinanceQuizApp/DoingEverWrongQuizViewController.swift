@@ -43,27 +43,22 @@ class DoingEverWrongQuizViewController: UIViewController , UICollectionViewDeleg
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         let lbl = UILabel()
-        lbl.frame.size = CGSize(width: view.bounds.width - 50, height: 20)
+        lbl.frame.size = CGSize(width: collectionView.bounds.width , height: 20)
         
-        lbl.numberOfLines = 0
-        lbl.lineBreakMode = .byWordWrapping
-        lbl.text = quiz[indexPath.row]
-        lbl.sizeToFit()
+        collectionCellSize(text: lbl, quiz[indexPath.row], collectionView)
         
-        return CGSize(width: view.frame.width - 20, height: lbl.frame.height + 20)
+        
+        return CGSize(width: collectionView.bounds.width, height: lbl.bounds.height + 20)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         let lbl = UILabel()
-        lbl.frame.size = CGSize(width: view.bounds.width - 50, height: 20)
-        lbl.numberOfLines = 0
-        lbl.lineBreakMode = .byWordWrapping
+        lbl.frame.size = CGSize(width: collectionView.bounds.width - 20, height: 20)
+        collectionHeaderSize(lbl)
         lbl.text = getQuiz.question
-        print(lbl.frame.height)
         lbl.sizeToFit()
-        print(lbl.frame.height)
         
-        return CGSize(width: view.bounds.width - 50, height: lbl.bounds.height + 30)
+        return CGSize(width: collectionView.bounds.width - 20, height: lbl.bounds.height + 30)
         
     }
     

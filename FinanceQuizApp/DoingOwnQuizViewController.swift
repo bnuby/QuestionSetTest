@@ -31,35 +31,47 @@ class DoingOwnQuizViewController: UIViewController , UICollectionViewDelegate , 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         
         let lbl = UILabel()
-        lbl.frame.size = CGSize(width: view.bounds.width - 50, height: 20)
+//        lbl.frame.size = CGSize(width: collectionView.bounds.width - 20, height: 20)
         
-        lbl.numberOfLines = 0
-        lbl.lineBreakMode = .byWordWrapping
-        lbl.text = String[indexPath.row]
-        lbl.sizeToFit()
+        collectionCellSize(text: lbl, String[indexPath.row], collectionView)
+//        lbl.numberOfLines = 30
+//        lbl.lineBreakMode = .byClipping
+//        lbl.text = String[indexPath.row]
+//        lbl.sizeToFit()
         
-        return CGSize(width: view.frame.width - 20, height: lbl.frame.height + 10)
+        return CGSize(width: collectionView.bounds.width , height: lbl.frame.height + 10)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         let lbl = UILabel()
-        lbl.frame.size = CGSize(width: view.bounds.width - 50, height: 20)
-        lbl.numberOfLines = 0
-        lbl.lineBreakMode = .byWordWrapping
+        lbl.frame.size = CGSize(width: collectionView.bounds.width - 20, height: 20)
+        collectionHeaderSize(lbl)
+//        lbl.numberOfLines = 30
+//        lbl.lineBreakMode = .byClipping
+//        lbl.minimumScaleFactor = 0.6
+//        lbl.adjustsFontSizeToFitWidth = true
         lbl.text = quiz.question
+        
         lbl.sizeToFit()
-
-        return CGSize(width: view.bounds.width - 50, height: lbl.bounds.height + 30)
+        if lbl.frame.height > 300{
+            lbl.frame.size.height = 300
+            lbl.sizeThatFits(CGSize(width: collectionView.bounds.width - 20, height: 300))
+        } else if lbl.frame.height < 30{
+            lbl.frame.size.height = 30
+            lbl.sizeThatFits(CGSize(width: collectionView.bounds.width - 20, height: 30))
+        }
+        return CGSize(width: collectionView.bounds.width - 20, height: lbl.bounds.height + 30)
         
     }
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let Cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! OwnQuizCollectionCell
-        Cell.Quiztextlbl.numberOfLines = 0
-        Cell.Quiztextlbl.lineBreakMode = .byWordWrapping
         Cell.Quiztextlbl.text = String[indexPath.row]
-        Cell.layer.cornerRadius = Cell.frame.height * 0.5
+        Cell.layer.cornerRadius = Cell.frame.height / 2
+        if Cell.layer.cornerRadius > 20{
+            Cell.layer.cornerRadius = 20
+        }
         Cell.layer.borderWidth  = 1
         Cell.layer.borderColor = UIColor.gray.cgColor
         
@@ -68,8 +80,6 @@ class DoingOwnQuizViewController: UIViewController , UICollectionViewDelegate , 
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "Header", for: indexPath) as! OwnQuizReuseableCell
-        header.Quizlbl.numberOfLines = 0
-        header.Quizlbl.lineBreakMode = .byWordWrapping
         header.Quizlbl.text = quiz.question
         header.layer.cornerRadius = header.frame.height * 0.25
         header.backgroundColor = UIColor.orange

@@ -110,10 +110,7 @@ class DoingQuizViewController: UIViewController , UICollectionViewDelegate , UIC
                         EverWrongQuizSet.contains(where: { (a) -> Bool in
                             check = false
                             if a.examSet == Int16(QuizDetail["ExamSet"]!) && a.licenseGrade == Int16(QuizDetail["LicenseGrade"]!) && a.licenseType == Int16(QuizDetail["LicenseType"]!) && a.quizID == Int16(ExamSet!.quizList[numberOfQuiz].id) && a.professionSet == Int16(QuizDetail["ProfessionSet"]!) {
-                                //                                    var tempContext = context
-                                //                                    let temp = a
                                 check = true
-                                
                                 return true
                             }
                             return false
@@ -144,8 +141,6 @@ class DoingQuizViewController: UIViewController , UICollectionViewDelegate , UIC
                     QuestionNextBtn.titleLabel?.text = "Next"
                 }
                 QuestionNextBtn.isEnabled = true
-                
-//                QuestionNextBtn.sizeToFit()
             }
             
             
@@ -167,7 +162,9 @@ class DoingQuizViewController: UIViewController , UICollectionViewDelegate , UIC
                 data.setValue(Int16(QuizDetail["LicenseGrade"]!) , forKey: "licenseGrade")
                 data.setValue(Int16(QuizDetail["LicenseType"]!) , forKey: "licenseType")
                 data.setValue(Int16(QuizDetail["ExamSet"]!) , forKey: "examSet")
-                
+                if scoreDetails["Correct"] == (ExamSet?.quizList.count)!{
+                    scoreDetails["totalScore"] = 100
+                }
                 data.setValue(scoreDetails["Correct"], forKey: "numberOfCorrect")
                 data.setValue(scoreDetails["totalScore"], forKey: "score")
                 
@@ -189,22 +186,13 @@ class DoingQuizViewController: UIViewController , UICollectionViewDelegate , UIC
             quiz = shuffle((ExamSet?.quizList[numberOfQuiz])!)
             QuizCollectionView.reloadData()
             if Markedchecker() {
-//                markedButton.backgroundColor = UIColor.blue
-//                markedButton.setTitle("✓", for: .normal)
-//                markedButton.titleLabel?.text = "✓"
                 markedSwitch.setOn(true, animated: true)
                 
             }else{
                 markedSwitch.setOn(false, animated: true)
-//                markedButton.backgroundColor = UIColor.clear
-//                markedButton.setTitle("", for: .normal)
-//                markedButton.titleLabel?.text = ""
                 
             }
-            
         }
-        //        QuestionNextBtn.isEnabled = true
-        
     }
     
     @IBAction func markedBtn(_ sender: UISwitch) {
@@ -343,7 +331,7 @@ class DoingQuizViewController: UIViewController , UICollectionViewDelegate , UIC
         let header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "Header", for: indexPath) as! DoingQuizCollectionHeader
         
         
-        header.Headerlbl.text = ExamSet?.quizList[numberOfQuiz].question
+        header.Headerlbl.text = "Question \(numberOfQuiz+1) : \n"+(ExamSet?.quizList[numberOfQuiz].question)!
         header.backgroundColor = UIColor.orange
         header.layer.borderWidth = 1
         header.layer.borderColor = UIColor.orange.cgColor
@@ -355,13 +343,16 @@ class DoingQuizViewController: UIViewController , UICollectionViewDelegate , UIC
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! DoingQuizColllectionCell
         
-        cell.Quizlbl.numberOfLines = 0
-        cell.Quizlbl.lineBreakMode = .byWordWrapping
+//        cell.Quizlbl.numberOfLines = 0
+//        cell.Quizlbl.lineBreakMode = .byWordWrapping
         cell.Quizlbl.text = quiz[indexPath.row]
         
         cell.layer.borderWidth  = 1
         cell.layer.borderColor = UIColor.gray.cgColor
-        
+        cell.layer.cornerRadius = cell.frame.height / 2
+        if cell.layer.cornerRadius > 20{
+            cell.layer.cornerRadius = 20
+        }
         return cell
     }
     
@@ -381,17 +372,18 @@ class DoingQuizViewController: UIViewController , UICollectionViewDelegate , UIC
         
         
         let lbl = UILabel()
-        lbl.frame.size = CGSize(width: view.bounds.width - 90, height: 20)
-        
-        lbl.numberOfLines = 0
-        lbl.lineBreakMode = .byWordWrapping
+        lbl.frame.size = CGSize(width: collectionView.bounds.width - 50, height: 20)
+        collectionHeaderSize(lbl)
+//        lbl.minimumScaleFactor = 0.7
+//        lbl.adjustsFontSizeToFitWidth = true
+//        lbl.numberOfLines = 20
+//        lbl.lineBreakMode = .byClipping
         if ExamSet?.quizList[numberOfQuiz].question != nil{
-            lbl.text = ExamSet?.quizList[numberOfQuiz].question
-            
+            lbl.text = "Question \(numberOfQuiz)\n"+(ExamSet?.quizList[numberOfQuiz].question)!
         }
         lbl.sizeToFit()
         
-        return CGSize(width: view.bounds.width - 50, height: lbl.frame.size.height + 40)
+        return CGSize(width: collectionView.bounds.width - 50, height: lbl.frame.size.height + 40)
     }
     
     
@@ -401,13 +393,22 @@ class DoingQuizViewController: UIViewController , UICollectionViewDelegate , UIC
         
         
         let text = UILabel()
-        text.bounds.size.width = view.bounds.width - 60
-        text.numberOfLines = 0
-        text.lineBreakMode = .byWordWrapping
-        text.text = quiz[indexPath.row]
-        
-        text.sizeToFit()
-        return CGSize(width: collectionView.bounds.width , height: text.frame.height + 20)
+        text.bounds.size.width = collectionView.bounds.width - 60
+        collectionCellSize(text: text, quiz[indexPath.row], collectionView)
+//        text.numberOfLines = 30
+//        text.lineBreakMode = .byClipping
+//        text.minimumScaleFactor = 0.6
+//        text.adjustsFontSizeToFitWidth = true
+//        text.text = quiz[indexPath.row]
+//        text.sizeToFit()
+//        if text.frame.height > 300{
+//            text.frame.size.height = 300
+//            text.sizeThatFits(CGSize(width: collectionView.bounds.width - 60, height: 300))
+//        } else if text.frame.height < 30{
+//            text.frame.size.height = 30
+//            text.sizeThatFits(CGSize(width: collectionView.bounds.width - 60, height: 30))
+//        }
+        return CGSize(width: collectionView.bounds.width - 10 , height: text.frame.height + 10)
     }
     
     
