@@ -65,7 +65,6 @@ func dataProcess(object : [String: Any] ){
                             
                             temp.LicenseGrade[j].LicenseType[k].ExamSet[l].name = json["quizSetName"]! as! String
                             var QuizList = json["quiz"] as! [[String:Any]]
-                            print(QuizList)
                             for m in 0 ..< QuizList.count {
                                 temp.LicenseGrade[j].LicenseType[k].ExamSet[l].addQuiz(quiz(id: m, question: QuizList[m]["question"]! as! String, choice: QuizList[m]["choice"]! as! [String], answer: QuizList[m]["answer"]! as! [String]))
                             }                            
@@ -159,7 +158,8 @@ class RadialGradientLayer: CALayer {
 }
 
 func collectionHeaderSize(_ lbl:UILabel){
-    lbl.minimumScaleFactor = 0.7
+    lbl.font.withSize(50)
+    lbl.minimumScaleFactor = 0.5
     lbl.adjustsFontSizeToFitWidth = true
     lbl.numberOfLines = 20
     lbl.lineBreakMode = .byClipping
@@ -167,9 +167,10 @@ func collectionHeaderSize(_ lbl:UILabel){
 
 func collectionCellSize(text:UILabel,_ quiz:String ,_ collectionView:UICollectionView){
     text.frame.size = CGSize(width: collectionView.bounds.width - 60, height: 20)
+    text.font.withSize(50)
     text.numberOfLines = 30
     text.lineBreakMode = .byClipping
-    text.minimumScaleFactor = 0.6
+    text.minimumScaleFactor = 0.5
     text.adjustsFontSizeToFitWidth = true
     text.text = quiz
     text.sizeToFit()
@@ -202,8 +203,40 @@ class RadialGradientView: UIView {
         }
         gradientLayer.frame = bounds
     }
-    
 }
+
+func collectionHeaderLayout(_ header : UICollectionReusableView) {
+    header.layer.cornerRadius = header.frame.height * 0.25
+    header.backgroundColor = UIColor.orange
+    header.layer.borderWidth = 1
+    header.layer.borderColor = UIColor.orange.cgColor
+}
+
+func collectionCellLayout(_ Cell : UICollectionViewCell) {
+    Cell.layer.cornerRadius = Cell.frame.height / 2
+    if Cell.layer.cornerRadius > 20{
+        Cell.layer.cornerRadius = 20
+    }
+    Cell.layer.borderWidth  = 1
+    Cell.layer.borderColor = UIColor.gray.cgColor
+}
+
+func ButtonAdjust(_ allbutton : [UIButton]){
+    var min : CGFloat = 999.0
+    for i in allbutton{
+        i.titleLabel?.adjustsFontSizeToFitWidth = true
+        i.titleLabel?.minimumScaleFactor = 0.3
+        i.titleLabel?.lineBreakMode = .byClipping
+        i.titleLabel?.numberOfLines = 1
+        if (i.titleLabel?.font.pointSize)! < min{
+            min = (i.titleLabel?.font.pointSize)!
+        }
+    }
+    for i in allbutton{
+        i.titleLabel?.font.withSize(min)
+    }
+}
+
 
 extension Int16{
     func toInt() -> Int{
@@ -219,3 +252,4 @@ extension UITableViewCell{
         self.layer.addSublayer(gL)
     }
 }
+

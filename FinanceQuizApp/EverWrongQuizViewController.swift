@@ -13,7 +13,10 @@ class EverWrongQuizViewController: UIViewController , UICollectionViewDelegate ,
 
     @IBOutlet var collectionView: UICollectionView!
     var EverWrongQuiz : [EverWrongQuiz] = []
+    var MarkedQuiz : [MarkedQuiz] = []
+    var TheEazierWrongQuiz : [TheEazierWrongQuiz] = []
     var filterExam : [Int] = []
+    var sourceProcessType = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,11 +28,12 @@ class EverWrongQuizViewController: UIViewController , UICollectionViewDelegate ,
         navigationController?.isNavigationBarHidden = false
         self.tabBarController?.tabBar.isHidden = true
         if let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext{
-            let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "EverWrongQuiz")
-            do {
-                EverWrongQuiz = try context.fetch(fetchRequest) as! [EverWrongQuiz]
-            } catch let error as NSError{
-                print("error : \(error)")
+            if sourceProcessType == "EverWrongQuiz" {
+                EverWrongFetchRequest(context)
+            } else if sourceProcessType == "MarkedQuiz"{
+                MarkedQuizFetchRequest(context)
+            } else if sourceProcessType == "TheEazierWrongQuiz"{
+                TheEazierWrongFetchRequest(context)
             }
         }
     }
@@ -42,12 +46,26 @@ class EverWrongQuizViewController: UIViewController , UICollectionViewDelegate ,
         return 1
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        
-        for i in EverWrongQuiz {
-            if !filterExam.contains(Int(i.professionSet)){
-                filterExam.append(Int(i.professionSet))
+        if sourceProcessType == "EverWrongQuiz"{
+            for i in EverWrongQuiz {
+                if !filterExam.contains(Int(i.professionSet)){
+                    filterExam.append(Int(i.professionSet))
+                }
+            }
+        } else if sourceProcessType == "MarkedQuiz"{
+            for i in MarkedQuiz {
+                if !filterExam.contains(Int(i.professionSet)){
+                    filterExam.append(Int(i.professionSet))
+                }
+            }
+        } else if sourceProcessType == "TheEazierWrongQuiz"{
+            for i in TheEazierWrongQuiz {
+                if !filterExam.contains(Int(i.professionSet)){
+                    filterExam.append(Int(i.professionSet))
+                }
             }
         }
+        
         
         return filterExam.count
     }
@@ -56,11 +74,20 @@ class EverWrongQuizViewController: UIViewController , UICollectionViewDelegate ,
         let Header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "Header", for: indexPath) as! EverWrongQuizCollectionHeader
             Header.backgroundColor = UIColor.clear
         if filterExam.count > 0 {
-            Header.textlbl.text = "以下為答錯的紀錄"
+            if sourceProcessType == "EverWrongQuiz" {
+                Header.textlbl.text = "以下為答錯的紀錄"
+            } else if sourceProcessType == "MarkedQuiz" {
+                Header.textlbl.text = "以下為標記的題目"
+            } else if sourceProcessType == "TheEazierWrongQuiz" {
+                Header.textlbl.text = "以下為常錯的題目"
+            }
         } else {
-            Header.textlbl.text = "無錯誤的題目"
+            if sourceProcessType == "EverWrongQuiz" || sourceProcessType == "TheEazierWrongQuiz"  {
+                Header.textlbl.text = "無答錯的紀錄"
+            } else if sourceProcessType == "MarkedQuiz" {
+                Header.textlbl.text = "無標記的題目"
+            }
         }
-        
         return Header
     }
     
@@ -69,16 +96,61 @@ class EverWrongQuizViewController: UIViewController , UICollectionViewDelegate ,
    
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let Cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! EverWrongQuizCollectionCell
-        Cell.textlbl.text = ProfessionSet[Int(EverWrongQuiz[indexPath.row].professionSet)].ProfessionName
+
+        if sourceProcessType == "EverWrongQuiz" {
+            Cell.textlbl.text = ProfessionSet[Int(EverWrongQuiz[indexPath.row].professionSet)].ProfessionName
+        } else if sourceProcessType == "MarkedQuiz" {
+            Cell.textlbl.text = ProfessionSet[Int(MarkedQuiz[indexPath.row].professionSet)].ProfessionName
+        } else if sourceProcessType == "TheEazierWrongQuiz" {
+            Cell.textlbl.text = ProfessionSet[Int(TheEazierWrongQuiz[indexPath.row].professionSet)].ProfessionName
+        }
+        
         
         return Cell
     }
+    
+    func EverWrongFetchRequest(_ context : NSManagedObjectContext){
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "EverWrongQuiz")
+        do {
+            EverWrongQuiz = try context.fetch(fetchRequest) as! [EverWrongQuiz]
+        } catch let error as NSError{
+            print("error : \(error)")
+        }
+    }
+    
+    func TheEazierWrongFetchRequest(_ context : NSManagedObjectContext){
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "TheEazierWrongQuiz")
+        do {
+            TheEazierWrongQuiz = try context.fetch(fetchRequest) as! [TheEazierWrongQuiz]
+        } catch let error as NSError{
+            print("error : \(error)")
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        return CGSize(width: view.frame.width * 0.8 / 3, height: view.frame.height * 0.5 / 3)
+    }
+    
+    func MarkedQuizFetchRequest(_ context : NSManagedObjectContext){
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "MarkedQuiz")
+        do {
+            MarkedQuiz = try context.fetch(fetchRequest) as! [MarkedQuiz]
+        } catch let error as NSError{
+            print("error : \(error)")
+        }
+    }
+    
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "ShowEverWrongLicense" {
             let destination = segue.destination as! EverWrongLicenseTableViewController
             destination.EverWrongQuiz = EverWrongQuiz
+            destination.MarkedQuiz = MarkedQuiz
+            destination.TheEazierWrongQuiz = TheEazierWrongQuiz
             destination.getProfessionSetId = filterExam[(collectionView.indexPathsForSelectedItems?.first?.row)!]
+            destination.sourceProcessType = self.sourceProcessType
         }
     }
     

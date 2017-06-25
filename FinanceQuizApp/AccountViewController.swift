@@ -11,9 +11,13 @@ import CoreData
 
 class AccountViewController: UIViewController {
 
+    
+    @IBOutlet var AllButton: [UIButton]!
+    
     @IBOutlet var Namelbl: UILabel!
     @IBOutlet var Jobslbl: UILabel!
     @IBInspectable var jsonFileName : String!
+    @IBOutlet weak var profileImgView: UIImageView!
     var get_id = ""
     var get_job = ""
 
@@ -53,16 +57,23 @@ class AccountViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        get_id = loginViewController().User.string(forKey: "user")!
-
-        get_job = loginViewController().User.string(forKey: "job")!
         readJson(jsonFileName)
         
-        Namelbl.text = get_id
-        Jobslbl.text = get_job
+        
         // Do any additional setup after loading the view.
     }
-
+    
+    override func viewWillAppear(_ animated: Bool) {
+        ButtonAdjust(AllButton)
+        get_id = loginViewController().User.string(forKey: "user")!
+        get_job = loginViewController().User.string(forKey: "job")!
+        let data = loginViewController().User.object(forKey: "profilePic") as! Data
+        let get_img = NSKeyedUnarchiver.unarchiveObject(with: data) as? UIImage
+        profileImgView.image = get_img
+        Namelbl.text = get_id
+        Jobslbl.text = get_job
+    }
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

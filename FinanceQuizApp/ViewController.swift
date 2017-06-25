@@ -8,23 +8,28 @@
 
 import UIKit
 
-class ViewController: UIViewController , UICollectionViewDelegate , UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+class ViewController: UIViewController , UICollectionViewDelegate , UICollectionViewDataSource, UICollectionViewDelegateFlowLayout , UISearchBarDelegate,UISearchDisplayDelegate {
 
 //    @IBInspectable var jsonFileName : String!
+//    var ProfessionSet : [professionType] = []
+
+    @IBOutlet var searchBar: UISearchBar!
     @IBOutlet weak var CollectionView: UICollectionView!
     @IBOutlet var InnerCollectionView: UICollectionView!
-//    var ProfessionSet : [professionType] = []
+    @IBOutlet var SearchTableView: SearchUITableView!
+    var examSet = [ExamSet]()
+    var LicenseGrade = [String]()
+    var LicenseName = [String]()
+    var isSearching = false
+    var QuizDetail : [[String:Int]] = []
+    var QuizDetails : [String:Int] = ["ProfessionSet":0,"LicenseGrade":0,"LicenseType":0,"ExamSet":0]
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-               
-        let searchController = UISearchController(searchResultsController: nil)
-        searchController.dimsBackgroundDuringPresentation = false
-        searchController.hidesNavigationBarDuringPresentation = false
-        //Alternative that also works
-        navigationItem.titleView = searchController.searchBar
+        searchBar.returnKeyType = .done
+        navigationItem.titleView = searchBar
         
-        // read Json File Which call testing.json
-//        readJson(jsonFileName)
         view.addSubview(InnerCollectionView)
         InnerCollectionView.alpha = 0
         InnerCollectionView.isHidden = true
@@ -33,7 +38,57 @@ class ViewController: UIViewController , UICollectionViewDelegate , UICollection
         tap.cancelsTouchesInView = false
         CollectionView.addGestureRecognizer(tap)
         // Do any additional setup after loading the view, typically from a nib.
+        
+        
     }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        examSet.removeAll()
+        LicenseGrade.removeAll()
+        LicenseName.removeAll()
+        
+        if searchText != "" {
+            for (a,i) in ProfessionSet.enumerated(){
+                for (b,j) in i.LicenseGrade.enumerated(){
+                    for (c,k) in j.LicenseType.enumerated(){
+                        for (d,l) in k.ExamSet.enumerated(){
+                            if l.name.contains(searchText){
+                                QuizDetail.append(["ProfessionSet":a,"LicenseGrade":b,"LicenseType":c,"ExamSet":d])
+                                examSet.append(l)
+                                LicenseGrade.append(j.Grade)
+                                LicenseName.append(k.LicenseName)
+                            }
+                        }
+                    }
+                }
+            }
+            print("here")
+            SearchTableView.ExamSet = examSet
+            SearchTableView.LicenseGrade = LicenseGrade
+            SearchTableView.LicenseName = LicenseName
+        }
+        SearchTableView.reloadData()
+        
+    }
+    
+    
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchBar.setShowsCancelButton(true, animated: true)
+        SearchTableView.frame = CGRect(x: 0 , y: 20 + navigationItem.titleView!.frame.size.height, width: view.frame.width, height: view.frame.height - navigationItem.titleView!.frame.size.height - 20)
+        view.addSubview(SearchTableView)
+        isSearching = true
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.endEditing(true)
+        isSearching = false
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        SearchTableView.removeFromSuperview()
+        searchBar.setShowsCancelButton(false, animated: true)
+    }
+    
     
     override func viewWillAppear(_ animated: Bool) {
         self.tabBarController?.tabBar.isHidden = false
@@ -97,7 +152,12 @@ class ViewController: UIViewController , UICollectionViewDelegate , UICollection
         return UICollectionReusableView()
     }
     
-    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        if collectionView != InnerCollectionView{
+            return UIEdgeInsets(top: collectionView.frame.height * 0.1, left: 10, bottom: 10, right: 10)
+        }
+        return UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
+    }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == InnerCollectionView{
@@ -110,9 +170,8 @@ class ViewController: UIViewController , UICollectionViewDelegate , UICollection
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == InnerCollectionView{
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "InnerCell", for: indexPath) as! InnerCollectionCell
-            
             cell.textlbl.text = ProfessionSet[InnerCellCount].LicenseGrade[indexPath.section].LicenseType[indexPath.row].LicenseName
-            cell.textlbl.adjustsFontSizeToFitWidth = true
+            
             return cell
         }
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! CollectionCell
@@ -121,6 +180,21 @@ class ViewController: UIViewController , UICollectionViewDelegate , UICollection
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        if collectionView == InnerCollectionView {
+            let lbl = UILabel()
+            lbl.frame.size = CGSize(width: collectionView.bounds.width, height: 200)
+            lbl.adjustsFontSizeToFitWidth = true
+            lbl.minimumScaleFactor = 0.4
+            lbl.lineBreakMode = .byClipping
+            lbl.numberOfLines = 0
+            lbl.text = ProfessionSet[InnerCellCount].LicenseGrade[section].Grade
+
+            lbl.sizeToFit()
+            return CGSize(width: collectionView.bounds.width, height: lbl.bounds.height + 30)
+        }
+        return CGSize(width: collectionView.frame.width, height: 0)
+    }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == InnerCollectionView{
             if view.frame.width <= 320 {
@@ -159,12 +233,56 @@ class ViewController: UIViewController , UICollectionViewDelegate , UICollection
             destination.QuizDetail["LicenseGrade"] =  indexPath!.section
             destination.QuizDetail["LicenseType"] = indexPath!.row
             
-
+        } else if segue.identifier == "SearchStartQuiz" {
+            let destination = segue.destination as! DoingQuizViewController
+            let selectedrow = SearchTableView.indexPathForSelectedRow!.row
+            let Set = examSet[selectedrow].clone()
+            destination.QuizDetail = QuizDetail[selectedrow]
+            Set.shuffle()
+            destination.ExamSet = Set
         }
         
     }
     
     @IBAction func unWindToQuizSetView(forSegue:UIStoryboardSegue){ }
+    
+
+}
+
+extension ViewController : UITableViewDataSource, UITableViewDelegate  {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return examSet.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! SearchUITableViewCell
+        cell.ExamSet.text =  examSet[indexPath.row].name
+        cell.LicenseName.text = LicenseName[indexPath.row]
+        cell.LicenseGrade.text = LicenseGrade[indexPath.row]
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        performSegue(withIdentifier: "SearchStartQuiz", sender: self)
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+    
+    
+    
+    
+    /*
+     // Only override draw() if you perform custom drawing.
+     // An empty implementation adversely affects performance during animation.
+     override func draw(_ rect: CGRect) {
+     // Drawing code
+     }
+     */
     
 
 }

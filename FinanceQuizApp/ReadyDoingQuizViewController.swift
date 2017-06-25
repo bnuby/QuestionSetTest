@@ -10,6 +10,7 @@ import UIKit
 
 class ReadyDoingQuizViewController: UIViewController {
 
+    @IBOutlet var Button: [UIButton]!
     var QuizSet : ExamSet!
     var QuizDetail : [String:Int] = ["ProfessionSet":0,"LicenseGrade":0,"LicenseType":0,"ExamSet":0]
     
@@ -21,6 +22,7 @@ class ReadyDoingQuizViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
+        ButtonAdjust(Button)
         // Do any additional setup after loading the view.
     }
     

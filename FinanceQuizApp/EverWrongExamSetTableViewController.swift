@@ -25,7 +25,6 @@ class EverWrongExamSetTableViewController: UITableViewController {
                 }){
                      ExamSet.append(i.examSet.toInt())
                 }
-               
             }
         }
         print(ExamSet)
@@ -48,10 +47,23 @@ class EverWrongExamSetTableViewController: UITableViewController {
         
         return ExamSet.count
     }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return view.frame.height * 0.05
+
+    }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        
+        
+        cell.textLabel?.minimumScaleFactor = 0.1
+        cell.textLabel?.lineBreakMode = .byClipping
+        cell.textLabel?.adjustsFontSizeToFitWidth = true
+        cell.textLabel?.numberOfLines = 1
+        cell.textLabel?.font = UIFont(name: (cell.textLabel!.font.fontName), size: 10)
+        
         cell.textLabel?.text = ProfessionSet[QuizDetail["ProfessionId"]!].LicenseGrade[QuizDetail["LicenseGrade"]!].LicenseType[QuizDetail["LicenseType"]!].ExamSet[ExamSet[indexPath.row]].name
 
         return cell

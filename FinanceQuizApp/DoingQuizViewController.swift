@@ -70,10 +70,8 @@ class DoingQuizViewController: UIViewController , UICollectionViewDelegate , UIC
                         
                         var check = false
                         
-                        EazierWrongSet.filter({ (a) -> Bool in
+                        _ = EazierWrongSet.filter({ (a) -> Bool in
                             if a.examSet == Int16(QuizDetail["ExamSet"]!) && a.licenseGrade == Int16(QuizDetail["LicenseGrade"]!) && a.licenseType == Int16(QuizDetail["LicenseType"]!) && a.quizID == Int16(ExamSet!.quizList[numberOfQuiz].id) && a.professionSet == Int16(QuizDetail["ProfessionSet"]!) {
-                                //                                    var tempContext = context
-                                //                                    let temp = a
                                 check = true
                                 a.setValue(Int(a.value(forKey: "count") as! Int16)+1, forKey: "count")
                                 
@@ -84,10 +82,10 @@ class DoingQuizViewController: UIViewController , UICollectionViewDelegate , UIC
                                 }
                                 return true
                             }
-                            
                             return false
                             }
                         )
+                        print(check)
                         
                         if !check{
                             let data = NSEntityDescription.insertNewObject(forEntityName: "TheEazierWrongQuiz", into: context) as! TheEazierWrongQuiz
@@ -167,13 +165,14 @@ class DoingQuizViewController: UIViewController , UICollectionViewDelegate , UIC
                 }
                 data.setValue(scoreDetails["Correct"], forKey: "numberOfCorrect")
                 data.setValue(scoreDetails["totalScore"], forKey: "score")
+                let date = Date()
+                data.setValue(date, forKey: "date")
                 
                 do{
                     try context.save()
                 } catch let error as NSError{
                     print("Save Failed Error = \(error)")
                 }
-                
             }
             
             present(alertController(), animated: true, completion: nil)
@@ -282,30 +281,13 @@ class DoingQuizViewController: UIViewController , UICollectionViewDelegate , UIC
             
             if Markedchecker() {
                 markedSwitch.setOn(true, animated: true)
-//                markedButton.backgroundColor = UIColor.blue
-//                markedButton.setTitle("✓", for: .normal)
-//                markedButton.titleLabel?.text = "✓"
+
                 
             }else{
                 markedSwitch.setOn(false, animated: true)
-//                markedButton.backgroundColor = UIColor.clear
-//                markedButton.setTitle("", for: .normal)
-//                markedButton.titleLabel?.text = ""
-                
             }
-            
-            
-            
         }
-//        if Markedchecker() {
-//            markedButton.backgroundColor = UIColor.blue
-//            markedButton.setTitle("✓", for: .normal)
-//        }else{
-//            markedButton.backgroundColor = UIColor.clear
-//            markedButton.setTitle("", for: .normal)
-//        }
         self.tabBarController?.tabBar.isHidden = true
-        
     }
     
     
@@ -379,11 +361,11 @@ class DoingQuizViewController: UIViewController , UICollectionViewDelegate , UIC
 //        lbl.numberOfLines = 20
 //        lbl.lineBreakMode = .byClipping
         if ExamSet?.quizList[numberOfQuiz].question != nil{
-            lbl.text = "Question \(numberOfQuiz)\n"+(ExamSet?.quizList[numberOfQuiz].question)!
+            lbl.text = "Question \(numberOfQuiz) : "+(ExamSet?.quizList[numberOfQuiz].question)!
         }
         lbl.sizeToFit()
         
-        return CGSize(width: collectionView.bounds.width - 50, height: lbl.frame.size.height + 40)
+        return CGSize(width: collectionView.bounds.width - 50, height: lbl.frame.size.height + 100)
     }
     
     
@@ -408,7 +390,7 @@ class DoingQuizViewController: UIViewController , UICollectionViewDelegate , UIC
 //            text.frame.size.height = 30
 //            text.sizeThatFits(CGSize(width: collectionView.bounds.width - 60, height: 30))
 //        }
-        return CGSize(width: collectionView.bounds.width - 10 , height: text.frame.height + 10)
+        return CGSize(width: collectionView.bounds.width - 10 , height: text.frame.height + 30)
     }
     
     
@@ -439,19 +421,6 @@ class DoingQuizViewController: UIViewController , UICollectionViewDelegate , UIC
             QuizCollectionView.cellForItem(at: IndexPath(row: i, section: 0))?.backgroundColor = .clear
         }
     }
-    
-    
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destinationViewController.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
 }
 
 class DoingQuizCollectionHeader : UICollectionReusableView{

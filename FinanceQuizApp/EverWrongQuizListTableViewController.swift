@@ -51,8 +51,18 @@ class EverWrongQuizListTableViewController: UITableViewController {
         return QuizList.count
     }
     
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return view.frame.height * 0.05
+    }
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let Cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        Cell.textLabel?.minimumScaleFactor = 0.1
+        Cell.textLabel?.lineBreakMode = .byClipping
+        Cell.textLabel?.adjustsFontSizeToFitWidth = true
+        Cell.textLabel?.numberOfLines = 1
+        Cell.textLabel?.font = UIFont(name: (Cell.textLabel!.font.fontName), size: 10)
+        
         let question = ProfessionSet[QuizDetail["ProfessionId"]!].LicenseGrade[QuizDetail["LicenseGrade"]!].LicenseType[QuizDetail["LicenseType"]!].ExamSet[QuizDetail["ExamSet"]!].quizList[QuizList[indexPath.row]].question
         Cell.textLabel?.text = question
         return Cell
