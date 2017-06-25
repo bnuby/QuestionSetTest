@@ -6,9 +6,9 @@
                                "LicenseSet": [{
                                               "LicenseType": "信託業務人員測試",
                                               "ExamSet": [{
-                                                          "name": "證照的名稱",
-                                                          "LicenseDir": "Json/",
-                                                          "Filename": "人身保險實務概要"
+                                                          "name": "",
+                                                          "LicenseDir": "",
+                                                          "Filename": ""
                                                           }]
                                               
                                               
@@ -16,9 +16,9 @@
                                               {
                                               "LicenseType": "理財規劃人員測試",
                                               "ExamSet": [{
-                                                          "name": "人身保險實務概要",
-                                                          "LicenseDir": "Json/nihao/",
-                                                          "Filename": "人身保險實務概要"
+                                                          "name": "",
+                                                          "LicenseDir": "",
+                                                          "Filename": ""
                                                           }]
                                               
                                               
@@ -103,9 +103,9 @@
                                               {
                                               "LicenseType": "金融人員風險管理專業能力",
                                               "ExamSet": [{
-                                                          "name": "",
-                                                          "LicenseDir": "",
-                                                          "Filename": ""
+                                                          "name": "人身風險管理概要",
+                                                          "LicenseDir": "Json/BaoXianLei/RenShengBaoXianJinJiRen/",
+                                                          "Filename": "人身風險管理概要"
                                                           }]
                                               
                                               
@@ -114,9 +114,17 @@
                                               {
                                               "LicenseType": "投資型保險商品",
                                               "ExamSet": [{
-                                                          "name": "",
-                                                          "LicenseDir": "",
-                                                          "Filename": ""
+                                                          "name": "保險學概要",
+                                                          "LicenseDir": "Json/BaoXianLei/RenShengBaoXianDaiLiRen/",
+                                                          "Filename": "保險學概要"
+                                                          },{
+                                                          "name": "保險法規",
+                                                          "LicenseDir": "Json/BaoXianLei/RenShengBaoXianDaiLiRen/",
+                                                          "Filename": "保險法規"
+                                                          },{
+                                                          "name": "人身保險行銷概要",
+                                                          "LicenseDir": "Json/BaoXianLei/RenShengBaoXianJinJiRen/",
+                                                          "Filename": "人身保險行銷概要"
                                                           }]
                                               
                                               
@@ -139,9 +147,29 @@
                                               {
                                               "LicenseType": "人身／財產保險業務員",
                                               "ExamSet": [{
-                                                          "name": "",
-                                                          "LicenseDir": "",
-                                                          "Filename": ""
+                                                          "name": "人身保險實務概要",
+                                                          "LicenseDir": "Json/BaoXianLei/RenShengBaoXianDaiLiRen",
+                                                          "Filename": "人身保險實務概要"
+                                                          },{
+                                                          "name": "人身保險經營概要",
+                                                          "LicenseDir": "Json/BaoXianLei/RenShengBaoXianDaiLiRen",
+                                                          "Filename": "人身保險經營概要"
+                                                          },{
+                                                          "name": "保險學概要",
+                                                          "LicenseDir": "Json/BaoXianLei/RenShengBaoXianDaiLiRen/",
+                                                          "Filename": "保險學概要"
+                                                          },{
+                                                          "name": "保險法規",
+                                                          "LicenseDir": "Json/BaoXianLei/RenShengBaoXianDaiLiRen/",
+                                                          "Filename": "保險法規"
+                                                          },{
+                                                          "name": "人身保險行銷概要",
+                                                          "LicenseDir": "Json/BaoXianLei/RenShengBaoXianJinJiRen/",
+                                                          "Filename": "人身保險行銷概要"
+                                                          },{
+                                                          "name": "人身風險管理概要",
+                                                          "LicenseDir": "Json/BaoXianLei/RenShengBaoXianJinJiRen/",
+                                                          "Filename": "人身風險管理概要"
                                                           }]
                                               
                                               
@@ -189,54 +217,45 @@
                                "LicenseSet": [{
                                               "LicenseType": "人身保險業務員",
                                               "ExamSet": [{
-                                                          "name": "",
-                                                          "LicenseDir": "",
-                                                          "Filename": ""
-                                                          }],
-                                              "QuizSet": [{
-                                                          "question": "下列何者不是金融市場的主要功能？",
-                                                          "answer": ["提供交易者投機的場所"],
-                                                          "choice": ["提供金融工具交易的場所", "擔任資金需求", "促進投資活動的效率，提升經濟發展"]
-                                                          }, {
-                                                          "question": "下列何者不是金融市場交易的工具？",
-                                                          "answer": ["房地產"],
-                                                          "choice": ["商業本票", "銀行存款", "股票"]
-                                                          }, {
-                                                          "question": "當金融市場管理的品質較佳時，企業發行的成本會______，金融工具的流動性會______。",
-                                                          "answer": ["較低，較高"],
-                                                          "choice": ["較低，較低", "較高，較低", "較高，較高"]
-                                                          }, {
-                                                          "question": "當企業需要資金來進行投資，最好不要用下列何種方式尋求融通？",
-                                                          "answer": ["向地下錢莊借錢"],
-                                                          "choice": ["向銀行借錢", "發行股票", "發行債券"]
-                                                          }, {
-                                                          "question": "下列何者不是近年來國內主管機關管理金融市場的發展方向？",
-                                                          "answer": ["對國外資金進行更嚴格的限制與管理"],
-                                                          "choice": ["減少法規的限制", "鼓勵金融創新", "加強國際金融的流通"]
-                                                          }, {
-                                                          "question": " 在金融市場中主管機關訂定法律規範的目的在於：",
-                                                          "answer": ["促進金融市場健全發展與有效經營"],
-                                                          "choice": ["增加政府的收入", "增加金融機構的進入障礙", "提高金融機構的經營成本"]
-                                                          }, {
-                                                          "question": "目前國內監理銀行、票券、證券及保險等金融機構的主管機關為：",
-                                                          "answer": ["金融監督管理委員會"],
-                                                          "choice": ["財政部", "內政部", "經濟部"]
-                                                          }, {
-                                                          "question": "依照國內金融監督管理制度的架構，主管證券相關事業的監理單位為：",
-                                                          "answer": ["檢查局"],
-                                                          "choice": ["銀行局", "中央銀行", "中央存款保險公司"]
-                                                          }, {
-                                                          "question": "下列何者非隸屬「金融監督管理委員會」？",
-                                                          "answer": ["公務人員退休撫卹基金管理委員會"],
-                                                          "choice": ["銀行局", "證券期貨局", ")檢查局"]
+                                                          "name": "人身保險實務概要",
+                                                          "LicenseDir": "Json/BaoXianLei/RenShengBaoXianDaiLiRen",
+                                                          "Filename": "人身保險實務概要"
+                                                          },{
+                                                          "name": "人身保險經營概要",
+                                                          "LicenseDir": "Json/BaoXianLei/RenShengBaoXianDaiLiRen",
+                                                          "Filename": "人身保險經營概要"
+                                                          },{
+                                                          "name": "保險學概要",
+                                                          "LicenseDir": "Json/BaoXianLei/RenShengBaoXianDaiLiRen/",
+                                                          "Filename": "保險學概要"
+                                                          },{
+                                                          "name": "保險法規",
+                                                          "LicenseDir": "Json/BaoXianLei/RenShengBaoXianDaiLiRen/",
+                                                          "Filename": "保險法規"
+                                                          },{
+                                                          "name": "人身保險行銷概要",
+                                                          "LicenseDir": "Json/BaoXianLei/RenShengBaoXianJinJiRen/",
+                                                          "Filename": "人身保險行銷概要"
+                                                          },{
+                                                          "name": "人身風險管理概要",
+                                                          "LicenseDir": "Json/BaoXianLei/RenShengBaoXianJinJiRen/",
+                                                          "Filename": "人身風險管理概要"
                                                           }]
                                               },
                                               {
                                               "LicenseType": "財產保險業務員",
                                               "ExamSet": [{
-                                                          "name": "",
-                                                          "LicenseDir": "",
-                                                          "Filename": ""
+                                                          "name": "保險學概要",
+                                                          "LicenseDir": "Json/BaoXianLei/RenShengBaoXianDaiLiRen/",
+                                                          "Filename": "保險學概要"
+                                                          },{
+                                                          "name": "保險法規",
+                                                          "LicenseDir": "Json/BaoXianLei/RenShengBaoXianDaiLiRen/",
+                                                          "Filename": "保險法規"
+                                                          },{
+                                                          "name": "人身保險行銷概要",
+                                                          "LicenseDir": "Json/BaoXianLei/RenShengBaoXianJinJiRen/",
+                                                          "Filename": "人身保險行銷概要"
                                                           }]
                                               
                                               
@@ -245,9 +264,17 @@
                                               {
                                               "LicenseType": "投資型保險商品",
                                               "ExamSet": [{
-                                                          "name": "",
-                                                          "LicenseDir": "",
-                                                          "Filename": ""
+                                                          "name": "保險學概要",
+                                                          "LicenseDir": "Json/BaoXianLei/RenShengBaoXianDaiLiRen/",
+                                                          "Filename": "保險學概要"
+                                                          },{
+                                                          "name": "保險法規",
+                                                          "LicenseDir": "Json/BaoXianLei/RenShengBaoXianDaiLiRen/",
+                                                          "Filename": "保險法規"
+                                                          },{
+                                                          "name": "人身保險行銷概要",
+                                                          "LicenseDir": "Json/BaoXianLei/RenShengBaoXianJinJiRen/",
+                                                          "Filename": "人身保險行銷概要"
                                                           }]
                                               
                                               
@@ -270,9 +297,17 @@
                                "LicenseSet": [{
                                               "LicenseType": "保險業務員中級測驗",
                                               "ExamSet": [{
-                                                          "name": "",
-                                                          "LicenseDir": "",
-                                                          "Filename": ""
+                                                          "name": "保險學概要",
+                                                          "LicenseDir": "Json/BaoXianLei/RenShengBaoXianDaiLiRen/",
+                                                          "Filename": "保險學概要"
+                                                          },{
+                                                          "name": "保險法規",
+                                                          "LicenseDir": "Json/BaoXianLei/RenShengBaoXianDaiLiRen/",
+                                                          "Filename": "保險法規"
+                                                          },{
+                                                          "name": "人身保險行銷概要",
+                                                          "LicenseDir": "Json/BaoXianLei/RenShengBaoXianJinJiRen/",
+                                                          "Filename": "人身保險行銷概要"
                                                           }]
                                               
                                               
@@ -281,9 +316,9 @@
                                               {
                                               "LicenseType": "個人風險管理師",
                                               "ExamSet": [{
-                                                          "name": "",
-                                                          "LicenseDir": "",
-                                                          "Filename": ""
+                                                          "name": "人身風險管理概要",
+                                                          "LicenseDir": "Json/BaoXianLei/RenShengBaoXianJinJiRen/",
+                                                          "Filename": "人身風險管理概要"
                                                           }]
                                               
                                               
@@ -303,9 +338,13 @@
                                               {
                                               "LicenseType": "核保，理賠人員資格",
                                               "ExamSet": [{
-                                                          "name": "",
-                                                          "LicenseDir": "",
-                                                          "Filename": ""
+                                                          "name": "核保理論與實務",
+                                                          "LicenseDir": "Json/BaoXianLei/ShouXianHeBaoRrenYuan/",
+                                                          "Filename": "核保理論與實務"
+                                                          },{
+                                                          "name": "核保醫務常識",
+                                                          "LicenseDir": "Json/BaoXianLei/ShouXianHeBaoRrenYuan/",
+                                                          "Filename": "核保醫務常識"
                                                           }]
                                               
                                               
@@ -314,9 +353,17 @@
                                               {
                                               "LicenseType": "保險代理人／經紀人／公證",
                                               "ExamSet": [{
-                                                          "name": "",
-                                                          "LicenseDir": "",
-                                                          "Filename": ""
+                                                          "name": "保險學概要",
+                                                          "LicenseDir": "Json/BaoXianLei/RenShengBaoXianDaiLiRen/",
+                                                          "Filename": "保險學概要"
+                                                          },{
+                                                          "name": "保險法規",
+                                                          "LicenseDir": "Json/BaoXianLei/RenShengBaoXianDaiLiRen/",
+                                                          "Filename": "保險法規"
+                                                          },{
+                                                          "name": "人身保險行銷概要",
+                                                          "LicenseDir": "Json/BaoXianLei/RenShengBaoXianJinJiRen/",
+                                                          "Filename": "人身保險行銷概要"
                                                           }]
                                               
                                               
