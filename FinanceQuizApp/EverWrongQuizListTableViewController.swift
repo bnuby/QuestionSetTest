@@ -30,7 +30,6 @@ class EverWrongQuizListTableViewController: UITableViewController {
                 //                }
             }
         }
-        print(QuizList)
     }
 
     override func didReceiveMemoryWarning() {

@@ -59,7 +59,6 @@ class DoingEverWrongQuizViewController: UIViewController , UICollectionViewDeleg
         lbl.sizeToFit()
         
         return CGSize(width: collectionView.bounds.width - 20, height: lbl.bounds.height + 30)
-        
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

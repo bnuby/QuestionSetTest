@@ -48,15 +48,15 @@ class ExamSetTableViewController: UITableViewController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
-        cell.textLabel?.font = UIFont(name: cell.textLabel!.font.fontName, size: 10)
-        cell.backgroundColor = UIColor.clear
-        cell.textLabel?.minimumScaleFactor = 0.01
-        cell.textLabel?.lineBreakMode = .byClipping
-        cell.textLabel?.adjustsFontSizeToFitWidth = true
-        cell.textLabel?.numberOfLines = 1
+//        cell.textLabel?.font = UIFont(name: cell.textLabel!.font.fontName, size: 10)
+//        cell.backgroundColor = UIColor.clear
+//        cell.textLabel?.minimumScaleFactor = 0.01
+//        cell.textLabel?.lineBreakMode = .byClipping
+//        cell.textLabel?.adjustsFontSizeToFitWidth = true
+//        cell.textLabel?.numberOfLines = 1
 
         cell.textLabel?.text = licenseType.ExamSet[indexPath.row].name
-        cell.textLabel?.sizeToFit()
+//        cell.textLabel?.sizeToFit()
 
         return cell
     }

@@ -91,9 +91,9 @@ func dataProcess(object : [String: Any] ){
 
 func shuffle (_ a : quiz) -> [String]{
     var string : [String] = []
-    for i in a.answer {
-        string.append(i)
-    }
+//    for i in a.answer {
+//        string.append(i)
+//    }
     for i in a.choice {
         string.append(i)
     }
