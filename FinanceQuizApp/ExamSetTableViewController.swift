@@ -40,9 +40,28 @@ class ExamSetTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
         return licenseType.ExamSet.count
-        
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return view.frame.height * 0.05
+    }
 
-    }    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        cell.textLabel?.font = UIFont(name: cell.textLabel!.font.fontName, size: 10)
+        cell.backgroundColor = UIColor.clear
+        cell.textLabel?.minimumScaleFactor = 0.01
+        cell.textLabel?.lineBreakMode = .byClipping
+        cell.textLabel?.adjustsFontSizeToFitWidth = true
+        cell.textLabel?.numberOfLines = 1
+
+        cell.textLabel?.text = licenseType.ExamSet[indexPath.row].name
+        cell.textLabel?.sizeToFit()
+
+        return cell
+    }
+    
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
 

@@ -17,10 +17,12 @@ class EverWrongQuizListTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navigationController?.tabBarController?.prefersStatusBarHidden == true
+
         tableView.backgroundView = UIImageView(image: #imageLiteral(resourceName: "BackGround"))
     }
     
     override func viewWillAppear(_ animated: Bool) {
+
         for i in EverWrongQuiz {
             if i.professionSet.toInt() == QuizDetail["ProfessionId"] && i.licenseType.toInt() == QuizDetail["LicenseType"] && i.licenseGrade.toInt() == QuizDetail["LicenseGrade"] && i.examSet.toInt() == QuizDetail["ExamSet"]  {
                 //                if !QuizList.contains(Int(i.quizID)){

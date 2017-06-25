@@ -8,7 +8,7 @@
                                               "ExamSet": [{
                                                           "name": "證照的名稱",
                                                           "LicenseDir": "Json/",
-                                                          "Filename": "app"
+                                                          "Filename": "人身保險實務概要"
                                                           }]
                                               
                                               
@@ -16,9 +16,9 @@
                                               {
                                               "LicenseType": "理財規劃人員測試",
                                               "ExamSet": [{
-                                                          "name": "",
-                                                          "LicenseDir": "",
-                                                          "Filename": ""
+                                                          "name": "人身保險實務概要",
+                                                          "LicenseDir": "Json/nihao/",
+                                                          "Filename": "人身保險實務概要"
                                                           }]
                                               
                                               
