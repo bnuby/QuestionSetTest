@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		22564D7D1EFCD63F00998CFF /* Personal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22564D7C1EFCD63E00998CFF /* Personal.swift */; };
 		226977601EFDD16A004BE692 /* ProfileSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2269775F1EFDD16A004BE692 /* ProfileSettingViewController.swift */; };
+		22867BEF1EFEBC100069F0EE /* OwnQuiz2ndViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22867BEE1EFEBC100069F0EE /* OwnQuiz2ndViewController.swift */; };
+		22867BF41EFF37090069F0EE /* SearchUITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22867BF31EFF37090069F0EE /* SearchUITableView.swift */; };
 		22ABE9401EFE546200F9AEB9 /* OwnQuiz2ndTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 22ABE93F1EFE546200F9AEB9 /* OwnQuiz2ndTableViewController.swift */; };
 		27FFC0471EEEAD1B00F201D0 /* ExamSetTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FFC0461EEEAD1B00F201D0 /* ExamSetTableViewController.swift */; };
 		ACE5EDD21EB9A97500195A8B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACE5EDD11EB9A97500195A8B /* AppDelegate.swift */; };
@@ -59,6 +61,8 @@
 /* Begin PBXFileReference section */
 		22564D7C1EFCD63E00998CFF /* Personal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Personal.swift; sourceTree = "<group>"; };
 		2269775F1EFDD16A004BE692 /* ProfileSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileSettingViewController.swift; sourceTree = "<group>"; };
+		22867BEE1EFEBC100069F0EE /* OwnQuiz2ndViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OwnQuiz2ndViewController.swift; sourceTree = "<group>"; };
+		22867BF31EFF37090069F0EE /* SearchUITableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchUITableView.swift; sourceTree = "<group>"; };
 		22ABE93F1EFE546200F9AEB9 /* OwnQuiz2ndTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OwnQuiz2ndTableViewController.swift; sourceTree = "<group>"; };
 		27FFC0461EEEAD1B00F201D0 /* ExamSetTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExamSetTableViewController.swift; sourceTree = "<group>"; };
 		ACE5EDCE1EB9A97500195A8B /* FinanceQuizApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FinanceQuizApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -124,6 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				22ABE93F1EFE546200F9AEB9 /* OwnQuiz2ndTableViewController.swift */,
+				22867BEE1EFEBC100069F0EE /* OwnQuiz2ndViewController.swift */,
 			);
 			name = 2ndView;
 			sourceTree = "<group>";
@@ -204,6 +209,7 @@
 				27FFC0461EEEAD1B00F201D0 /* ExamSetTableViewController.swift */,
 				CF16D0791EBF9F2E00DF641C /* ReadyDoingQuizViewController.swift */,
 				CFDD16751EBD84B1001B536E /* DoingQuizViewController.swift */,
+				22867BF31EFF37090069F0EE /* SearchUITableView.swift */,
 			);
 			name = MainQuiz;
 			sourceTree = "<group>";
@@ -389,6 +395,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				CF2FD8301EBB7A0700B1A594 /* loginViewController.swift in Sources */,
+				22867BF41EFF37090069F0EE /* SearchUITableView.swift in Sources */,
+				22867BEF1EFEBC100069F0EE /* OwnQuiz2ndViewController.swift in Sources */,
 				CFDB226F1EC77E200006B215 /* EverWrongQuizViewController.swift in Sources */,
 				CF4C3FC41EC4BE160071DF06 /* DoingOwnQuizViewController.swift in Sources */,
 				226977601EFDD16A004BE692 /* ProfileSettingViewController.swift in Sources */,

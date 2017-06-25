@@ -11,6 +11,9 @@ import CoreData
 
 class AccountViewController: UIViewController {
 
+    
+    @IBOutlet var AllButton: [UIButton]!
+    
     @IBOutlet var Namelbl: UILabel!
     @IBOutlet var Jobslbl: UILabel!
     @IBInspectable var jsonFileName : String!
@@ -61,6 +64,7 @@ class AccountViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        ButtonAdjust(AllButton)
         get_id = loginViewController().User.string(forKey: "user")!
         get_job = loginViewController().User.string(forKey: "job")!
         let data = loginViewController().User.object(forKey: "profilePic") as! Data

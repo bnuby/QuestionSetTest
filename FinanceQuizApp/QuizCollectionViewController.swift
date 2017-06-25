@@ -10,6 +10,7 @@ import UIKit
 
 class QuizCollectionViewController: UIViewController {
     
+    @IBOutlet var AllButton: [UIButton]!
     var processType = ""
     
     @IBAction func myFeatureQuiz(_ sender: Any){
@@ -34,10 +35,7 @@ class QuizCollectionViewController: UIViewController {
     @IBOutlet var buttonStackView: UIStackView!
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "PageSwitch"{
-//            let destination = segue.destination as! OwnQuizProcessViewController
-//            destination.sourceProcessType = processType
-//        }
+
         if segue.identifier == "PageSwitch"{
             let destination = segue.destination as! EverWrongQuizViewController
             destination.sourceProcessType = processType
@@ -45,8 +43,7 @@ class QuizCollectionViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        let constraint = NSLayoutConstraint(item: buttonStackView, attribute: .width, relatedBy: .equal, toItem: view, attribute: .width, multiplier: 0.8, constant: 0)
-        view.addConstraint(constraint)
+        ButtonAdjust(AllButton)
         // Do any additional setup after loading the view.
     }
 

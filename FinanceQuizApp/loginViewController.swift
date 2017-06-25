@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 
 class loginViewController: UIViewController {
+    @IBOutlet var AllButton: [UIButton]!
     
     var loginData = ["user" : "admin" , "password" : ""]
     let User = UserDefaults()
@@ -35,7 +36,7 @@ class loginViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        ButtonAdjust(AllButton)
         if let context = (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer.viewContext{
             let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "AccountMO")
             do {
@@ -82,8 +83,6 @@ class loginViewController: UIViewController {
 //        User.set("noPic", forKey: "profilePic")
         let data = NSKeyedArchiver.archivedData(withRootObject: #imageLiteral(resourceName: "noPic"))
         User.set(data, forKey: "profilePic")
-
-        print("here\n\n\n\n\n")
         print(User.value(forKey: "Pic"))
         self.performSegue(withIdentifier: "loginSucess", sender: self)
     }

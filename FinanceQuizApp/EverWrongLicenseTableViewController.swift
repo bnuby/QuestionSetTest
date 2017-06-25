@@ -16,6 +16,8 @@ class EverWrongLicenseTableViewController: UITableViewController {
     var LicenseType : [[Int]] = [[]]
     var sourceProcessType = ""
     
+    @IBOutlet var Header: UITableViewCell!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.backgroundView = UIImageView(image: #imageLiteral(resourceName: "BackGround"))
@@ -82,16 +84,63 @@ class EverWrongLicenseTableViewController: UITableViewController {
         return LicenseType[section].count
     }
     
-    
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return ProfessionSet[getProfessionSetId].LicenseGrade[section].Grade
+//    override func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+//        let header = view as! UITableViewHeaderFooterView
+//        header.textLabel?.font = UIFont(name: "Futura", size: 15)
+//    }
+//    
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return view.frame.height * 0.05
     }
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return view.frame.height * 0.05
+    }
+//
+//    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//        let header = Header as! CustomTableHeader
+//        header.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: 25)
+//        header.headerlbl.text = ProfessionSet[getProfessionSetId].LicenseGrade[section].Grade
+//        header.headerlbl.frame = CGRect(x: 0, y: 0, width: view.frame.size.width, height: 25)
+//        return header
+//    }
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let returnedView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: view.frame.height * 0.05))
+        returnedView.backgroundColor = UIColor(red: 237/255, green: 236/255, blue: 241/255, alpha: 1)
+        
+        let label = UILabel(frame: CGRect(x: 10, y: 7, width: view.frame.size.width * 0.5, height: view.frame.height * 0.05))
+
+        label.lineBreakMode = .byClipping
+        label.textAlignment = .center
+        label.clipsToBounds = true
+        label.font = UIFont(name: label.font.fontName, size: 10)
+        label.numberOfLines = 1
+        label.minimumScaleFactor = 0.01
+        label.adjustsFontSizeToFitWidth = true
+        label.text = ProfessionSet[getProfessionSetId].LicenseGrade[section].Grade
+        label.textColor = .black
+        label.sizeToFit()
+
+        returnedView.addSubview(label)
+        label.leftAnchor.constraint(equalTo: returnedView.leftAnchor)
+        label.bottomAnchor.constraint(equalTo: returnedView.bottomAnchor)
+        label.topAnchor.constraint(equalTo: returnedView.topAnchor)
+
+        return returnedView
+    }
+
+    
+//    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//
+//        return ProfessionSet[getProfessionSetId].LicenseGrade[section].Grade
+//    }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         // Configure the cell...
         cell.textLabel?.text = ProfessionSet[getProfessionSetId].LicenseGrade[indexPath.section].LicenseType[LicenseType[indexPath.section][indexPath.row]].LicenseName
+        cell.textLabel?.font = UIFont(name: cell.textLabel!.font.fontName, size: 10)
 
         return cell
     }
@@ -130,4 +179,10 @@ class EverWrongLicenseTableViewController: UITableViewController {
     }
     
 
+}
+
+
+class CustomTableHeader : UITableViewCell{
+    @IBOutlet weak var headerlbl: UILabel!
+    
 }

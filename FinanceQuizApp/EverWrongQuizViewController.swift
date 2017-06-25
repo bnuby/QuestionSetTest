@@ -74,11 +74,20 @@ class EverWrongQuizViewController: UIViewController , UICollectionViewDelegate ,
         let Header = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "Header", for: indexPath) as! EverWrongQuizCollectionHeader
             Header.backgroundColor = UIColor.clear
         if filterExam.count > 0 {
-            Header.textlbl.text = "以下為答錯的紀錄"
+            if sourceProcessType == "EverWrongQuiz" {
+                Header.textlbl.text = "以下為答錯的紀錄"
+            } else if sourceProcessType == "MarkedQuiz" {
+                Header.textlbl.text = "以下為標記的題目"
+            } else if sourceProcessType == "TheEazierWrongQuiz" {
+                Header.textlbl.text = "以下為常錯的題目"
+            }
         } else {
-            Header.textlbl.text = "無錯誤的題目"
+            if sourceProcessType == "EverWrongQuiz" || sourceProcessType == "TheEazierWrongQuiz"  {
+                Header.textlbl.text = "無答錯的紀錄"
+            } else if sourceProcessType == "MarkedQuiz" {
+                Header.textlbl.text = "無標記的題目"
+            }
         }
-        
         return Header
     }
     
@@ -88,11 +97,11 @@ class EverWrongQuizViewController: UIViewController , UICollectionViewDelegate ,
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let Cell = collectionView.dequeueReusableCell(withReuseIdentifier: "Cell", for: indexPath) as! EverWrongQuizCollectionCell
 
-        if sourceProcessType == "EverWrongQuiz"{
+        if sourceProcessType == "EverWrongQuiz" {
             Cell.textlbl.text = ProfessionSet[Int(EverWrongQuiz[indexPath.row].professionSet)].ProfessionName
-        } else if sourceProcessType == "MarkedQuiz"{
+        } else if sourceProcessType == "MarkedQuiz" {
             Cell.textlbl.text = ProfessionSet[Int(MarkedQuiz[indexPath.row].professionSet)].ProfessionName
-        } else if sourceProcessType == "TheEazierWrongQuiz"{
+        } else if sourceProcessType == "TheEazierWrongQuiz" {
             Cell.textlbl.text = ProfessionSet[Int(TheEazierWrongQuiz[indexPath.row].professionSet)].ProfessionName
         }
         
@@ -116,6 +125,11 @@ class EverWrongQuizViewController: UIViewController , UICollectionViewDelegate ,
         } catch let error as NSError{
             print("error : \(error)")
         }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        
+        return CGSize(width: view.frame.width * 0.8 / 3, height: view.frame.height * 0.5 / 3)
     }
     
     func MarkedQuizFetchRequest(_ context : NSManagedObjectContext){

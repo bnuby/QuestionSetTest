@@ -15,7 +15,8 @@ class QuizHistoryViewController: UIViewController ,UITableViewDelegate ,UITableV
         self.performSegue(withIdentifier: "unWindToProfile", sender: self)
     }
     var History : [History]!
-    
+    var filter : [Date] = []
+    var temp : [History] = []
     override func viewDidLoad() {
         super.viewDidLoad()
         navigation.frame.origin.y = 0
@@ -44,21 +45,43 @@ class QuizHistoryViewController: UIViewController ,UITableViewDelegate ,UITableV
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        for i in History{
+            if filter.contains(i.date! as Date){
+                continue
+            }
+            filter.append(i.date! as Date)
+        }
+        filter.sort { $0 > $1 }
+        return filter.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         tableView.separatorStyle = .singleLine
-        if History.count > 0 {
-            return History.count
+        temp.removeAll()
+        for i in History{
+            if i.date! as Date == filter[section]{
+                temp.append(i)
+            }
         }
-        return 0
+        return temp.count
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return view.frame.height * 0.1
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        var Formatter = DateFormatter()
+//        Formatter.dateFormat = "dd-mm-yyyy"
+        Formatter.dateStyle = .medium
+        let date = Formatter.string(from: filter[section])
+        return date
     }
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! HistoryCell
-        let history = History[indexPath.row]
+        let history = temp[indexPath.row]
         cell.ProfessionType.text = ProfessionSet[history.professionSet.toInt()].ProfessionName
         cell.QuizSetName.text =  ProfessionSet[history.professionSet.toInt()].LicenseGrade[history.licenseGrade.toInt()].LicenseType[history.licenseType.toInt()].ExamSet[history.examSet.toInt()].name
         cell.Score.text = "\(History[indexPath.row].score)%"
